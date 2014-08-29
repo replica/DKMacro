@@ -96,9 +96,9 @@ function MacroFunctions.MinhGiaoPATQ(arg)
       if MacroOptions.autoAmTranDiTan==2 and not MacroFunctions.CheckBuff(p,4052,1,0,0) and (NhatLinh<=4000 and NguyetHon<=4000 and FS==0 and FM==0) and MacroFunctions.GetSkillCD(3979)<=1 then MacroFunctions.use({3974},3,1500) end
     end
     --Thi Triển Khu Dạ Đoạn Sầu khi trong trạng thái tàng hình
-    if MacroFunctions.CheckBuff(p,4052,1,0,0) then MacroFunctions.use({3979},2,500) end
+    if MacroFunctions.CheckBuff(p,4052,1,0,0) and FS==0 and FM==0 then MacroFunctions.use({3979},2,500) end
     --Chỉ đánh trong trạng thái chiến đấu
-    if p.bFightState or not MacroFunctions.IsSkillCD(3974) or MacroOptions.autoAmTranDiTan==0 then
+    if p.bFightState or not MacroFunctions.IsSkillCD(3974) or MacroOptions.autoAmTranDiTan==0 or FS==1 or FM==1 then
       --Tự dùng Sinh Diệt Dư Đoạt
       if MacroOptions.autoSinhDietDuDoat and FS==0 and FM==0 and NLNH and MacroFunctions.GetSkillCD(3974)>15 then MacroFunctions.use({3978},3,1500) end
       --Sử dụng vật phẩm
