@@ -97,7 +97,7 @@ function MacroFunctions.DuongMonKVQ()
     --Khi đủ thần cơ dùng Trục Tinh Tiễn, Liên Hoàn Nỏ, Ngự Nguyên Tiễn, Khổng Tước Linh, Đoạt Phách Tiễn, Liệt Thạch Nỏ
     if not bHuyenDieu and ((MacroFunctions.CheckBuff(T,2237,1,0,0) and MacroFunctions.CheckBuff(T,3712,1,0,0)) or energy<=60) then MacroFunctions.use({3101},y) end
     if energy<x*3 and MacroFunctions.CheckMoveState(p,"stand|float|entrap") then MacroFunctions.use({3100},2) end
-    if energy>=x and not bHuyenDieu and not MacroFunctions.CheckBuff(T,5886,1,0,0) and not MacroFunctions.CheckBuff(T,2291,1,0,0) and (MacroFunctions.CheckBuff(T,5634,25,0,0) or not MacroFunctions.CheckBuff(T,5634,1,0,0)) then MacroFunctions.use({3099},y) end
+    if energy>=x and not bHuyenDieu and MacroFunctions.CheckBuff(T,5634,25,0,0) then MacroFunctions.use({3099},y) end
     if energy>=(x*1.5) and (energy<=55 or MacroFunctions.CheckMoveState(p,"walk|run|jump")) and not bHuyenDieu then MacroFunctions.use({3088},y) end
     if energy>=(x*3) and MacroFunctions.CheckMoveState(p,"stand|float|entrap") then MacroFunctions.use({3095},y) end
     if energy>=50 and MacroFunctions.CheckMoveState(p,"walk|run|jump") then MacroFunctions.use({6450},y) end
