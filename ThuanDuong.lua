@@ -252,7 +252,7 @@ function MacroFunctions.ThuanDuongTHKY()
     --Duy trì buff Sinh Thái Cực
     if MacroOptions.autoSinhThaiCucTHKY and (K<=8 or not p.bFightState) and not MacroFunctions.CheckBuff(p,374,1,0,0) then MacroFunctions.use({358},0) end
     --Duy trì buff Lăng Thái Hư
-    if MacroOptions.autoLangThaiHu and (K<=8 or not p.bFightState) and not MacroFunctions.CheckBuff(p,361,1,0,0) then MacroFunctions.use({361},0) end
+    if MacroOptions.autoLangThaiHu and (K<=8 or not p.bFightState) and not MacroFunctions.CheckBuff(p,561,1,0,0) then MacroFunctions.use({361},0) end
     --Cắm Thôn Nhật Nguyệt liên tục
     if MacroOptions.autoThonNhatNguyet and (K<=8 or not p.bFightState) then MacroFunctions.use({363},0) end
     --Cắm Thôn Nhật Nguyệt khi có hiệu ứng bất lợi trên người
