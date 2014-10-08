@@ -114,11 +114,12 @@ MacroOptions =
   autoPhuQuangLuocAnhTLND=false,
   autoKinhHongDuLongTLND=true,
   autoTapTrungTLND=true,
+  autoTapTrungQPTC=1,
   stackNumPheTam=5,
   autoQuiPhuThanCong=true,
   autoTCB=1,
   autoTCBAttack=true,
-  toggleMovingTarget=false,
+  toggleAttackMode=1,
   toggleATSCMode=100,
 
   autoTatNHCY=true,
@@ -291,11 +292,12 @@ RegisterCustomData("MacroOptions.autoTapTrungKVQ")
 RegisterCustomData("MacroOptions.autoPhuQuangLuocAnhTLND")
 RegisterCustomData("MacroOptions.autoKinhHongDuLongTLND")
 RegisterCustomData("MacroOptions.autoTapTrungTLND")
+RegisterCustomData("MacroOptions.autoTapTrungQPTC")
 RegisterCustomData("MacroOptions.stackNumPheTam")
 RegisterCustomData("MacroOptions.autoQuiPhuThanCong")
 RegisterCustomData("MacroOptions.autoTCB")
 RegisterCustomData("MacroOptions.autoTCBAttack")
-RegisterCustomData("MacroOptions.toggleMovingTarget")
+RegisterCustomData("MacroOptions.toggleAttackMode")
 RegisterCustomData("MacroOptions.toggleATSCMode")
 
 RegisterCustomData("MacroOptions.autoTatNHCY")
@@ -1974,16 +1976,16 @@ function MacroOptions.CreateMenu()
     )
     table.insert(menuDuongMonTLND,
       {
-        szOption = "Tự bật Quỷ Phủ Thần Công",
+        szOption = "Tự bật Quỉ Phủ Thần Công",
         bCheck = true,
         bChecked = MacroOptions.autoQuiPhuThanCong,
         fnAction = function()
           if not MacroOptions.autoQuiPhuThanCong then
             MacroOptions.autoQuiPhuThanCong=true
-            OutputMessage("MSG_SYS","[Tự bật Quỷ Phủ Thần Công] > ON\n")
+            OutputMessage("MSG_SYS","[Tự bật Quỉ Phủ Thần Công] > ON\n")
           else
             MacroOptions.autoQuiPhuThanCong=false
-            OutputMessage("MSG_SYS","[Tự bật Quỷ Phủ Thần Công] > OFF\n")
+            OutputMessage("MSG_SYS","[Tự bật Quỉ Phủ Thần Công] > OFF\n")
           end
         end,
         fnAutoClose = function() return true end
@@ -2052,6 +2054,35 @@ function MacroOptions.CreateMenu()
     table.insert(menuDuongMonTLND,{bDevide=true})
     table.insert(menuDuongMonTLND,
       {
+        szOption = "Dùng Tập Trung ngay khi cooldown xong",
+        bMCheck = true,
+        bChecked = MacroOptions.autoTapTrungQPTC==1,
+        fnAction = function()
+          if MacroOptions.autoTapTrungQPTC~=1 then
+            MacroOptions.autoTapTrungQPTC=1
+            OutputMessage("MSG_SYS","Đã chọn [Dùng Tập Trung ngay khi cooldown xong]\n")
+          end
+        end,
+        fnAutoClose = function() return true end
+      }
+    )
+    table.insert(menuDuongMonTLND,
+      {
+        szOption = "Dùng Tập Trung cùng Quỉ Phủ Thần Công",
+        bMCheck = true,
+        bChecked = MacroOptions.autoTapTrungQPTC==2,
+        fnAction = function()
+          if MacroOptions.autoTapTrungQPTC~=2 then
+            MacroOptions.autoTapTrungQPTC=2
+            OutputMessage("MSG_SYS","Đã chọn [Dùng Tập Trung cùng Quỉ Phủ Thần Công]\n")
+          end
+        end,
+        fnAutoClose = function() return true end
+      }
+    )
+    table.insert(menuDuongMonTLND,{bDevide=true})
+    table.insert(menuDuongMonTLND,
+      {
         szOption = "Đặt Ám Tàng Sát Cơ khi thần cơ >= 25",
         bMCheck = true,
         bChecked = MacroOptions.toggleATSCMode==25,
@@ -2111,10 +2142,10 @@ function MacroOptions.CreateMenu()
       {
         szOption = "Chế độ đánh bình thường",
         bMCheck = true,
-        bChecked = MacroOptions.toggleMovingTarget==false,
+        bChecked = MacroOptions.toggleAttackMode==1,
         fnAction = function()
-          if MacroOptions.toggleMovingTarget then
-            MacroOptions.toggleMovingTarget=false
+          if MacroOptions.toggleAttackMode~=1 then
+            MacroOptions.toggleAttackMode=1
             OutputMessage("MSG_SYS","[Chế độ đánh bình thường] > ON\n")
           end
         end,
@@ -2125,11 +2156,26 @@ function MacroOptions.CreateMenu()
       {
         szOption = "Chế độ đánh đối tượng di chuyển nhiều",
         bMCheck = true,
-        bChecked = MacroOptions.toggleMovingTarget,
+        bChecked = MacroOptions.toggleAttackMode==2,
         fnAction = function()
-          if not MacroOptions.toggleMovingTarget then
-            MacroOptions.toggleMovingTarget=true
+          if not MacroOptions.toggleAttackMode~=2 then
+            MacroOptions.toggleAttackMode=2
             OutputMessage("MSG_SYS","[Chế độ đánh đối tượng di chuyển nhiều] > ON\n")
+          end
+        end,
+        fnAutoClose = function() return true end
+      }
+    )
+    table.insert(menuDuongMonTLND,
+      {
+        szOption = "Chế độ đánh AOE toàn diện",
+        bMCheck = true,
+        bChecked = MacroOptions.toggleAttackMode==3,
+        fnAction = function()
+          if not MacroOptions.toggleAttackMode~=3 then
+            MacroOptions.toggleAttackMode=3
+            MacroOptions.autoTCB=2
+            OutputMessage("MSG_SYS","[Chế độ đánh AOE toàn diện] > ON\n")
           end
         end,
         fnAutoClose = function() return true end
@@ -4996,14 +5042,14 @@ Hotkey.AddBinding("autoTapTrung","Tự bật Tập Trung","",
     end
   end,
 nil)
-Hotkey.AddBinding("autoQuiPhuThanCong","Tự bật Quỷ Phủ Thần Công","",
+Hotkey.AddBinding("autoQuiPhuThanCong","Tự bật Quỉ Phủ Thần Công","",
   function()
     if not MacroOptions.autoQuiPhuThanCong then
       MacroOptions.autoQuiPhuThanCong=true
-      OutputMessage("MSG_SYS","[Tự bật Quỷ Phủ Thần Công] > ON\n")
+      OutputMessage("MSG_SYS","[Tự bật Quỉ Phủ Thần Công] > ON\n")
     else
       MacroOptions.autoQuiPhuThanCong=false
-      OutputMessage("MSG_SYS","[Tự bật Quỷ Phủ Thần Công] > OFF\n")
+      OutputMessage("MSG_SYS","[Tự bật Quỉ Phủ Thần Công] > OFF\n")
     end
   end,
 nil)
@@ -5071,12 +5117,16 @@ Hotkey.AddBinding("toggleATSCMode","Chuyển chế độ đặt Ám Tàng Sát C
 nil)
 Hotkey.AddBinding("toggleAttackMode","Chuyển chế độ đánh cho TLND","",
   function()
-    if MacroOptions.toggleMovingTarget==true then
-      MacroOptions.toggleMovingTarget=false
+    if MacroOptions.toggleAttackMode==3 then
+      MacroOptions.toggleAttackMode=1
       OutputMessage("MSG_SYS","Đã lựa chọn [Chế độ đánh bình thường]\n")
-    elseif MacroOptions.toggleMovingTarget==false then
-      MacroOptions.toggleMovingTarget=true
+    elseif MacroOptions.toggleAttackMode==1 then
+      MacroOptions.toggleAttackMode=2
       OutputMessage("MSG_SYS","Đã lựa chọn [Chế độ đánh đối tượng di chuyển nhiều]\n")
+    elseif MacroOptions.toggleAttackMode==2 then
+      MacroOptions.toggleAttackMode=3
+	  MacroOptions.autoTCB=2
+      OutputMessage("MSG_SYS","Đã lựa chọn [Chế độ đánh AOE toàn diện]\n")
     end
   end,
 nil)
