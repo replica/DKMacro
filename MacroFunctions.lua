@@ -96,6 +96,7 @@ MacroFunctions=
   TCBTimeLeft=-1,
   ATSCStartFrame=0,
   ATSCTimeLeft=-1,
+  tmtReady=false,
   QCStartFrame=0,
   bThiemChuanKich=false,
   bFrameEnd=true,
@@ -365,6 +366,9 @@ function MacroFunctions.OnEvent(szEvent)
       if arg1==301 or arg1==6901 or arg1==2674 or arg1==316 then
         MacroFunctions.TTLH=true
       end
+      if arg1==3096 then
+        MacroFunctions.tmtReady=false
+      end
 
       if MacroFunctions.KTCombo.bEnable then
         if arg1==553 then
@@ -477,6 +481,9 @@ function MacroFunctions.OnEvent(szEvent)
   elseif szEvent=="OT_ACTION_PROGRESS_BREAK" then
     if arg0==UI_GetClientPlayerID() and MacroOptions.autoSelfQC then
       MacroFunctions.RestoreTarget()
+    end
+    if arg0==UI_GetClientPlayerID() and (MacroFunctions.dwPreparingSkillID==3095 or MacroFunctions.dwPreparingSkillID==3096) then
+      MacroFunctions.tmtReady=false
     end
     if arg0==UI_GetClientPlayerID() then
       MacroFunctions.dwPreparingSkillID=0
@@ -758,7 +765,7 @@ function MacroFunctions.use(SkillIDs,arg,nTime)
     end
   elseif arg==1 then
     for z,x in pairs(SkillIDs) do
-      if ((MacroFunctions.IsSkillCD(x) and (GetTime()-MacroFunctions.firstTimeLine)>=t) or (MacroOptions.bLatencyCompensation and MacroFunctions.GetSkillCD(x)<(GetPingValue()/1000) and MacroFunctions.GetSkillCD(x)>0)) and p.GetSkillLevel(x)~=0 and (p.GetOTActionState()==0 or (channelingWaste<(GetPingValue()/2000) and MacroOptions.bLatencyCompensation)) and MacroFunctions.bProtected==false then
+      if ((MacroFunctions.IsSkillCD(x) and (GetTime()-MacroFunctions.firstTimeLine)>=t) or (MacroOptions.bLatencyCompensation and MacroFunctions.GetSkillCD(x)<(GetPingValue()/1000) and MacroFunctions.GetSkillCD(x)>0)) and p.GetSkillLevel(x)~=0 and (p.GetOTActionState()==0 or (channelingWaste<(GetPingValue()/2000) and MacroOptions.bChannelingLatencyCompensation)) and MacroFunctions.bProtected==false then
         if MacroFunctions.IsSkillCD(x) then MacroFunctions.firstTimeLine=GetTime() end
         OnAddOnUseSkill(x,p.GetSkillLevel(x))
         return true
@@ -766,7 +773,7 @@ function MacroFunctions.use(SkillIDs,arg,nTime)
     end
   elseif arg==2 then
     for z,x in pairs(SkillIDs) do
-      if ((MacroFunctions.IsSkillCD(x) and (GetTime()-MacroFunctions.secondTimeLine)>=t) or (MacroOptions.bLatencyCompensation and MacroFunctions.GetSkillCD(x)<(GetPingValue()/1000) and MacroFunctions.GetSkillCD(x)>0)) and (p.GetSkillLevel(x)~=0 or x==9007) and (p.GetOTActionState()==0 or (channelingWaste<(GetPingValue()/2000) and MacroOptions.bLatencyCompensation)) and MacroFunctions.bProtected==false then
+      if ((MacroFunctions.IsSkillCD(x) and (GetTime()-MacroFunctions.secondTimeLine)>=t) or (MacroOptions.bLatencyCompensation and MacroFunctions.GetSkillCD(x)<(GetPingValue()/1000) and MacroFunctions.GetSkillCD(x)>0)) and (p.GetSkillLevel(x)~=0 or x==9007) and (p.GetOTActionState()==0 or (channelingWaste<(GetPingValue()/2000) and MacroOptions.bChannelingLatencyCompensation)) and MacroFunctions.bProtected==false then
         if MacroFunctions.IsSkillCD(x) then MacroFunctions.secondTimeLine=GetTime() end
         if x==9007 then
           OnAddOnUseSkill(x,1)
@@ -798,7 +805,7 @@ function MacroFunctions.use(SkillIDs,arg,nTime)
     end
   elseif arg==3 then
     for z,x in pairs(SkillIDs) do
-      if ((MacroFunctions.IsSkillCD(x) and (GetTime()-MacroFunctions.thirdTimeLine)>=t) or (MacroOptions.bLatencyCompensation and MacroFunctions.GetSkillCD(x)<(GetPingValue()/1000) and MacroFunctions.GetSkillCD(x)>0)) and p.GetSkillLevel(x)~=0 and (p.GetOTActionState()==0 or (channelingWaste<(GetPingValue()/2000) and MacroOptions.bLatencyCompensation)) and MacroFunctions.bProtected==false then
+      if ((MacroFunctions.IsSkillCD(x) and (GetTime()-MacroFunctions.thirdTimeLine)>=t) or (MacroOptions.bLatencyCompensation and MacroFunctions.GetSkillCD(x)<(GetPingValue()/1000) and MacroFunctions.GetSkillCD(x)>0)) and p.GetSkillLevel(x)~=0 and (p.GetOTActionState()==0 or (channelingWaste<(GetPingValue()/2000) and MacroOptions.bChannelingLatencyCompensation)) and MacroFunctions.bProtected==false then
         if MacroFunctions.IsSkillCD(x) then MacroFunctions.thirdTimeLine=GetTime() end
         OnAddOnUseSkill(x,p.GetSkillLevel(x))
         return true
@@ -806,7 +813,7 @@ function MacroFunctions.use(SkillIDs,arg,nTime)
     end
   elseif arg==4 then
     for z,x in pairs(SkillIDs) do
-      if ((MacroFunctions.IsSkillCD(x) and (GetTime()-MacroFunctions.fourthTimeLine)>=t) or (MacroOptions.bLatencyCompensation and MacroFunctions.GetSkillCD(x)<(GetPingValue()/1000) and MacroFunctions.GetSkillCD(x)>0)) and p.GetSkillLevel(x)~=0 and (p.GetOTActionState()==0 or (channelingWaste<(GetPingValue()/2000) and MacroOptions.bLatencyCompensation)) and MacroFunctions.bProtected==false then
+      if ((MacroFunctions.IsSkillCD(x) and (GetTime()-MacroFunctions.fourthTimeLine)>=t) or (MacroOptions.bLatencyCompensation and MacroFunctions.GetSkillCD(x)<(GetPingValue()/1000) and MacroFunctions.GetSkillCD(x)>0)) and p.GetSkillLevel(x)~=0 and (p.GetOTActionState()==0 or (channelingWaste<(GetPingValue()/2000) and MacroOptions.bChannelingLatencyCompensation)) and MacroFunctions.bProtected==false then
         if MacroFunctions.IsSkillCD(x) then MacroFunctions.fourthTimeLine=GetTime() end
         OnAddOnUseSkill(x,p.GetSkillLevel(x))
         if x==2211 and t==16000 and MacroFunctions.rebuffXaAnh then
@@ -825,7 +832,7 @@ function MacroFunctions.use(SkillIDs,arg,nTime)
     end
   elseif arg==6 then
     for z,x in pairs(SkillIDs) do
-      if MacroFunctions.CanUseSkill(x) and p.GetSkillLevel(x)~=0 and (p.GetOTActionState()==0 or (channelingWaste<(GetPingValue()/2000) and MacroOptions.bLatencyCompensation)) and MacroFunctions.bProtected==false and (GetTime()-MacroFunctions.sixthTimeLine)>=t then
+      if MacroFunctions.CanUseSkill(x) and p.GetSkillLevel(x)~=0 and (p.GetOTActionState()==0 or (channelingWaste<(GetPingValue()/2000) and MacroOptions.bChannelingLatencyCompensation)) and MacroFunctions.bProtected==false and (GetTime()-MacroFunctions.sixthTimeLine)>=t then
         OnAddOnUseSkill(x,p.GetSkillLevel(x))
         MacroFunctions.sixthTimeLine=GetTime()
         --Tích 3 tầng 6381

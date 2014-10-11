@@ -9,6 +9,7 @@ MacroOptions =
   autoSkillInterrupt=true,
   autoClearBuff=true,
   bLatencyCompensation=true,
+  bChannelingLatencyCompensation=true,
 
   autoUseWeapon=false,
   autoUseAmulet=false,
@@ -111,6 +112,7 @@ MacroOptions =
   autoPhuQuangLuocAnhKVQ=false,
   autoKinhHongDuLongKVQ=true,
   autoTapTrungKVQ=true,
+  autoNguNguyenTien=false,
   autoPhuQuangLuocAnhTLND=false,
   autoKinhHongDuLongTLND=true,
   autoTapTrungTLND=true,
@@ -223,6 +225,7 @@ RegisterCustomData("MacroOptions.autoShout")
 RegisterCustomData("MacroOptions.autoSkillInterrupt")
 RegisterCustomData("MacroOptions.autoClearBuff")
 RegisterCustomData("MacroOptions.bLatencyCompensation")
+RegisterCustomData("MacroOptions.bChannelingLatencyCompensation")
 
 RegisterCustomData("MacroOptions.autoUseWeapon")
 RegisterCustomData("MacroOptions.autoUseAmulet")
@@ -289,6 +292,7 @@ RegisterCustomData("MacroOptions.autoVTBKMode")
 RegisterCustomData("MacroOptions.autoPhuQuangLuocAnhKVQ")
 RegisterCustomData("MacroOptions.autoKinhHongDuLongKVQ")
 RegisterCustomData("MacroOptions.autoTapTrungKVQ")
+RegisterCustomData("MacroOptions.autoNguNguyenTien")
 RegisterCustomData("MacroOptions.autoPhuQuangLuocAnhTLND")
 RegisterCustomData("MacroOptions.autoKinhHongDuLongTLND")
 RegisterCustomData("MacroOptions.autoTapTrungTLND")
@@ -1036,17 +1040,35 @@ function MacroOptions.CreateMenu()
   )
   table.insert(menu,
     {
-      szOption = "Chế độ bù trừ độ trễ của mạng (thử nghiệm, tăng 5-10% tốc độ đánh)",
+      szOption = "Chế độ bù trừ độ trễ của mạng (tăng 5-10% tốc độ đánh)",
       bCheck = true,
       bChecked = MacroOptions.bLatencyCompensation,
       fnAction = function()
         if not MacroOptions.bLatencyCompensation then
           MacroOptions.bLatencyCompensation=true
           MacroOptions.rebuffXaAnh=false
-          OutputMessage("MSG_SYS","[Chế độ bù trừ độ trễ của mạng (thử nghiệm)] > ON\n")
+          OutputMessage("MSG_SYS","[Chế độ bù trừ độ trễ của mạng] > ON\n")
         else
           MacroOptions.bLatencyCompensation=false
-          OutputMessage("MSG_SYS","[Chế độ bù trừ độ trễ của mạng (thử nghiệm)] > OFF\n")
+          OutputMessage("MSG_SYS","[Chế độ bù trừ độ trễ của mạng] > OFF\n")
+        end
+      end,
+      fnAutoClose = function() return true end
+    }
+  )
+  table.insert(menu,
+    {
+      szOption = "Chế độ bù trừ độ trễ của mạng cho channeling skill",
+      bCheck = true,
+      bChecked = MacroOptions.bChannelingLatencyCompensation,
+      fnAction = function()
+        if not MacroOptions.bChannelingLatencyCompensation then
+          MacroOptions.bChannelingLatencyCompensation=true
+          MacroOptions.rebuffXaAnh=false
+          OutputMessage("MSG_SYS","[Chế độ bù trừ độ trễ của mạng cho channeling skill] > ON\n")
+        else
+          MacroOptions.bChannelingLatencyCompensation=false
+          OutputMessage("MSG_SYS","[Chế độ bù trừ độ trễ của mạng cho channeling skill] > OFF\n")
         end
       end,
       fnAutoClose = function() return true end
@@ -1839,6 +1861,23 @@ function MacroOptions.CreateMenu()
         fnAutoClose = function() return true end
       }
     )
+    table.insert(menuDuongMonKVQ,
+      {
+        szOption = "Dùng Ngự Nguyên Tiễn duy trì debuff Tạ Giáp",
+        bCheck = true,
+        bChecked = MacroOptions.autoNguNguyenTien,
+        fnAction = function()
+          if not MacroOptions.autoNguNguyenTien then
+            MacroOptions.autoNguNguyenTien=true
+            OutputMessage("MSG_SYS","[Dùng Ngự Nguyên Tiễn duy trì debuff Tạ Giáp] > ON\n")
+          else
+            MacroOptions.autoNguNguyenTien=false
+            OutputMessage("MSG_SYS","[Dùng Ngự Nguyên Tiễn duy trì debuff Tạ Giáp] > OFF\n")
+          end
+        end,
+        fnAutoClose = function() return true end
+      }
+    )
     local menuDuongMonTLND = {
       szOption = "Đường Môn - Thiên La Ngụy Đạo",
       bCheck = false,
@@ -2146,6 +2185,7 @@ function MacroOptions.CreateMenu()
         fnAction = function()
           if MacroOptions.toggleAttackMode~=1 then
             MacroOptions.toggleAttackMode=1
+            MacroOptions.autoTCB=1
             OutputMessage("MSG_SYS","[Chế độ đánh bình thường] > ON\n")
           end
         end,
@@ -5042,6 +5082,17 @@ Hotkey.AddBinding("autoTapTrung","Tự bật Tập Trung","",
     end
   end,
 nil)
+Hotkey.AddBinding("autoNguNguyenTien","Dùng Ngự Nguyên Tiễn duy trì debuff Tạ Giáp","",
+  function()
+    if not MacroOptions.autoNguNguyenTien then
+      MacroOptions.autoNguNguyenTien=true
+      OutputMessage("MSG_SYS","[Dùng Ngự Nguyên Tiễn duy trì debuff Tạ Giáp] > ON\n")
+    else
+      MacroOptions.autoNguNguyenTien=false
+      OutputMessage("MSG_SYS","[Dùng Ngự Nguyên Tiễn duy trì debuff Tạ Giáp] > OFF\n")
+    end
+  end,
+nil)
 Hotkey.AddBinding("autoQuiPhuThanCong","Tự bật Quỉ Phủ Thần Công","",
   function()
     if not MacroOptions.autoQuiPhuThanCong then
@@ -5119,6 +5170,7 @@ Hotkey.AddBinding("toggleAttackMode","Chuyển chế độ đánh cho TLND","",
   function()
     if MacroOptions.toggleAttackMode==3 then
       MacroOptions.toggleAttackMode=1
+      MacroOptions.autoTCB=1
       OutputMessage("MSG_SYS","Đã lựa chọn [Chế độ đánh bình thường]\n")
     elseif MacroOptions.toggleAttackMode==1 then
       MacroOptions.toggleAttackMode=2
