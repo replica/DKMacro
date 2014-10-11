@@ -249,7 +249,7 @@ function MacroFunctions.DuongMonTLND()
         end
       end
       --Đặt Ám Tàng Sát Cơ
-      if MacroFunctions.CheckMoveState(T,"stand|float") and MacroOptions.toggleAttackMode~=2 and MacroFunctions.GetATSCNum()<=2 and (((energy>=MacroOptions.toggleATSCMode or (MacroFunctions.GetSkillCD(3110)<=8 and energy>=25 and MacroOptions.autoTCB>0) or (MacroFunctions.GetSkillCD(3094)<=8 and energy>=25 and MacroOptions.autoTapTrungQPTC==1) or MacroFunctions.CheckBuff(p,3468,1,0,0)) and (not bHuyenDieu or MacroFunctions.CheckBuff(p,3468,1,0,0) or energy>=100)) or (MacroFunctions.GetSkillCD(3110)>115 and MacroFunctions.GetSkillCD(3110)<117)) then MacroFunctions.use({3111},1,500) end
+      if MacroFunctions.CheckMoveState(T,"stand|float") and MacroOptions.toggleAttackMode~=2 and MacroFunctions.GetATSCNum()<=2 and ((((energy>=MacroOptions.toggleATSCMode and MacroFunctions.GetSkillCD(3108)>MacroFunctions.GetSkillCD(3105)) or (MacroFunctions.GetSkillCD(3110)<=8 and energy>=25 and MacroOptions.autoTCB>0) or (MacroFunctions.GetSkillCD(3094)<=8 and energy>=25 and MacroOptions.autoTapTrungQPTC==1) or MacroFunctions.CheckBuff(p,3468,1,0,0)) and (not bHuyenDieu or MacroFunctions.CheckBuff(p,3468,1,0,0) or (energy>=100 and MacroFunctions.GetSkillCD(3108)>MacroFunctions.GetSkillCD(3105)))) or (MacroFunctions.GetSkillCD(3110)>115 and MacroFunctions.GetSkillCD(3110)<117)) then MacroFunctions.use({3111},1,500) end
       --Nếu đối tượng di chuyển thì cho nổ ám tàng
       if (MacroFunctions.CheckMoveState(T,"walk|run|jump") or MacroOptions.toggleAttackMode==2) and MacroFunctions.ATSC==true and IsEnemy(p.dwID,T.dwID) then MacroFunctions.use({3357},2) end
       --Nổ Đồ Cùng Chủy Kiến khi đủ 3 Ám Tàng Sát Cơ
