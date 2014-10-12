@@ -94,6 +94,7 @@ MacroFunctions=
   rebuffXaAnh=false,
   TCBStartFrame=0,
   TCBTimeLeft=-1,
+  ATSCArray={},
   ATSCStartFrame=0,
   ATSCTimeLeft=-1,
   tmtReady=false,
@@ -180,6 +181,12 @@ end
 function MacroFunctions.OnFrameBreathe()
   local p=GetClientPlayer()
   local NoiCong=p.GetKungfuMount().dwSkillID
+
+  if not GetClientPlayer() then
+    return
+  end
+  
+  MacroFunctions.UpdateATSCCountByTime()
 
   if GetLogicFrameCount()-MacroFunctions.TCBStartFrame<1920 then
     MacroFunctions.TCBTimeLeft=(1920-GetLogicFrameCount()+MacroFunctions.TCBStartFrame)/GLOBAL.GAME_FPS
@@ -314,6 +321,8 @@ function MacroFunctions.OnEvent(szEvent)
     end
   elseif szEvent=="DO_SKILL_CAST" then
     if arg0==UI_GetClientPlayerID() then
+
+      MacroFunctions.UpdateATSCCountBySkill()
 
       if arg1==6337 or arg1==5258 or arg1==5354 or arg1==5262 or arg1==5266 then
         MacroFunctions.bFrameEnd=true
@@ -1266,15 +1275,16 @@ function MacroFunctions.GetTCBTargetDistance()
 end
 
 function MacroFunctions.GetATSCNum()
-  local p=GetClientPlayer()
-  local result=0
-  for z,x in pairs(MacroFunctions.tNpcList) do
-    local npc=GetNpc(z)
-    if npc and npc.dwTemplateID==16000 and npc.dwEmployer==p.dwID and MacroFunctions.GetDistance(npc)<30 then
-      result=result+1
-    end
-  end
-  return result
+  return #MacroFunctions.ATSCArray
+  -- local p=GetClientPlayer()
+  -- local result=0
+  -- for z,x in pairs(MacroFunctions.tNpcList) do
+  --   local npc=GetNpc(z)
+  --   if npc and npc.dwTemplateID==16000 and npc.dwEmployer==p.dwID and MacroFunctions.GetDistance(npc)<30 then
+  --     result=result+1
+  --   end
+  -- end
+  -- return result
 end
 
 function MacroFunctions.GetTCBStatus()
@@ -1349,5 +1359,35 @@ function MacroFunctions.CheckFaceDirection(target)
     return true
   else
     return false
+  end
+end
+
+function MacroFunctions.UpdateATSCCountBySkill()
+  if arg0 ~= GetClientPlayer().dwID then
+    return
+  end
+
+  if Table_GetSkillName(arg1,arg2) == "Ám Tàng Sát Cơ" then
+      local count = #MacroFunctions.ATSCArray
+    if count < 3 then
+        table.insert(MacroFunctions.ATSCArray,GetTickCount())
+    elseif count == 3 then
+        table.remove(MacroFunctions.ATSCArray,1)
+        table.insert(MacroFunctions.ATSCArray,Up())
+    end
+
+
+  elseif Table_GetSkillName(arg1,arg2) == "Đồ Cùng Chủy Kiến" then
+    MacroFunctions.ATSCArray = {}
+  end
+end
+
+function MacroFunctions.UpdateATSCCountByTime()
+  local count = #MacroFunctions.ATSCArray
+
+  if count > 0 then
+    if GetTickCount() - MacroFunctions.ATSCArray[1] >=59.8*1000 then
+        table.remove(MacroFunctions.ATSCArray,1)
+    end
   end
 end
