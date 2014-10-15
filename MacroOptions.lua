@@ -119,6 +119,7 @@ MacroOptions =
   autoTapTrungQPTC=1,
   stackNumPheTam=5,
   autoQuiPhuThanCong=true,
+  autoDoCungChuyKien=true,
   autoTCB=1,
   autoTCBAttack=true,
   toggleAttackMode=1,
@@ -299,6 +300,7 @@ RegisterCustomData("MacroOptions.autoTapTrungTLND")
 RegisterCustomData("MacroOptions.autoTapTrungQPTC")
 RegisterCustomData("MacroOptions.stackNumPheTam")
 RegisterCustomData("MacroOptions.autoQuiPhuThanCong")
+RegisterCustomData("MacroOptions.autoDoCungChuyKien")
 RegisterCustomData("MacroOptions.autoTCB")
 RegisterCustomData("MacroOptions.autoTCBAttack")
 RegisterCustomData("MacroOptions.toggleAttackMode")
@@ -2025,6 +2027,23 @@ function MacroOptions.CreateMenu()
           else
             MacroOptions.autoQuiPhuThanCong=false
             OutputMessage("MSG_SYS","[Tự bật Quỉ Phủ Thần Công] > OFF\n")
+          end
+        end,
+        fnAutoClose = function() return true end
+      }
+    )
+    table.insert(menuDuongMonTLND,
+      {
+        szOption = "Tự kích hoạt Đồ Cùng Chủy Kiến và đặt Thiên Tuyệt Địa Diệt",
+        bCheck = true,
+        bChecked = MacroOptions.autoDoCungChuyKien,
+        fnAction = function()
+          if not MacroOptions.autoDoCungChuyKien then
+            MacroOptions.autoDoCungChuyKien=true
+            OutputMessage("MSG_SYS","[Tự kích hoạt Đồ Cùng Chủy Kiến và đặt Thiên Tuyệt Địa Diệt] > ON\n")
+          else
+            MacroOptions.autoDoCungChuyKien=false
+            OutputMessage("MSG_SYS","[Tự kích hoạt Đồ Cùng Chủy Kiến và đặt Thiên Tuyệt Địa Diệt] > OFF\n")
           end
         end,
         fnAutoClose = function() return true end
@@ -5101,6 +5120,17 @@ Hotkey.AddBinding("autoQuiPhuThanCong","Tự bật Quỉ Phủ Thần Công","",
     else
       MacroOptions.autoQuiPhuThanCong=false
       OutputMessage("MSG_SYS","[Tự bật Quỉ Phủ Thần Công] > OFF\n")
+    end
+  end,
+nil)
+Hotkey.AddBinding("autoDoCungChuyKien","Tự kích hoạt Đồ Cùng Chủy Kiến, Thiên Tuyệt Địa Diệt","",
+  function()
+    if not MacroOptions.autoDoCungChuyKien then
+      MacroOptions.autoDoCungChuyKien=true
+      OutputMessage("MSG_SYS","[Tự kích hoạt Đồ Cùng Chủy Kiến, Thiên Tuyệt Địa Diệt] > ON\n")
+    else
+      MacroOptions.autoDoCungChuyKien=false
+      OutputMessage("MSG_SYS","[Tự kích hoạt Đồ Cùng Chủy Kiến, Thiên Tuyệt Địa Diệt] > OFF\n")
     end
   end,
 nil)
