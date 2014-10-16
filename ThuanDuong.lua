@@ -79,11 +79,11 @@ function MacroFunctions.ThuanDuongTHC()
     --Sử dụng Bằng Hư Ngự Phong khi có thể
     if MacroOptions.autoBangHuNguPhongTHC and p.IsInParty() then MacroFunctions.use({355},4,500) end
     --Tự bật Từ Khí Đông Lai
-    if MacroOptions.autoTuKhiDongLaiTHC and K>=9 and (MacroFunctions.CheckBuff(p,375,1,0,0) or p.GetSkillLevel(359)==0) and MacroFunctions.GetSkillCD(6901)>1.5 and (MacroFunctions.IsSkillCD(313) or not MacroOptions.autoThaoQuangDuongHoiTHC) then MacroFunctions.use({2681},4,500) end
+    if MacroOptions.autoTuKhiDongLaiTHC and K>=9 and (MacroFunctions.CheckBuff(p,375,1,0,0) or p.GetSkillLevel(359)==0) and MacroFunctions.GetSkillCD(6901)<=1.5 and (MacroFunctions.IsSkillCD(313) or not MacroOptions.autoThaoQuangDuongHoiTHC) then MacroFunctions.use({2681},4,500) end
     --Sử dụng vật phẩm
-    if MacroOptions.autoUseWeapon and ((K==10 and (MacroFunctions.CheckBuff(p,375,1,0,0) or p.GetSkillLevel(359)==0) and MacroFunctions.GetSkillCD(6901)<1.5 and (MacroFunctions.IsSkillCD(313) or not MacroOptions.autoThaoQuangDuongHoiTHC)) or MacroFunctions.CheckBuff(p,2757,1,10,0)) then MacroFunctions.UseEquippedItem(EQUIPMENT_INVENTORY.MELEE_WEAPON) end
-    if MacroOptions.autoUseAmulet and ((K==10 and (MacroFunctions.CheckBuff(p,375,1,0,0) or p.GetSkillLevel(359)==0) and MacroFunctions.GetSkillCD(6901)<1.5 and (MacroFunctions.IsSkillCD(313) or not MacroOptions.autoThaoQuangDuongHoiTHC)) or MacroFunctions.CheckBuff(p,2757,1,10,0)) then MacroFunctions.UseEquippedItem(EQUIPMENT_INVENTORY.AMULET) end
-    if MacroOptions.autoUsePendant and ((K==10 and (MacroFunctions.CheckBuff(p,375,1,0,0) or p.GetSkillLevel(359)==0) and MacroFunctions.GetSkillCD(6901)<1.5 and (MacroFunctions.IsSkillCD(313) or not MacroOptions.autoThaoQuangDuongHoiTHC)) or MacroFunctions.CheckBuff(p,2757,1,10,0)) then MacroFunctions.UseEquippedItem(EQUIPMENT_INVENTORY.PENDANT) end
+    if MacroOptions.autoUseWeapon and ((K>=9 and (MacroFunctions.CheckBuff(p,375,1,0,0) or p.GetSkillLevel(359)==0) and MacroFunctions.GetSkillCD(6901)<=1.5 and (MacroFunctions.IsSkillCD(313) or not MacroOptions.autoThaoQuangDuongHoiTHC)) or MacroFunctions.CheckBuff(p,2757,1,10,0)) then MacroFunctions.UseEquippedItem(EQUIPMENT_INVENTORY.MELEE_WEAPON) end
+    if MacroOptions.autoUseAmulet and ((K>=9 and (MacroFunctions.CheckBuff(p,375,1,0,0) or p.GetSkillLevel(359)==0) and MacroFunctions.GetSkillCD(6901)<=1.5 and (MacroFunctions.IsSkillCD(313) or not MacroOptions.autoThaoQuangDuongHoiTHC)) or MacroFunctions.CheckBuff(p,2757,1,10,0)) then MacroFunctions.UseEquippedItem(EQUIPMENT_INVENTORY.AMULET) end
+    if MacroOptions.autoUsePendant and ((K>=9 and (MacroFunctions.CheckBuff(p,375,1,0,0) or p.GetSkillLevel(359)==0) and MacroFunctions.GetSkillCD(6901)<=1.5 and (MacroFunctions.IsSkillCD(313) or not MacroOptions.autoThaoQuangDuongHoiTHC)) or MacroFunctions.CheckBuff(p,2757,1,10,0)) then MacroFunctions.UseEquippedItem(EQUIPMENT_INVENTORY.PENDANT) end
     --Tự bật Thao Quang Dưỡng Hối
     if MacroOptions.autoTuKhiDongLaiTHC then
       if MacroOptions.autoThaoQuangDuongHoiTHC and K<=5 and MacroFunctions.CheckBuff(p,2757,1,8,0) then MacroFunctions.use({313},4,0) end
@@ -232,11 +232,11 @@ function MacroFunctions.ThuanDuongTHKY()
     --Sử dụng Bằng Hư Ngự Phong khi có thể
     if MacroOptions.autoBangHuNguPhongTHKY and p.IsInParty() then MacroFunctions.use({355},4,500) end
     --Tự bật Từ Khí Đông Lai
-    if MacroOptions.autoTuKhiDongLaiTHKY and K==10 and (MacroFunctions.CheckBuff(p,378,1,0,0) or p.GetSkillLevel(362)==0) and MacroFunctions.GetSkillCD(2699)<1.5 and (MacroFunctions.IsSkillCD(313) or not MacroOptions.autoThaoQuangDuongHoiTHKY) then MacroFunctions.use({2681},4,500) end
+    if MacroOptions.autoTuKhiDongLaiTHKY and K>=9 and (MacroFunctions.CheckBuff(p,378,1,0,0) or p.GetSkillLevel(362)==0) and MacroFunctions.GetSkillCD(2699)<1.5 and (MacroFunctions.IsSkillCD(313) or not MacroOptions.autoThaoQuangDuongHoiTHKY) then MacroFunctions.use({2681},4,500) end
     --Sử dụng vật phẩm
-    if MacroOptions.autoUseWeapon and ((K==10 and (MacroFunctions.CheckBuff(p,378,1,0,0) or p.GetSkillLevel(362)==0) and MacroFunctions.GetSkillCD(2699)<1.5 and (MacroFunctions.IsSkillCD(313) or not MacroOptions.autoThaoQuangDuongHoiTHKY)) or MacroFunctions.CheckBuff(p,2757,1,10,0)) then MacroFunctions.UseEquippedItem(EQUIPMENT_INVENTORY.MELEE_WEAPON) end
-    if MacroOptions.autoUseAmulet and ((K==10 and (MacroFunctions.CheckBuff(p,378,1,0,0) or p.GetSkillLevel(362)==0) and MacroFunctions.GetSkillCD(2699)<1.5 and (MacroFunctions.IsSkillCD(313) or not MacroOptions.autoThaoQuangDuongHoiTHKY)) or MacroFunctions.CheckBuff(p,2757,1,10,0)) then MacroFunctions.UseEquippedItem(EQUIPMENT_INVENTORY.AMULET) end
-    if MacroOptions.autoUsePendant and ((K==10 and (MacroFunctions.CheckBuff(p,378,1,0,0) or p.GetSkillLevel(362)==0) and MacroFunctions.GetSkillCD(2699)<1.5 and (MacroFunctions.IsSkillCD(313) or not MacroOptions.autoThaoQuangDuongHoiTHKY)) or MacroFunctions.CheckBuff(p,2757,1,10,0)) then MacroFunctions.UseEquippedItem(EQUIPMENT_INVENTORY.PENDANT) end
+    if MacroOptions.autoUseWeapon and ((K>=9 and (MacroFunctions.CheckBuff(p,378,1,0,0) or p.GetSkillLevel(362)==0) and MacroFunctions.GetSkillCD(2699)<1.5 and (MacroFunctions.IsSkillCD(313) or not MacroOptions.autoThaoQuangDuongHoiTHKY)) or MacroFunctions.CheckBuff(p,2757,1,10,0)) then MacroFunctions.UseEquippedItem(EQUIPMENT_INVENTORY.MELEE_WEAPON) end
+    if MacroOptions.autoUseAmulet and ((K>=9 and (MacroFunctions.CheckBuff(p,378,1,0,0) or p.GetSkillLevel(362)==0) and MacroFunctions.GetSkillCD(2699)<1.5 and (MacroFunctions.IsSkillCD(313) or not MacroOptions.autoThaoQuangDuongHoiTHKY)) or MacroFunctions.CheckBuff(p,2757,1,10,0)) then MacroFunctions.UseEquippedItem(EQUIPMENT_INVENTORY.AMULET) end
+    if MacroOptions.autoUsePendant and ((K>=9 and (MacroFunctions.CheckBuff(p,378,1,0,0) or p.GetSkillLevel(362)==0) and MacroFunctions.GetSkillCD(2699)<1.5 and (MacroFunctions.IsSkillCD(313) or not MacroOptions.autoThaoQuangDuongHoiTHKY)) or MacroFunctions.CheckBuff(p,2757,1,10,0)) then MacroFunctions.UseEquippedItem(EQUIPMENT_INVENTORY.PENDANT) end
     --Tự bật Thao Quang Dưỡng Hối
     if MacroOptions.autoTuKhiDongLaiTHKY then
       if MacroOptions.autoThaoQuangDuongHoiTHKY and K<=5 and MacroFunctions.CheckBuff(p,2757,1,8,0) then MacroFunctions.use({313},4,0) end
