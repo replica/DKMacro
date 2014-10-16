@@ -280,7 +280,8 @@ function MacroFunctions.ThuanDuongTHKY()
     --Nếu đủ 5 ô khí đánh Vô Ngã Vô Kiếm
     if (p.GetSkillLevel(6460)==0 and K>=8) or K>=9 then MacroFunctions.use({365},0) end
     --Nếu ít hơn 3.5 ô khí đánh Thiên Địa Vô Cực và Tam Hoàn Sáo Nguyệt
-    if K<=7 then MacroFunctions.use({309,364},0) end
+    if K<=7 and MacroOptions.autoThienDiaVoCuc then MacroFunctions.use({309},0) end
+    if K<=7 then MacroFunctions.use({364},0) end
   elseif bEnable==false then
     p.Talk(PLAYER_TALK_CHANNEL.NEARBY,"",{{type="text",text=MacroFunctions.message}})
     if p.IsInParty() then p.Talk(PLAYER_TALK_CHANNEL.RAID,"",{{type="text",text=MacroFunctions.message}}) end

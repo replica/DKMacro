@@ -104,6 +104,7 @@ MacroOptions =
   autoToaiTinhThan=true,
   autoLangThaiHu=false,
   autoChuyenCanKhon=true,
+  autoThienDiaVoCuc=true,
   autoNguPhuongHanhTan=false,
   autoStopTTLH=true,
   autoVTBKMode=1,
@@ -288,6 +289,7 @@ RegisterCustomData("MacroOptions.autoThonNhatNguyet")
 RegisterCustomData("MacroOptions.autoToaiTinhThan")
 RegisterCustomData("MacroOptions.autoLangThaiHu")
 RegisterCustomData("MacroOptions.autoChuyenCanKhon")
+RegisterCustomData("MacroOptions.autoThienDiaVoCuc")
 RegisterCustomData("MacroOptions.autoNguPhuongHanhTan")
 RegisterCustomData("MacroOptions.autoStopTTLH")
 RegisterCustomData("MacroOptions.autoVTBKMode")
@@ -1803,6 +1805,23 @@ function MacroOptions.CreateMenu()
           else
             MacroOptions.autoThaoQuangDuongHoiTHKY=false
             OutputMessage("MSG_SYS","[Tự bật Thao Quang Dưỡng Hối] > OFF\n")
+          end
+        end,
+        fnAutoClose = function() return true end
+      }
+    )
+    table.insert(menuThuanDuongTHKY,
+      {
+        szOption = "Đánh Thiên Địa Vô Cực trong combo",
+        bCheck = true,
+        bChecked = MacroOptions.autoThienDiaVoCuc,
+        fnAction = function()
+          if not MacroOptions.autoThienDiaVoCuc then
+            MacroOptions.autoThienDiaVoCuc=true
+            OutputMessage("MSG_SYS","[Đánh Thiên Địa Vô Cực trong combo] > ON\n")
+          else
+            MacroOptions.autoThienDiaVoCuc=false
+            OutputMessage("MSG_SYS","[Đánh Thiên Địa Vô Cực trong combo] > OFF\n")
           end
         end,
         fnAutoClose = function() return true end
@@ -5046,6 +5065,17 @@ Hotkey.AddBinding("autoChuyenCanKhon","Tự bật Chuyển Càn Khôn khi HP<30%
     else
       MacroOptions.autoChuyenCanKhon=false
       OutputMessage("MSG_SYS","[Tự bật Chuyển Càn Khôn khi HP<30%] > OFF\n")
+    end
+  end,
+nil)
+Hotkey.AddBinding("autoThienDiaVoCuc","Đánh Thiên Địa Vô Cực trong combo","",
+  function()
+    if not MacroOptions.autoThienDiaVoCuc then
+      MacroOptions.autoThienDiaVoCuc=true
+      OutputMessage("MSG_SYS","[Đánh Thiên Địa Vô Cực trong combo] > ON\n")
+    else
+      MacroOptions.autoThienDiaVoCuc=false
+      OutputMessage("MSG_SYS","[Đánh Thiên Địa Vô Cực trong combo] > OFF\n")
     end
   end,
 nil)
