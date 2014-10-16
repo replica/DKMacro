@@ -10,6 +10,7 @@ MacroOptions =
   autoClearBuff=true,
   bLatencyCompensation=true,
   bChannelingLatencyCompensation=true,
+  autoStopAction=false,
 
   autoUseWeapon=false,
   autoUseAmulet=false,
@@ -227,6 +228,7 @@ RegisterCustomData("MacroOptions.autoSkillInterrupt")
 RegisterCustomData("MacroOptions.autoClearBuff")
 RegisterCustomData("MacroOptions.bLatencyCompensation")
 RegisterCustomData("MacroOptions.bChannelingLatencyCompensation")
+RegisterCustomData("MacroOptions.autoStopAction")
 
 RegisterCustomData("MacroOptions.autoUseWeapon")
 RegisterCustomData("MacroOptions.autoUseAmulet")
@@ -1078,6 +1080,43 @@ function MacroOptions.CreateMenu()
   )
   table.insert(menu,
     {
+      szOption = "Tự dừng đánh/sử dụng một vài skill hỗ trợ đánh BOSS",
+      bCheck = true,
+      bChecked = MacroOptions.autoStopAction,
+      fnAction = function()
+        if not MacroOptions.autoStopAction then
+          MacroOptions.autoStopAction=true
+          OutputMessage("MSG_SYS","[Tự dừng đánh/sử dụng một vài skill hỗ trợ đánh BOSS] > ON\n")
+        else
+          MacroOptions.autoStopAction=false
+          OutputMessage("MSG_SYS","[Tự dừng đánh/sử dụng một vài skill hỗ trợ đánh BOSS] > OFF\n")
+        end
+      end,
+      fnAutoClose = function() return true end
+    }
+  )
+  if NoiCong==10014 or NoiCong==10015 then
+    table.insert(menu,
+      {
+        szOption = "Tự cắm khí trường cho bản thân",
+        bCheck = true,
+        bChecked = MacroOptions.autoSelfQC,
+        fnAction = function()
+          if not MacroOptions.autoSelfQC then
+            MacroOptions.autoSelfQC=true
+            if HM_Locker.bLockFight then HM_Locker.bLockFight=false end
+            OutputMessage("MSG_SYS","[Tự cắm khí trường cho bản thân] > ON\n")
+          else
+            MacroOptions.autoSelfQC=false
+            OutputMessage("MSG_SYS","[Tự cắm khí trường cho bản thân] > OFF\n")
+          end
+        end,
+        fnAutoClose = function() return true end
+      }
+    )
+  end
+  table.insert(menu,
+    {
       szOption = "Chế độ combo khi đối đầu Kiếm Thánh (thử nghiệm)",
       bCheck = true,
       bChecked = MacroFunctions.KTCombo.bEnable,
@@ -1152,26 +1191,6 @@ function MacroOptions.CreateMenu()
       }
     }
   )
-  if NoiCong==10014 or NoiCong==10015 then
-    table.insert(menu,
-      {
-        szOption = "Tự cắm khí trường cho bản thân",
-        bCheck = true,
-        bChecked = MacroOptions.autoSelfQC,
-        fnAction = function()
-          if not MacroOptions.autoSelfQC then
-            MacroOptions.autoSelfQC=true
-            if HM_Locker.bLockFight then HM_Locker.bLockFight=false end
-            OutputMessage("MSG_SYS","[Tự cắm khí trường cho bản thân] > ON\n")
-          else
-            MacroOptions.autoSelfQC=false
-            OutputMessage("MSG_SYS","[Tự cắm khí trường cho bản thân] > OFF\n")
-          end
-        end,
-        fnAutoClose = function() return true end
-      }
-    )
-  end
   table.insert(menu,menuSkillInterrupt)
   if NoiCong==10015 or NoiCong==10224 or NoiCong==10242 or NoiCong==10243 or NoiCong==10021 or NoiCong==10081 or NoiCong==10144 or NoiCong==10145 or NoiCong==10268 then
     table.insert(menu,menuBossBuffs)

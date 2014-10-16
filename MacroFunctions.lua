@@ -185,7 +185,7 @@ function MacroFunctions.OnFrameBreathe()
   if not GetClientPlayer() then
     return
   end
-  
+
   MacroFunctions.UpdateATSCCountByTime()
 
   if GetLogicFrameCount()-MacroFunctions.TCBStartFrame<1920 then
@@ -1183,36 +1183,39 @@ function MacroFunctions.StopAction()
   local distance=MacroFunctions.GetDistance(T)
   local NoiCong=p.GetKungfuMount().dwSkillID
   local bOnPrepareState,preparingSkillID,preparingSkillLevel,currentPrepareRatio=T.GetSkillPrepareState()
-  --Chí Mạng Cách Đáng
-  if MacroFunctions.CMCDTimeLineStart~=0 and MacroFunctions.CMCDTimeLineEnd~=0 and GetTime()>MacroFunctions.CMCDTimeLineStart and GetTime()<MacroFunctions.CMCDTimeLineEnd then
-    return 2
-  elseif GetNpc(T.dwID).szName=="Trần Hòa Thượng" and GetNpc(T.dwID).dwTemplateID==20287 and bOnPrepareState and preparingSkillID==4980 then
-    return 2
-  --Tinh Đẩu Kiếm Pháp - buff Kích Nộ
-  elseif GetNpc(T.dwID).szName=="Lý Đàm" and GetNpc(T.dwID).dwTemplateID==21595 and bOnPrepareState and preparingSkillID==5131 then
-    return 2
-  elseif GetNpc(T.dwID).szName=="Lý Đàm" and GetNpc(T.dwID).dwTemplateID==21595 and MacroFunctions.CheckBuff(T,4344,1,0,0) then
-    return 2
-  --Buff Ẩn Độn, buff Đồng Tường Thiết Bích
-  elseif MacroFunctions.CheckBuff(T,1036,1,0,0) or MacroFunctions.CheckBuff(T,3374,1,0,0) then
-    return 2
-  --Buff Li Hình Chi Thể (Liễu Công Tử)
-  elseif GetNpc(T.dwID).szName=="Liễu Công Tử" and MacroFunctions.CheckBuff(T,4515,1,0,0) then
-    if NoiCong==10014 or NoiCong==10225 or NoiCong==10242 or NoiCong==10175 or NoiCong==10021 or NoiCong==10081 or NoiCong==10003 then
+  if MacroOptions.autoStopAction then
+    --Chí Mạng Cách Đáng
+    if MacroFunctions.CMCDTimeLineStart~=0 and MacroFunctions.CMCDTimeLineEnd~=0 and GetTime()>MacroFunctions.CMCDTimeLineStart and GetTime()<MacroFunctions.CMCDTimeLineEnd then
       return 2
+    elseif GetNpc(T.dwID).szName=="Trần Hòa Thượng" and GetNpc(T.dwID).dwTemplateID==20287 and bOnPrepareState and preparingSkillID==4980 then
+      return 2
+    --Tinh Đẩu Kiếm Pháp - buff Kích Nộ
+    elseif GetNpc(T.dwID).szName=="Lý Đàm" and GetNpc(T.dwID).dwTemplateID==21595 and bOnPrepareState and preparingSkillID==5131 then
+      return 2
+    elseif GetNpc(T.dwID).szName=="Lý Đàm" and GetNpc(T.dwID).dwTemplateID==21595 and MacroFunctions.CheckBuff(T,4344,1,0,0) then
+      return 2
+    --Buff Ẩn Độn, buff Đồng Tường Thiết Bích
+    elseif MacroFunctions.CheckBuff(T,1036,1,0,0) or MacroFunctions.CheckBuff(T,3374,1,0,0) then
+      return 2
+    --Buff Li Hình Chi Thể (Liễu Công Tử)
+    elseif GetNpc(T.dwID).szName=="Liễu Công Tử" and MacroFunctions.CheckBuff(T,4515,1,0,0) then
+      if NoiCong==10014 or NoiCong==10225 or NoiCong==10242 or NoiCong==10175 or NoiCong==10021 or NoiCong==10081 or NoiCong==10003 then
+        return 2
+      else
+        return 0
+      end
+    elseif GetNpc(T.dwID).szName=="Vô Danh" and MacroFunctions.CheckBuff(T,5709,1,0,0) then
+      return 2
+    elseif GetNpc(T.dwID).szName=="An Lộc Sơn" and TargetHP>60 and (szMapName=="Đại Minh Cung" or szMapName=="Đại Minh Cung Anh Hùng") then
+      return 1
+    elseif GetNpc(T.dwID).szName=="Đạm Đài Khô Hỏa" and distance<8 and (szMapName=="Kho Quân Giới Chiến Bảo" or szMapName=="Kho Quân Giới Chiến Bảo Anh Hùng") then
+      return 1
+    elseif GetNpc(T.dwID).szName=="Trác Lực Các Đồ" and preparingSkillID==5459 and currentPrepareRatio>0.7 then
+      return 3
     else
       return 0
     end
-  elseif GetNpc(T.dwID).szName=="Vô Danh" and MacroFunctions.CheckBuff(T,5709,1,0,0) then
-    return 2
-  elseif GetNpc(T.dwID).szName=="An Lộc Sơn" and TargetHP>60 and (szMapName=="Đại Minh Cung" or szMapName=="Đại Minh Cung Anh Hùng") then
-    return 1
-  elseif GetNpc(T.dwID).szName=="Đạm Đài Khô Hỏa" and distance<8 and (szMapName=="Kho Quân Giới Chiến Bảo" or szMapName=="Kho Quân Giới Chiến Bảo Anh Hùng") then
-    return 1
-  elseif GetNpc(T.dwID).szName=="Trác Lực Các Đồ" and preparingSkillID==5459 and currentPrepareRatio>0.7 then
-    return 3
-  else
-    return 0
+  else return 0
   end
 end
 
