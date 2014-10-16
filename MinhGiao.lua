@@ -271,9 +271,9 @@ function MacroFunctions.MinhGiaoMTLLT(arg)
     --Chế độ đánh skill MTLLT
     if not MacroOptions.autoNhatNguyetTinhThe then
       --Dùng Từ Bi Nguyện khi có thể
-      if MacroOptions.autoTuBiNguyen and MacroFunctions.bHatredDependency==true then MacroFunctions.use({3982},3,500) end
+      if MacroOptions.autoTuBiNguyen and (MacroFunctions.GetMyHatred(T)<100 or MacroOptions.alwaysTuBiNguyen) and MacroFunctions.bHatredDependency==true then MacroFunctions.use({3982},3,500) end
       --Bật Cực Lạc Dẫn khi cừu hận top 2 > 70%
-      if MacroOptions.autoCucLacDanMTLLT and p.IsInParty() and (MacroFunctions.GetSecondHighestHatred(T)>70 or MacroFunctions.GetMyHatred(T)<100) then MacroFunctions.use({3971},3,500) end
+      if MacroOptions.autoCucLacDanMTLLT and p.IsInParty() and (MacroFunctions.GetSecondHighestHatred(T)>70 or MacroFunctions.GetMyHatred(T)<100) and distance<=10 then MacroFunctions.use({3971},3,500) end
       --Sử dụng Giới Hỏa Trảm, Quy Tịch Đạo tăng sát thương và uy hiếp
       MacroFunctions.use({3980,3981},2,500)
     end

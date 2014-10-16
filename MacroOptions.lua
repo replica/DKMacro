@@ -165,6 +165,7 @@ MacroOptions =
   autoQuangMinhTuongMTLLT=true,
   autoTinhMenhHai=true,
   autoTuBiNguyen=true,
+  alwaysTuBiNguyen=false,
   autoNhatNguyetTinhThe=false,
 
   autoTuyenNgungNguyet=true,
@@ -349,6 +350,7 @@ RegisterCustomData("MacroOptions.autoThamMaTheMTLLT")
 RegisterCustomData("MacroOptions.autoQuangMinhTuongMTLLT")
 RegisterCustomData("MacroOptions.autoTinhMenhHai")
 RegisterCustomData("MacroOptions.autoTuBiNguyen")
+RegisterCustomData("MacroOptions.alwaysTuBiNguyen")
 RegisterCustomData("MacroOptions.autoNhatNguyetTinhThe")
 
 RegisterCustomData("MacroOptions.autoTuyenNgungNguyet")
@@ -2951,6 +2953,23 @@ function MacroOptions.CreateMenu()
           else
             MacroOptions.autoTuBiNguyen=false
             OutputMessage("MSG_SYS","[Tự dùng Từ Bi Nguyện khi BOSS chuyển target khỏi bản thân] > OFF\n")
+          end
+        end,
+        fnAutoClose = function() return true end
+      }
+    )
+    table.insert(menuMinhGiaoMTLLT,
+      {
+        szOption = "Dùng Từ Bi Nguyện ngay khi cooldown xong",
+        bCheck = true,
+        bChecked = MacroOptions.alwaysTuBiNguyen,
+        fnAction = function()
+          if not MacroOptions.alwaysTuBiNguyen then
+            MacroOptions.alwaysTuBiNguyen=true
+            OutputMessage("MSG_SYS","[Dùng Từ Bi Nguyện ngay khi cooldown xong] > ON\n")
+          else
+            MacroOptions.alwaysTuBiNguyen=false
+            OutputMessage("MSG_SYS","[Dùng Từ Bi Nguyện ngay khi cooldown xong] > OFF\n")
           end
         end,
         fnAutoClose = function() return true end
@@ -5628,6 +5647,17 @@ Hotkey.AddBinding("autoTuBiNguyen","Tự dùng Từ Bi Nguyện","",
     else
       MacroOptions.autoTuBiNguyen=false
       OutputMessage("MSG_SYS","[Tự dùng Từ Bi Nguyện khi BOSS chuyển target khỏi bản thân] > OFF\n")
+    end
+  end,
+nil)
+Hotkey.AddBinding("alwaysTuBiNguyen","Dùng Từ Bi Nguyện ngay khi cooldown xong","",
+  function()
+    if not MacroOptions.alwaysTuBiNguyen then
+      MacroOptions.alwaysTuBiNguyen=true
+      OutputMessage("MSG_SYS","[Dùng Từ Bi Nguyện ngay khi cooldown xong] > ON\n")
+    else
+      MacroOptions.alwaysTuBiNguyen=false
+      OutputMessage("MSG_SYS","[Dùng Từ Bi Nguyện ngay khi cooldown xong] > OFF\n")
     end
   end,
 nil)
