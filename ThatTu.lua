@@ -67,6 +67,7 @@ function MacroFunctions.ThatTuBTQ()
       MacroFunctions.DHCKTimeLine=GetTime()
     end
     --Cắt skill bằng Kiếm Phá Hư Không hoặc Kiếm Tâm Thông Minh
+    if MacroOptions.autoSkillInterrupt then MacroFunctions.SkillInterrupt(T,MacroFunctions.bossSkills,2716) end
     if MacroOptions.autoSkillInterrupt then MacroFunctions.SkillInterrupt(T,MacroFunctions.bossSkills,547) end
     --Xóa buff của boss bằng Kiếm Chuyển Lưu Vân
     if MacroOptions.autoClearBuff then MacroFunctions.ClearBuff(T,MacroFunctions.bossBuffs,563) end
