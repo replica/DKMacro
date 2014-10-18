@@ -259,7 +259,7 @@ function MacroFunctions.DuongMonTLND()
       MacroFunctions.use({3360},5,0)
     end
     --Ngừng đánh đặt lại TCB
-    if not (RawTargetHP>=HPLimit and ((MacroOptions.autoTCB==1 and distance<25) or (MacroOptions.autoTCB==2 and distance<9.5)) and (energy>=60 or (energy>=24 and MacroFunctions.CheckBuff(p,3278,1,0,0))) and (MacroFunctions.GetTCBStatus()==-1 or (MacroFunctions.TCBTimeLeft<=6 and MacroFunctions.TCBTimeLeft>=0)) and MacroFunctions.GetSkillCD(3109)==MacroFunctions.GetSkillCD(3087) and MacroFunctions.dwPreparingSkillID~=3109 and MacroFunctions.dwLastSkillIDCasted~=3109) then
+    if not (RawTargetHP>=HPLimit and ((MacroOptions.autoTCB==1 and distance<25) or (MacroOptions.autoTCB==2 and distance<9.5)) and (MacroFunctions.GetTCBStatus()==-1 or (MacroFunctions.TCBTimeLeft<=6 and MacroFunctions.TCBTimeLeft>=0)) and MacroFunctions.GetSkillCD(3109)==MacroFunctions.GetSkillCD(3087) and MacroFunctions.dwPreparingSkillID~=3109 and MacroFunctions.dwLastSkillIDCasted~=3109) then
       --Kiểm tra bí kíp Phệ Tâm, nếu có thì duy trì buff Phệ Tâm
       if RawTargetHP>=HPLimit and (MacroFunctions.CheckSkillRecipe(3087,825) or MacroFunctions.CheckSkillRecipe(3087,826)) and energy>=(x*2) and (not bHuyenDieu or MacroFunctions.GetSkillCD(3093)==MacroFunctions.GetSkillCD(3087) or not MacroFunctions.CheckBuff(T,3253,MacroOptions.stackNumPheTam,2,0)) and not MacroFunctions.CheckBuff(T,3253,MacroOptions.stackNumPheTam,3,0) then MacroFunctions.use({3087},2) end
       --Đặt Ám Tàng Sát Cơ
