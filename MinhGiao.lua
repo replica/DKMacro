@@ -125,6 +125,7 @@ function MacroFunctions.MinhGiaoPATQ(arg)
       else
         if (FS==1 or FM==1) and not MacroFunctions.CheckBuff(p,4937,5,0,0) and not MacroFunctions.CheckBuff(p,4052,1,0,0,1) then MacroFunctions.use(TinhThe,2,500) end
       end
+      if distance>5 and not MacroFunctions.IsSkillCD(3977) and MacroFunctions.GetSkillCD(3970)>1.5 then MacroFunctions.use({3960},2,500) end
       --Đánh combo
       if not arg then
         --Đánh thêm XNL, UNL nếu chưa đủ NNDH
