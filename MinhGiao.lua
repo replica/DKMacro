@@ -85,6 +85,8 @@ function MacroFunctions.MinhGiaoPATQ(arg)
     if MacroOptions.autoLuuQuangTuAnh and distance>8 and not IsKeyDown("Space") then MacroFunctions.use({3977},3,500) end
     --Sử dụng Ảo Quang Bộ
     if MacroOptions.autoAoQuangBoPATQ and distance>8 and (not MacroFunctions.IsSkillCD(3977) or not MacroOptions.autoLuuQuangTuAnh) and not IsKeyDown("Space") then MacroFunctions.use({3970},2,500) end
+    --Buff thần binh
+    if MacroFunctions.CheckBuff(p,4930,1,0,0) and (FS==1 or FM==1) then MacroFunctions.use(TinhThe,2,500) end
     --Sử dụng Ám Trần Di Tán khi rời chiến đấu
     if not p.bFightState and MacroOptions.autoAmTranDiTan~=0 and MacroFunctions.GetSkillCD(3979)<=1 then MacroFunctions.use({3974},3,1500) end
     --Sử dụng Ám Trần Di Tán khi cừu hận >70%
@@ -110,21 +112,20 @@ function MacroFunctions.MinhGiaoPATQ(arg)
       --Bật Cực Lạc Dẫn nếu có nâng và có bí kíp
       if MacroOptions.autoCucLacDanPATQ and MacroFunctions.CheckSkillRecipe(3971,1028) and (FS==0 and FM==0) and NLNH and not MacroFunctions.CheckBuff(p,4498,1,0,0) then MacroFunctions.use({3971},3,500) end
       --Duy trì tầng NLNH
-      if not arg then
-        if NhatLinh>NguyetHon and not MacroFunctions.CheckBuff(p,4937,1,1.5,1) then MacroFunctions.use({3962},2,500) end
-        if NhatLinh<NguyetHon and not MacroFunctions.CheckBuff(p,4937,1,1.5,1) then MacroFunctions.use({3959},2,500) end
-        if NhatLinh==NguyetHon and not MacroFunctions.CheckBuff(p,4937,1,1.5,1) then MacroFunctions.use({3959},2,500) end
-      elseif arg==1 then
-        if not MacroFunctions.CheckBuff(p,4937,1,1.5,1) then MacroFunctions.use({3962},2,500) end
-      elseif arg==2 then
-        if not MacroFunctions.CheckBuff(p,4937,1,1.5,1) then MacroFunctions.use({3959},2,500) end
+      if not MacroFunctions.CheckBuff(p,4930,1,0,0) then
+        if not arg then
+          if NhatLinh>NguyetHon and not MacroFunctions.CheckBuff(p,4937,1,1.5,1) then MacroFunctions.use({3962},2,500) end
+          if NhatLinh<NguyetHon and not MacroFunctions.CheckBuff(p,4937,1,1.5,1) then MacroFunctions.use({3959},2,500) end
+          if NhatLinh==NguyetHon and not MacroFunctions.CheckBuff(p,4937,1,1.5,1) then MacroFunctions.use({3959},2,500) end
+        elseif arg==1 then
+          if not MacroFunctions.CheckBuff(p,4937,1,1.5,1) then MacroFunctions.use({3962},2,500) end
+        elseif arg==2 then
+          if not MacroFunctions.CheckBuff(p,4937,1,1.5,1) then MacroFunctions.use({3959},2,500) end
+        end
       end
       --Đánh Tịnh Thế ngay khi mãn nhật hoặc mãn nguyệt và không trong trạng thái tàng hình
-      if not arg then
-        if (FS==1 or FM==1) and not MacroFunctions.CheckBuff(p,4937,4,0,0) and not MacroFunctions.CheckBuff(p,4052,1,0,0,1) then MacroFunctions.use(TinhThe,2,500) end
-      else
-        if (FS==1 or FM==1) and not MacroFunctions.CheckBuff(p,4937,5,0,0) and not MacroFunctions.CheckBuff(p,4052,1,0,0,1) then MacroFunctions.use(TinhThe,2,500) end
-      end
+      if (FS==1 or FM==1) and (not MacroFunctions.CheckBuff(p,4937,4,0,0) or MacroFunctions.CheckBuff(p,4930,1,0,0)) and not MacroFunctions.CheckBuff(p,4052,1,0,0,1) then MacroFunctions.use(TinhThe,2,500) end
+      --Ngân Nguyệt Trảm khi khoảng cách xa ngoài tầm đánh
       if distance>5 and not MacroFunctions.IsSkillCD(3977) and MacroFunctions.GetSkillCD(3970)>1.5 then MacroFunctions.use({3960},2,500) end
       --Đánh combo
       if not arg then
