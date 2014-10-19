@@ -56,8 +56,9 @@ function MacroFunctions.ThieuLamDCK()
   if bEnable==true and MacroFunctions.StopAction()<=1 and MacroFunctions.CheckMoveState(p,"stand|float|entrap|walk|run|jump") and not MacroFunctions.KTCombo.bEnable then
     --Buff Phù Dao Trực Thượng
     if MacroFunctions.StopAction()==1 then MacroFunctions.use({9002},2) end
-    --Cắt skill bằng Thưởng Châu Thức
+    --Cắt skill bằng Thưởng Châu Thức, Bộ Phong Thức
     if MacroOptions.autoSkillInterrupt then MacroFunctions.SkillInterrupt(T,MacroFunctions.bossSkills,240) end
+    if MacroOptions.autoSkillInterrupt and p.GetSkillLevel(5911)==1 then MacroFunctions.SkillInterrupt(T,MacroFunctions.bossSkills,238) end
     --Dùng Vô Tướng Quyết (giảm 50% sát thương phải chịu) khi HP<30%
     if MacroOptions.autoVoTuongQuyetDCK and HP<30 then MacroFunctions.use({261},2) end
     --Dùng Diệc Khô Diệc Vinh khi MP<30%
@@ -69,21 +70,23 @@ function MacroFunctions.ThieuLamDCK()
     --Duy trì 5 tầng Thủ Khuyết Thức
     if p.IsInParty() and MacroFunctions.IsFormationLeader() and not MacroFunctions.CheckBuff(p,920,1,3,1) then MacroFunctions.use({2572},2) end
     --Duy trì buff Chúng Sân
-    if p.GetSkillLevel(6595)==0 and p.GetSkillLevel(6596)==1 then MacroFunctions.use({2572},2) end
+    if p.GetSkillLevel(6596)==1 then MacroFunctions.use({2572},2) end
     --Duy trì 5 tầng Phổ Độ Tứ Phương
     if K<3 and MacroFunctions.CheckSkillRecipe(232,271) and not MacroFunctions.CheckBuff(T,890,1,2,1) then MacroFunctions.use({232},2) end
+    --Buff thần binh
+    if MacroFunctions.CheckBuff(p,1919,1,0,0) and K>=1 then MacroFunctions.use({233},2) end
     --Duy trì Kim Cương Nộ Mục
-    if MacroOptions.autoKimCuongNoMuc and K==3 and not MacroFunctions.CheckBuff(p,3889,1,0,0) then MacroFunctions.use({247},3,500) end
+    if MacroOptions.autoKimCuongNoMuc and K==3 then MacroFunctions.use({247},3,500) end
     --Sử dụng Cầm Long Quyết khi có thể
     if MacroOptions.autoKimCuongNoMuc then
-      if MacroOptions.autoCamLongQuyetDCK and K<=1 and MacroFunctions.CheckBuff(p,3889,1,0,0) then MacroFunctions.use({260},4,500) end
+      if MacroOptions.autoCamLongQuyetDCK and K<1 and MacroFunctions.GetSkillCD(233)<1 and MacroFunctions.CheckBuff(p,3880,2,0,0) and MacroFunctions.GetSkillCD(2572)<1.5 and MacroFunctions.CheckBuff(p,3889,1,0,0) then MacroFunctions.use({260},4,500) end
     else
-      if MacroOptions.autoCamLongQuyetDCK and K<=1 then MacroFunctions.use({260},4,500) end
+      if MacroOptions.autoCamLongQuyetDCK and K<1 and MacroFunctions.GetSkillCD(233)<1 and MacroFunctions.CheckBuff(p,3880,2,0,0) and MacroFunctions.GetSkillCD(2572)<1.5 then MacroFunctions.use({260},4,500) end
     end
     --Sử dụng vật phẩm
-    if MacroOptions.autoUseWeapon and (MacroFunctions.CheckBuff(p,3889,1,0,0) or MacroFunctions.CheckBuff(p,1378,1,8,0) or MacroFunctions.CheckBuff(p,2686,1,15,0)) then MacroFunctions.UseEquippedItem(EQUIPMENT_INVENTORY.MELEE_WEAPON) end
-    if MacroOptions.autoUseAmulet and (MacroFunctions.CheckBuff(p,3889,1,0,0) or MacroFunctions.CheckBuff(p,1378,1,8,0) or MacroFunctions.CheckBuff(p,2686,1,15,0)) then MacroFunctions.UseEquippedItem(EQUIPMENT_INVENTORY.AMULET) end
-    if MacroOptions.autoUsePendant and (MacroFunctions.CheckBuff(p,3889,1,0,0) or MacroFunctions.CheckBuff(p,1378,1,8,0) or MacroFunctions.CheckBuff(p,2686,1,15,0)) then MacroFunctions.UseEquippedItem(EQUIPMENT_INVENTORY.PENDANT) end
+    if MacroOptions.autoUseWeapon and MacroFunctions.CheckBuff(p,3889,1,0,0) and MacroFunctions.CheckBuff(p,2686,1,15,0) then MacroFunctions.UseEquippedItem(EQUIPMENT_INVENTORY.MELEE_WEAPON) end
+    if MacroOptions.autoUseAmulet and MacroFunctions.CheckBuff(p,3889,1,0,0) and MacroFunctions.CheckBuff(p,2686,1,15,0) then MacroFunctions.UseEquippedItem(EQUIPMENT_INVENTORY.AMULET) end
+    if MacroOptions.autoUsePendant and MacroFunctions.CheckBuff(p,3889,1,0,0) and MacroFunctions.CheckBuff(p,2686,1,15,0) then MacroFunctions.UseEquippedItem(EQUIPMENT_INVENTORY.PENDANT) end
     --Khoảng cách >8m dùng Tróc Ảnh Thức, Bộ Phong Thức
     if distance>8 and distance<20 then MacroFunctions.use({242},2) end
     if distance>8 then MacroFunctions.use({238},2) end
@@ -167,16 +170,16 @@ function MacroFunctions.ThieuLamTTK()
     if MacroFunctions.StopAction()==1 then MacroFunctions.use({9002},2) end
     --Cắt skill bằng Thưởng Châu Thức
     if MacroOptions.autoSkillInterrupt then MacroFunctions.SkillInterrupt(T,MacroFunctions.bossSkills,240) end
+    --Duy trì buff Bát Nhã Quyết
+    if MacroOptions.autoBatNhaQuyetTTK and not MacroFunctions.CheckBuff(p,382,1,0,0) then MacroFunctions.use({200},2) end
     --Sử dụng Cầm Long Quyết khi có thể
     if MacroOptions.autoCamLongQuyetTTK and K<=1 then MacroFunctions.use({260},4,500) end
     --Dùng Vô Tướng Quyết (giảm 50% sát thương phải chịu) khi HP<50%
     if MacroOptions.autoVoTuongQuyetTTK and HP<50 then MacroFunctions.use({261},2) end
-    --Duy trì buff Bát Nhã Quyết
-    if MacroOptions.autoBatNhaQuyetTTK and not MacroFunctions.CheckBuff(p,382,1,0,0) then MacroFunctions.use({200},2) end
-    --Dùng Phật Tâm Quyết khi có thể
-    if MacroOptions.autoPhatTamQuyetTTK then MacroFunctions.use({255},3,500) end
     --Dùng Tụ Nạp Càn Khôn khi HP<50%
     if MacroOptions.autoTuNapCanKhon and K==3 and HP<50 then MacroFunctions.use({248},2) end
+    --Dùng Phật Tâm Quyết khi có thể
+    if MacroOptions.autoPhatTamQuyetTTK then MacroFunctions.use({255},3,500) end
     --Sử dụng vật phẩm
     if MacroOptions.autoUseWeapon and HP<30 then MacroFunctions.UseEquippedItem(EQUIPMENT_INVENTORY.MELEE_WEAPON) end
     if MacroOptions.autoUseAmulet and HP<30 then MacroFunctions.UseEquippedItem(EQUIPMENT_INVENTORY.AMULET) end
