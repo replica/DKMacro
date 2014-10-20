@@ -180,12 +180,12 @@ function MacroFunctions.ThienSachTLL()
     if MacroOptions.autoDinhQuan and (MacroFunctions.GetSecondHighestHatred(T)>70 or MacroFunctions.GetMyHatred(T)<100) and MacroFunctions.bHatredDependency==true then MacroFunctions.use({402},3,500) end
     --Sử dụng Lược Như Hỏa khi cừu hận top 2 > 70%
     if MacroOptions.autoLuocNhuHoa and p.IsInParty() and (MacroFunctions.GetSecondHighestHatred(T)>70 or MacroFunctions.GetMyHatred(T)<100) then MacroFunctions.use({411},3,500) end
+    --Sử dụng vật phẩm
+    if MacroOptions.autoUseWeapon and MacroFunctions.CheckBuff(p,203,1,0,0) and MacroFunctions.IsSkillCD(412) then MacroFunctions.UseEquippedItem(EQUIPMENT_INVENTORY.MELEE_WEAPON) end
+    if MacroOptions.autoUseAmulet and MacroFunctions.CheckBuff(p,203,1,0,0) and MacroFunctions.IsSkillCD(412) then MacroFunctions.UseEquippedItem(EQUIPMENT_INVENTORY.AMULET) end
+    if MacroOptions.autoUsePendant and MacroFunctions.CheckBuff(p,203,1,0,0) and MacroFunctions.IsSkillCD(412) then MacroFunctions.UseEquippedItem(EQUIPMENT_INVENTORY.PENDANT) end
     --Sử dụng Tật Như phong
     if MacroOptions.autoTatNhuPhongTLL and distance<4 then MacroFunctions.use({412},3,500) end
-    --Sử dụng vật phẩm
-    if MacroOptions.autoUseWeapon and MacroFunctions.CheckBuff(p,203,1,0,0) then MacroFunctions.UseEquippedItem(EQUIPMENT_INVENTORY.MELEE_WEAPON) end
-    if MacroOptions.autoUseAmulet and MacroFunctions.CheckBuff(p,203,1,0,0) then MacroFunctions.UseEquippedItem(EQUIPMENT_INVENTORY.AMULET) end
-    if MacroOptions.autoUsePendant and MacroFunctions.CheckBuff(p,203,1,0,0) then MacroFunctions.UseEquippedItem(EQUIPMENT_INVENTORY.PENDANT) end
     --Kiểm tra buff Lưu Huyết, nếu chưa tồn tại thì đánh Phá Phong, nếu đang tồn tại duy trì >=2s
     if not MacroFunctions.CheckBuff(T,3442,1,0,0) then MacroFunctions.use({401},2) end
     if not MacroFunctions.CheckBuff(T,3442,1,2,1) then MacroFunctions.use({401},2) end

@@ -77,12 +77,12 @@ function MacroFunctions.DuongMonKVQ()
     if MacroOptions.autoPhuQuangLuocAnhKVQ and p.IsInParty() and MacroFunctions.GetMyHatred(T)>70 then MacroFunctions.use({3112},3,500) end
     --Bật Kinh Hồng Du Long khi HP<30%
     if MacroOptions.autoKinhHongDuLongKVQ and HP<30 then MacroFunctions.use({3114},y) end
-    --Bật Tập Trung
-    if MacroOptions.autoTapTrungKVQ and MacroFunctions.CheckBuff(T,2237,1,0,0) and (MacroFunctions.CheckBuff(T,3712,1,0,0) or MacroFunctions.GetSkillCD(3098)>1.5) and MacroFunctions.GetSkillCD(3096)<=3 and (MacroFunctions.CheckBuff(p,3399,2,0,0) or MacroFunctions.CheckBuff(p,3276,1,0,0) or MacroFunctions.CheckBuff(p,3487,1,3,0)) and not MacroFunctions.CheckBuff(p,3214,1,0,0) and not MacroFunctions.CheckBuff(p,3468,1,0,0) and MacroFunctions.IsSkillCD(3095) then MacroFunctions.use({3094},3,500) end
     --Sử dụng vật phẩm
     if MacroOptions.autoUseWeapon and MacroFunctions.CheckBuff(T,2237,1,0,0) and (MacroFunctions.CheckBuff(T,3712,1,0,0) or MacroFunctions.GetSkillCD(3098)>1.5) and MacroFunctions.GetSkillCD(3096)<=3 and (MacroFunctions.CheckBuff(p,3399,2,0,0) or MacroFunctions.CheckBuff(p,3276,1,0,0) or MacroFunctions.CheckBuff(p,3487,1,3,0)) and not MacroFunctions.CheckBuff(p,3214,1,0,0) and not MacroFunctions.CheckBuff(p,3468,1,0,0) and MacroFunctions.IsSkillCD(3095) and MacroFunctions.IsSkillCD(3094) then MacroFunctions.UseEquippedItem(EQUIPMENT_INVENTORY.MELEE_WEAPON) end
     if MacroOptions.autoUseAmulet and MacroFunctions.CheckBuff(T,2237,1,0,0) and (MacroFunctions.CheckBuff(T,3712,1,0,0) or MacroFunctions.GetSkillCD(3098)>1.5) and MacroFunctions.GetSkillCD(3096)<=3 and (MacroFunctions.CheckBuff(p,3399,2,0,0) or MacroFunctions.CheckBuff(p,3276,1,0,0) or MacroFunctions.CheckBuff(p,3487,1,3,0)) and not MacroFunctions.CheckBuff(p,3214,1,0,0) and not MacroFunctions.CheckBuff(p,3468,1,0,0) and MacroFunctions.IsSkillCD(3095) and MacroFunctions.IsSkillCD(3094) then MacroFunctions.UseEquippedItem(EQUIPMENT_INVENTORY.AMULET) end
     if MacroOptions.autoUsePendant and MacroFunctions.CheckBuff(T,2237,1,0,0) and (MacroFunctions.CheckBuff(T,3712,1,0,0) or MacroFunctions.GetSkillCD(3098)>1.5) and MacroFunctions.GetSkillCD(3096)<=3 and (MacroFunctions.CheckBuff(p,3399,2,0,0) or MacroFunctions.CheckBuff(p,3276,1,0,0) or MacroFunctions.CheckBuff(p,3487,1,3,0)) and not MacroFunctions.CheckBuff(p,3214,1,0,0) and not MacroFunctions.CheckBuff(p,3468,1,0,0) and MacroFunctions.IsSkillCD(3095) and MacroFunctions.IsSkillCD(3094) then MacroFunctions.UseEquippedItem(EQUIPMENT_INVENTORY.PENDANT) end
+    --Bật Tập Trung
+    if MacroOptions.autoTapTrungKVQ and MacroFunctions.CheckBuff(T,2237,1,0,0) and (MacroFunctions.CheckBuff(T,3712,1,0,0) or MacroFunctions.GetSkillCD(3098)>1.5) and MacroFunctions.GetSkillCD(3096)<=3 and (MacroFunctions.CheckBuff(p,3399,2,0,0) or MacroFunctions.CheckBuff(p,3276,1,0,0) or MacroFunctions.CheckBuff(p,3487,1,3,0)) and not MacroFunctions.CheckBuff(p,3214,1,0,0) and not MacroFunctions.CheckBuff(p,3468,1,0,0) and MacroFunctions.IsSkillCD(3095) then MacroFunctions.use({3094},3,500) end
     --Bật Kinh Hồng Du Long nếu có bí kíp hồi 20 thần cơ
     if MacroOptions.autoKinhHongDuLongKVQ and MacroFunctions.CheckSkillRecipe(3114,904) and energy<30 and not MacroFunctions.CheckBuff(p,3468,1,0,0) and MacroFunctions.GetSkillCD(3100)>1.5 and MacroFunctions.GetSkillCD(3101)>1.5 then MacroFunctions.use({3114},y) end
     --Thay đổi ngưỡng thần cơ khi xuất hiện buff Huyền Diệu
@@ -196,20 +196,6 @@ function MacroFunctions.DuongMonTLND()
     if MacroOptions.autoKinhHongDuLongTLND and HP<30 and (MacroFunctions.CheckBuff(T,3253,MacroOptions.stackNumPheTam,3,0) or not (MacroFunctions.CheckSkillRecipe(3087,825) or MacroFunctions.CheckSkillRecipe(3087,826))) then MacroFunctions.use({3114},2) end
     --Tự bật Quỉ Phủ Thần Công
     if MacroOptions.autoQuiPhuThanCong and RawTargetHP>=HPLimit and energy>=(x*2) and MacroFunctions.GetATSCNum()>=2 and (MacroFunctions.CheckBuff(T,3253,MacroOptions.stackNumPheTam,4,0) or not (MacroFunctions.CheckSkillRecipe(3087,825) or MacroFunctions.CheckSkillRecipe(3087,826))) and MacroFunctions.GetSkillCD(3108)>=4 and (MacroFunctions.GetSkillCD(3093)<=8 or MacroFunctions.GetSkillCD(6444)<=8) and MacroFunctions.GetTCBDistance()<=4 then MacroFunctions.use({3110},2) end
-    --Bật Tập Trung
-    if MacroOptions.autoTCB==1 then
-      if MacroOptions.autoTapTrungQPTC==1 then
-        if MacroFunctions.GetSkillCD(3110)>6 and MacroFunctions.GetSkillCD(3110)<115 then
-          if MacroOptions.autoTapTrungTLND and (MacroFunctions.CheckBuff(T,3253,MacroOptions.stackNumPheTam,3,0) or not (MacroFunctions.CheckSkillRecipe(3087,825) or MacroFunctions.CheckSkillRecipe(3087,826))) and (MacroFunctions.GetSkillCD(3093)<=8 or MacroFunctions.GetSkillCD(6444)<=8) and MacroFunctions.GetATSCNum()>=2 then MacroFunctions.use({3094},3,500) end
-        else
-          if MacroOptions.autoTapTrungTLND and MacroFunctions.GetSkillCD(3110)>115 and MacroFunctions.GetSkillCD(3110)<117 then MacroFunctions.use({3094},3,500) end
-        end
-      elseif MacroOptions.autoTapTrungQPTC==2 then
-        if MacroOptions.autoTapTrungTLND and MacroFunctions.GetSkillCD(3110)>115 and MacroFunctions.GetSkillCD(3110)<117 then MacroFunctions.use({3094},3,500) end
-      end
-    else
-      if MacroOptions.autoTapTrungTLND and (MacroFunctions.CheckBuff(T,3253,MacroOptions.stackNumPheTam,4,0) or not (MacroFunctions.CheckSkillRecipe(3087,825) or MacroFunctions.CheckSkillRecipe(3087,826))) and MacroFunctions.GetATSCNum()>=2 then MacroFunctions.use({3094},3,500) end
-    end
     --Sử dụng vật phẩm
     if MacroOptions.autoTCB==1 then
       if MacroOptions.autoTapTrungQPTC==1 then
@@ -239,6 +225,20 @@ function MacroFunctions.DuongMonTLND()
         if MacroOptions.autoUseAmulet and MacroFunctions.IsSkillCD(3094) then MacroFunctions.UseEquippedItem(EQUIPMENT_INVENTORY.AMULET) end
         if MacroOptions.autoUsePendant and MacroFunctions.IsSkillCD(3094) then MacroFunctions.UseEquippedItem(EQUIPMENT_INVENTORY.PENDANT) end
       end
+    end
+    --Bật Tập Trung
+    if MacroOptions.autoTCB==1 then
+      if MacroOptions.autoTapTrungQPTC==1 then
+        if MacroFunctions.GetSkillCD(3110)>6 and MacroFunctions.GetSkillCD(3110)<115 then
+          if MacroOptions.autoTapTrungTLND and (MacroFunctions.CheckBuff(T,3253,MacroOptions.stackNumPheTam,3,0) or not (MacroFunctions.CheckSkillRecipe(3087,825) or MacroFunctions.CheckSkillRecipe(3087,826))) and (MacroFunctions.GetSkillCD(3093)<=8 or MacroFunctions.GetSkillCD(6444)<=8) and MacroFunctions.GetATSCNum()>=2 then MacroFunctions.use({3094},3,500) end
+        else
+          if MacroOptions.autoTapTrungTLND and MacroFunctions.GetSkillCD(3110)>115 and MacroFunctions.GetSkillCD(3110)<117 then MacroFunctions.use({3094},3,500) end
+        end
+      elseif MacroOptions.autoTapTrungQPTC==2 then
+        if MacroOptions.autoTapTrungTLND and MacroFunctions.GetSkillCD(3110)>115 and MacroFunctions.GetSkillCD(3110)<117 then MacroFunctions.use({3094},3,500) end
+      end
+    else
+      if MacroOptions.autoTapTrungTLND and (MacroFunctions.CheckBuff(T,3253,MacroOptions.stackNumPheTam,4,0) or not (MacroFunctions.CheckSkillRecipe(3087,825) or MacroFunctions.CheckSkillRecipe(3087,826))) and MacroFunctions.GetATSCNum()>=2 then MacroFunctions.use({3094},3,500) end
     end
     --Bật Kinh Hồng Du Long nếu có bí kíp hồi 20 thần cơ
     if p.GetSkillLevel(6888)==1 then
