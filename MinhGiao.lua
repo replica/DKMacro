@@ -124,14 +124,14 @@ function MacroFunctions.MinhGiaoPATQ(arg)
         end
       end
       --Đánh Tịnh Thế ngay khi mãn nhật hoặc mãn nguyệt và không trong trạng thái tàng hình
-      if (FS==1 or FM==1) and (not MacroFunctions.CheckBuff(p,4937,4,0,0) or MacroFunctions.CheckBuff(p,4930,1,0,0)) and not MacroFunctions.CheckBuff(p,4052,1,0,0,1) then MacroFunctions.use(TinhThe,2,500) end
+      if (FS==1 or FM==1) and (not MacroFunctions.CheckBuff(p,4937,5,0,0) or MacroFunctions.CheckBuff(p,4930,1,0,0)) and not MacroFunctions.CheckBuff(p,4052,1,0,0,1) then MacroFunctions.use(TinhThe,2,500) end
       --Ngân Nguyệt Trảm khi khoảng cách xa ngoài tầm đánh
       if distance>5 and not MacroFunctions.IsSkillCD(3977) and MacroFunctions.GetSkillCD(3970)>1.5 then MacroFunctions.use({3960},2,500) end
       --Đánh combo
       if not arg then
         --Đánh thêm XNL, UNL nếu chưa đủ NNDH
-        if FS==1 and MacroFunctions.CheckBuff(p,4937,4,0,0) then MacroFunctions.use({3962},2,500) end
-        if FM==1 and MacroFunctions.CheckBuff(p,4937,4,0,0) then MacroFunctions.use({3959},2,500) end
+        if FS==1 and MacroFunctions.CheckBuff(p,4937,5,0,0) then MacroFunctions.use({3962},2,500) end
+        if FM==1 and MacroFunctions.CheckBuff(p,4937,5,0,0) then MacroFunctions.use({3959},2,500) end
         --Đánh thêm XNL, UNL (sau KDDS)
         if NhatLinh<7000 and NguyetHon>7600 and not MacroFunctions.CheckBuff(p,4937,1,0,0) then MacroFunctions.use({3959},2,500) end
         if NguyetHon<7000 and NhatLinh>7550 and not MacroFunctions.CheckBuff(p,4937,1,0,0) then MacroFunctions.use({3962},2,500) end
@@ -148,32 +148,32 @@ function MacroFunctions.MinhGiaoPATQ(arg)
         end
       elseif arg==1 then
         --Đánh thêm XNL nếu chưa đủ NNDH
-        if (FS==1 or FM==1) and MacroFunctions.CheckBuff(p,4937,4,0,0) then MacroFunctions.use({3962},2,500) end
+        if (FS==1 or FM==1) and MacroFunctions.CheckBuff(p,4937,5,0,0) then MacroFunctions.use({3962},2,500) end
         --Đánh thêm UNL (sau KDDS)
         if NhatLinh<7000 and NguyetHon>7600 and not MacroFunctions.CheckBuff(p,4937,1,0,0) then MacroFunctions.use({3959},2,500) end
         --Đánh thêm Ngân Nguyệt Trảm
-        if MacroOptions.autoNNLN and (not MacroFunctions.CheckBuff(p,4937,1,0,0,1) or (MacroFunctions.CheckBuff(p,4937,3,0,0,1) and not MacroFunctions.CheckBuff(p,4937,4,0,0,1)) or MacroFunctions.CheckBuff(p,4937,2,0,0,2)) and not MacroFunctions.CheckBuff(p,4056,1,0,0) and not MacroFunctions.CheckBuff(T,4202,1,0,0) then MacroFunctions.use({3960},2,500) end
+        if MacroOptions.autoNNLN and (not MacroFunctions.CheckBuff(p,4937,1,0,0,1) or (MacroFunctions.CheckBuff(p,4937,3,0,0,1) and not MacroFunctions.CheckBuff(p,4937,5,0,0,1)) or MacroFunctions.CheckBuff(p,4937,2,0,0,2)) and not MacroFunctions.CheckBuff(p,4056,1,0,0) and not MacroFunctions.CheckBuff(T,4202,1,0,0) then MacroFunctions.use({3960},2,500) end
         --Đánh thêm UNL khi có SDDD
         if MacroFunctions.CheckBuff(p,4056,1,0,0) and NguyetHon>5500 then MacroFunctions.use({3959},2,500) end
         --Combo chính
         if not MacroFunctions.CheckBuff(p,4056,1,0,0) then
-          if not MacroFunctions.CheckBuff(p,4937,1,0,0,1) or (MacroFunctions.CheckBuff(p,4937,3,0,0,1) and not MacroFunctions.CheckBuff(p,4937,4,0,0,1)) or MacroFunctions.CheckBuff(p,4937,2,0,0,2) then MacroFunctions.use({3963},2,500) end
+          if not MacroFunctions.CheckBuff(p,4937,1,0,0,1) or (MacroFunctions.CheckBuff(p,4937,3,0,0,1) and not MacroFunctions.CheckBuff(p,4937,5,0,0,1)) or MacroFunctions.CheckBuff(p,4937,2,0,0,2) then MacroFunctions.use({3963},2,500) end
         else
           MacroFunctions.use({3963},2,500)
         end
         MacroFunctions.use({3962},2,500)
       elseif arg==2 then
         --Đánh thêm UNL nếu chưa đủ NNDH
-        if (FS==1 or FM==1) and MacroFunctions.CheckBuff(p,4937,4,0,0) then MacroFunctions.use({3959},2,500) end
+        if (FS==1 or FM==1) and MacroFunctions.CheckBuff(p,4937,5,0,0) then MacroFunctions.use({3959},2,500) end
         --Đánh thêm XNL (sau KDDS)
         if NguyetHon<7000 and NhatLinh>7550 and not MacroFunctions.CheckBuff(p,4937,1,0,0) then MacroFunctions.use({3962},2,500) end
         --Đánh thêm Liệt Nhật Trảm
-        if MacroOptions.autoNNLN and (not MacroFunctions.CheckBuff(p,4937,1,0,0,1) or (MacroFunctions.CheckBuff(p,4937,3,0,0,1) and not MacroFunctions.CheckBuff(p,4937,4,0,0,1)) or MacroFunctions.CheckBuff(p,4937,2,0,0,2)) and not MacroFunctions.CheckBuff(p,4056,1,0,0) and not MacroFunctions.CheckBuff(T,4418,1,0,0) then MacroFunctions.use({3963},2,500) end
+        if MacroOptions.autoNNLN and (not MacroFunctions.CheckBuff(p,4937,1,0,0,1) or (MacroFunctions.CheckBuff(p,4937,3,0,0,1) and not MacroFunctions.CheckBuff(p,4937,5,0,0,1)) or MacroFunctions.CheckBuff(p,4937,2,0,0,2)) and not MacroFunctions.CheckBuff(p,4056,1,0,0) and not MacroFunctions.CheckBuff(T,4418,1,0,0) then MacroFunctions.use({3963},2,500) end
         --Đánh thêm XNL khi có SDDD
         if MacroFunctions.CheckBuff(p,4056,1,0,0) and NhatLinh>5500 then MacroFunctions.use({3962},2,500) end
         --Combo chính
         if not MacroFunctions.CheckBuff(p,4056,1,0,0) then
-          if not MacroFunctions.CheckBuff(p,4937,1,0,0,1) or (MacroFunctions.CheckBuff(p,4937,3,0,0,1) and not MacroFunctions.CheckBuff(p,4937,4,0,0,1)) or MacroFunctions.CheckBuff(p,4937,2,0,0,2) then MacroFunctions.use({3960},2,500) end
+          if not MacroFunctions.CheckBuff(p,4937,1,0,0,1) or (MacroFunctions.CheckBuff(p,4937,3,0,0,1) and not MacroFunctions.CheckBuff(p,4937,5,0,0,1)) or MacroFunctions.CheckBuff(p,4937,2,0,0,2) then MacroFunctions.use({3960},2,500) end
         else
           MacroFunctions.use({3960},2,500)
         end
