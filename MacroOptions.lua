@@ -106,8 +106,8 @@ MacroOptions =
   autoChuyenCanKhon=true,
   autoThienDiaVoCuc=true,
   autoNguPhuongHanhTan=false,
-  autoStopTTLH=true,
-  autoVTBKMode=1,
+  autoStopTTLH=false,
+  autoVTBKMode=2,
   totalGasFieldTHC=0,
   totalGasFieldTHKY=0,
 
