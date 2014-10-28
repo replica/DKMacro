@@ -93,8 +93,9 @@ function MacroFunctions.NguDocDK()
     elseif MacroOptions.autoKhoTanCo==true then
       if not MacroFunctions.CheckBuff(T,2309,1,3,0) then MacroFunctions.use({2216},3,500) end
     else
-      for z,x in pairs(T.GetBuffList() or {}) do
-        if x.dwID==2307 and x.dwSkillSrcID~=p.dwID then isMine=false end
+      for i = 1,T.GetBuffCount() do
+        local dwID, nLevel, bCanCancel, nEndFrame, nIndex, nStackNum, dwSkillSrcID, bValid = T.GetBuff(i-1)
+        if dwID==2307 and dwSkillSrcID~=p.dwID then isMine=false end
       end
       if not MacroFunctions.CheckBuff(T,2307,1,60,0) and isMine then
         MacroFunctions.use({2214},3,500)

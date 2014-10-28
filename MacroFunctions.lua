@@ -97,6 +97,7 @@ MacroFunctions=
   ATSCArray={},
   ATSCStartFrame=0,
   ATSCTimeLeft=-1,
+  bDoubleDamage=false,
   tmtReady=false,
   QCStartFrame=0,
   bThiemChuanKich=false,
@@ -491,7 +492,7 @@ function MacroFunctions.OnEvent(szEvent)
     if arg0==UI_GetClientPlayerID() and MacroOptions.autoSelfQC then
       MacroFunctions.RestoreTarget()
     end
-    if arg0==UI_GetClientPlayerID() and (MacroFunctions.dwPreparingSkillID==3095 or MacroFunctions.dwPreparingSkillID==3096) then
+    if arg0==UI_GetClientPlayerID() and (MacroFunctions.dwPreparingSkillID==3095 or (MacroFunctions.dwChannelingSkillID==3093 and p.GetSkillLevel(6891)==1) or MacroFunctions.dwPreparingSkillID==3096) then
       MacroFunctions.tmtReady=false
     end
     if arg0==UI_GetClientPlayerID() then
@@ -1042,8 +1043,9 @@ function MacroFunctions.CheckBuff(target,buffID,stackNum,timeLeft,arg,buffLevel)
   local isPrivate=false
 
   if not stackNum and not timeLeft and not arg and not buffLevel then
-    for z,x in pairs(target.GetBuffList() or {}) do
-      if x.dwID==buffID then
+    for i = 1,target.GetBuffCount() do
+      local dwID, nLevel, bCanCancel, nEndFrame, nIndex, nStackNum, dwSkillSrcID, bValid = target.GetBuff(i-1)
+      if dwID==buffID then
         return true
       end
     end
@@ -1056,21 +1058,23 @@ function MacroFunctions.CheckBuff(target,buffID,stackNum,timeLeft,arg,buffLevel)
     end
   end
   if isPrivate then
-    for z,x in pairs(target.GetBuffList() or {}) do
-      if x.dwID==buffID and x.dwSkillSrcID==p.dwID then
+    for i = 1,target.GetBuffCount() do
+      local dwID, nLevel, bCanCancel, nEndFrame, nIndex, nStackNum, dwSkillSrcID, bValid = target.GetBuff(i-1)
+      if dwID==buffID and dwSkillSrcID==p.dwID then
         r=true
-        s=x.nStackNum
-        t=(x.nEndFrame-GetLogicFrameCount())/GLOBAL.GAME_FPS
-        l=x.nLevel
+        s=nStackNum
+        t=(nEndFrame-GetLogicFrameCount())/GLOBAL.GAME_FPS
+        l=nLevel
       end
     end
   else
-    for z,x in pairs(target.GetBuffList() or {}) do
-      if x.dwID==buffID then
+    for i = 1,target.GetBuffCount() do
+      local dwID, nLevel, bCanCancel, nEndFrame, nIndex, nStackNum, dwSkillSrcID, bValid = target.GetBuff(i-1)
+      if dwID==buffID then
         r=true
-        s=x.nStackNum
-        t=(x.nEndFrame-GetLogicFrameCount())/GLOBAL.GAME_FPS
-        l=x.nLevel
+        s=nStackNum
+        t=(nEndFrame-GetLogicFrameCount())/GLOBAL.GAME_FPS
+        l=nLevel
       end
     end
   end
@@ -1165,9 +1169,10 @@ end
 
 function MacroFunctions.ClearBuff(target,targetBuffIDs,activeSkillID)
   local p=GetClientPlayer()
-  for z,x in pairs(target.GetBuffList() or {}) do
+  for i = 1,target.GetBuffCount() do
+    local dwID, nLevel, bCanCancel, nEndFrame, nIndex, nStackNum, dwSkillSrcID, bValid = target.GetBuff(i-1)
     for a,b in pairs(targetBuffIDs or {}) do
-      if x.dwID==b and p.GetSkillLevel(activeSkillID)~=0 and MacroFunctions.IsSkillCD(activeSkillID) then
+      if dwID==b and p.GetSkillLevel(activeSkillID)~=0 and MacroFunctions.IsSkillCD(activeSkillID) then
         p.StopCurrentAction()
         MacroFunctions.use({activeSkillID},0)
       end

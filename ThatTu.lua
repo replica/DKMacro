@@ -123,9 +123,10 @@ function MacroFunctions.ThatTuBTQ()
     if MacroFunctions.StopAction()==2 then
       p.StopCurrentAction()
       if MacroFunctions.CheckBuff(p,693,1,0,0) then
-        for z,x in pairs(p.GetBuffList() or {}) do
-          if x.dwID==693 and x.bCanCancel then
-            p.CancelBuff(x.nIndex)
+        for i = 1,p.GetBuffCount() do
+          local dwID, nLevel, bCanCancel, nEndFrame, nIndex, nStackNum, dwSkillSrcID, bValid = target.GetBuff(i-1)
+          if dwID==693 and bCanCancel then
+            p.CancelBuff(nIndex)
           end
         end
       end
