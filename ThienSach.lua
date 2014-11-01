@@ -92,7 +92,7 @@ function MacroFunctions.ThienSachNHCY()
     --HP<50% hay HP mục tiêu<30% thì đánh Diệt
     if HP<50 or (TargetHP<30 and p.GetSkillLevel(6524)==1) or p.GetSkillLevel(5678)==1 then MacroFunctions.use({423},2) end
     --Xuất hiện buff Trí Tàn trên target thì đánh Long Nha
-    if MacroFunctions.CheckBuff(T,540,1,0,0) then MacroFunctions.use({415},2) end
+    if MacroFunctions.CheckBuff(T,540,1,0,0) and (p.GetSkillLevel(2611)==0 or MacroFunctions.GetSkillCD(2611)>1.5) then MacroFunctions.use({415},2) end
     --Đánh combo
     MacroFunctions.use(combo,2)
   elseif bEnable==false then
