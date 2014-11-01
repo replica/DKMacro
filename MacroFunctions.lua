@@ -7,7 +7,7 @@ MacroFunctions=
   szInfoString="Loading DKMacro v3.0...",
   whiteGuildList={{id=3098,name="PhátXuân",nStartTime=1,nTime=9999999999},size=1},
   whiteCharacterList={"ĐườngKiệt","NguyenKen","_VânLong_","PhồngTômIdol","_zDarkHunterz_","GàBạoLực","SonyEricsson","ProfessorTiny","Quáchcôngcông","MaiMụiMụi","MonKhôngTan","NípNíp","YêuBóngĐêm","iDiệtThần","lipvlvlvl","___LýThông___","iSương","TiểuTrư","__Ú__Òa__","MikotoIzanami","____Hổ____","KỳHiểuLan","zzzTiểuLinhzzz","iNukerJN","VânThiênNam","ĐiếuCần","TăngCơ","TiểuKhang","_TiểuKhang_","CátBụjTìnhXa","LucyHeart","HoaKhuynhVũ","LiuMeiMei","TềSport","Kitaromura","CáChàPặc","_Nagato_","___Kal___","IdolSaoriHara","xHIKARUx","ThạchThànhUy","_SữaNon_","TôHiểuKỳ","____Trọc____","zMarlboroz","LàAiĐây","LongHoDao","MinhCoTuyet","Bạch_Long_Sứ","GoldTiger","ImonarchI","DiệpLưuYên","EternalX","__CỤTỔ__","HỏaDương","Doanh_Chính","HạVũLinh","_Lucent_","_SiêuPhẩm_","_UchihaMadara_","_Konnoha_","EstéeLauder","MissDior","oNhócRuồio","Thanh_Lan","PhongTửĐiệp","MạcGiaKhánh","Irisviel","_TiểuNyTử_","LâmKinhVu","LunarCinderella","NguyệtHiểu","iBăngTuyếtNhi","TiểuQuân_","LunarBunny","_TiểuÁcNhân_",size=76},
-  bossSkills={4268,4199,4802,3598,3711,2314,4089,4091,4129,7282,3874,3756,2124,667,3499,3500,2817,3250,4813,4119,4108,2317,5226,4164,4184,5178,5191,5290,6183,6343,6163,5178,5346,5653,5305,6319},
+  bossSkills={4268,4199,4802,3598,3711,2314,4089,4091,4129,7282,3874,3756,2124,667,3499,3500,2817,3250,4813,4119,4108,2317,5226,4164,4184,5178,5191,5290,6183,6343,6163,5178,5346,5653,5305,6319,8093},
   bossBuffs={2192,2190,2194,4687,5759},
   bossDebuffs={4253,3657},
   privateBuffs={6424,748,2237,3712,3221,4202,3442,540,513,666,714,711,2920,2487,2296,6401},
