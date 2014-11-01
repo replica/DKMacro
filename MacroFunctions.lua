@@ -492,7 +492,7 @@ function MacroFunctions.OnEvent(szEvent)
     if arg0==UI_GetClientPlayerID() and MacroOptions.autoSelfQC then
       MacroFunctions.RestoreTarget()
     end
-    if arg0==UI_GetClientPlayerID() and (MacroFunctions.dwPreparingSkillID==3095 or (MacroFunctions.dwChannelingSkillID==3093 and p.GetSkillLevel(6891)==1) or MacroFunctions.dwPreparingSkillID==3096) then
+    if arg0==UI_GetClientPlayerID() and (MacroFunctions.dwPreparingSkillID==3095 or MacroFunctions.dwPreparingSkillID==3096) then
       MacroFunctions.tmtReady=false
     end
     if arg0==UI_GetClientPlayerID() then
