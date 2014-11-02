@@ -1051,7 +1051,7 @@ RGESdata=
         ["b"] = 0,
       },
       ["nAngleToAdd"] = 0,
-      ["bNotMapMatchNeed"] = true,
+      ["bNotMapMatchNeed"] = false,
       ["tPosition"] = 
       {
         ["nZ"] = 1129600,
@@ -1077,7 +1077,7 @@ RGESdata=
         ["b"] = 0,
       },
       ["nAngleToAdd"] = 0,
-      ["bNotMapMatchNeed"] = true,
+      ["bNotMapMatchNeed"] = false,
       ["tPosition"] = 
       {
         ["nZ"] = 1129600,
@@ -1289,7 +1289,7 @@ RGESdata=
         ["b"] = 0,
       },
       ["nAngleToAdd"] = 0,
-      ["bNotMapMatchNeed"] = true,
+      ["bNotMapMatchNeed"] = false,
       ["tPosition"] = 
       {
         ["nZ"] = 1129600,
@@ -1315,7 +1315,7 @@ RGESdata=
         ["b"] = 0,
       },
       ["nAngleToAdd"] = 0,
-      ["bNotMapMatchNeed"] = true,
+      ["bNotMapMatchNeed"] = false,
       ["tPosition"] = 
       {
         ["nZ"] = 1129600,
@@ -1419,7 +1419,7 @@ RGESdata=
         ["b"] = 0,
       },
       ["nAngleToAdd"] = 0,
-      ["bNotMapMatchNeed"] = true,
+      ["bNotMapMatchNeed"] = false,
       ["tPosition"] = 
       {
         ["nZ"] = 1129600,
@@ -1523,7 +1523,7 @@ RGESdata=
         ["b"] = 0,
       },
       ["nAngleToAdd"] = 0,
-      ["bNotMapMatchNeed"] = true,
+      ["bNotMapMatchNeed"] = false,
       ["tPosition"] = 
       {
         ["nZ"] = 1129600,
@@ -1629,7 +1629,7 @@ RGESdata=
         ["b"] = 0,
       },
       ["nAngleToAdd"] = 0,
-      ["bNotMapMatchNeed"] = true,
+      ["bNotMapMatchNeed"] = false,
       ["tPosition"] = 
       {
         ["nZ"] = 1129600,
@@ -1734,7 +1734,7 @@ RGESdata=
         ["b"] = 0,
       },
       ["nAngleToAdd"] = 0,
-      ["bNotMapMatchNeed"] = true,
+      ["bNotMapMatchNeed"] = false,
       ["tPosition"] = 
       {
         ["nZ"] = 1129600,
@@ -1786,7 +1786,7 @@ RGESdata=
         ["b"] = 0,
       },
       ["nAngleToAdd"] = 0,
-      ["bNotMapMatchNeed"] = true,
+      ["bNotMapMatchNeed"] = false,
       ["tPosition"] = 
       {
         ["nZ"] = 1129600,
@@ -1839,7 +1839,7 @@ RGESdata=
         ["b"] = 255,
       },
       ["nAngleToAdd"] = 0,
-      ["bNotMapMatchNeed"] = true,
+      ["bNotMapMatchNeed"] = false,
       ["tPosition"] = 
       {
         ["nZ"] = 1129600,
@@ -1892,7 +1892,7 @@ RGESdata=
         ["b"] = 255,
       },
       ["nAngleToAdd"] = 0,
-      ["bNotMapMatchNeed"] = true,
+      ["bNotMapMatchNeed"] = false,
       ["tPosition"] = 
       {
         ["nZ"] = 1129600,
@@ -1944,7 +1944,7 @@ RGESdata=
         ["b"] = 255,
       },
       ["nAngleToAdd"] = 0,
-      ["bNotMapMatchNeed"] = true,
+      ["bNotMapMatchNeed"] = false,
       ["tPosition"] = 
       {
         ["nZ"] = 1129600,
@@ -1970,7 +1970,7 @@ RGESdata=
         ["b"] = 255,
       },
       ["nAngleToAdd"] = 0,
-      ["bNotMapMatchNeed"] = true,
+      ["bNotMapMatchNeed"] = false,
       ["tPosition"] = 
       {
         ["nZ"] = 1129600,
@@ -1996,7 +1996,7 @@ RGESdata=
         ["b"] = 255,
       },
       ["nAngleToAdd"] = 0,
-      ["bNotMapMatchNeed"] = true,
+      ["bNotMapMatchNeed"] = false,
       ["tPosition"] = 
       {
         ["nZ"] = 1129600,
@@ -2022,7 +2022,7 @@ RGESdata=
         ["b"] = 255,
       },
       ["nAngleToAdd"] = 0,
-      ["bNotMapMatchNeed"] = true,
+      ["bNotMapMatchNeed"] = false,
       ["tPosition"] = 
       {
         ["nZ"] = 1129600,
@@ -2048,7 +2048,7 @@ RGESdata=
         ["b"] = 255,
       },
       ["nAngleToAdd"] = 0,
-      ["bNotMapMatchNeed"] = true,
+      ["bNotMapMatchNeed"] = false,
       ["tPosition"] = 
       {
         ["nZ"] = 1129600,
@@ -2074,7 +2074,7 @@ RGESdata=
         ["b"] = 255,
       },
       ["nAngleToAdd"] = 0,
-      ["bNotMapMatchNeed"] = true,
+      ["bNotMapMatchNeed"] = false,
       ["tPosition"] = 
       {
         ["nZ"] = 1129600,
@@ -2100,7 +2100,7 @@ RGESdata=
         ["b"] = 255,
       },
       ["nAngleToAdd"] = 0,
-      ["bNotMapMatchNeed"] = true,
+      ["bNotMapMatchNeed"] = false,
       ["tPosition"] = 
       {
         ["nZ"] = 1129600,
@@ -2139,7 +2139,7 @@ RGESdata=
       ["szName"] = "Cầm-1",
       ["nAngle"] = 360,
       ["szMapName"] = "Hoàng Cung Nam Chiếu",
-      ["bNotMapMatchNeed"] = true,
+      ["bNotMapMatchNeed"] = false,
     },
     [20] = 
     {
@@ -2165,7 +2165,7 @@ RGESdata=
       ["szName"] = "Cầm-2",
       ["nAngle"] = 360,
       ["szMapName"] = "Anh Hùng Hoàng Cung Nam Chiếu",
-      ["bNotMapMatchNeed"] = true,
+      ["bNotMapMatchNeed"] = false,
     },
     [21] = 
     {
@@ -2191,7 +2191,7 @@ RGESdata=
       ["szName"] = "Cầm-3",
       ["nAngle"] = 360,
       ["szMapName"] = "Hoàng Cung Nam Chiếu",
-      ["bNotMapMatchNeed"] = true,
+      ["bNotMapMatchNeed"] = false,
     },
     [22] = 
     {
@@ -2217,7 +2217,7 @@ RGESdata=
       ["szName"] = "Cầm-4",
       ["nAngle"] = 360,
       ["szMapName"] = "Anh Hùng Hoàng Cung Nam Chiếu",
-      ["bNotMapMatchNeed"] = true,
+      ["bNotMapMatchNeed"] = false,
     },
     [23] = 
     {
@@ -2243,7 +2243,7 @@ RGESdata=
       ["szName"] = "Cầm-5",
       ["nAngle"] = 360,
       ["szMapName"] = "Hoàng Cung Nam Chiếu",
-      ["bNotMapMatchNeed"] = true,
+      ["bNotMapMatchNeed"] = false,
     },
     [24] = 
     {
@@ -2269,7 +2269,7 @@ RGESdata=
       ["szName"] = "Cầm-6",
       ["nAngle"] = 360,
       ["szMapName"] = "Anh Hùng Hoàng Cung Nam Chiếu",
-      ["bNotMapMatchNeed"] = true,
+      ["bNotMapMatchNeed"] = false,
     },
     [25] = 
     {
@@ -2295,7 +2295,7 @@ RGESdata=
       ["szName"] = "Cầm-7",
       ["nAngle"] = 360,
       ["szMapName"] = "Anh Hùng Hoàng Cung Nam Chiếu",
-      ["bNotMapMatchNeed"] = true,
+      ["bNotMapMatchNeed"] = false,
     },
     [26] = 
     {
@@ -2321,7 +2321,7 @@ RGESdata=
       ["szName"] = "Cầm-8",
       ["nAngle"] = 360,
       ["szMapName"] = "Anh Hùng Hoàng Cung Nam Chiếu",
-      ["bNotMapMatchNeed"] = true,
+      ["bNotMapMatchNeed"] = false,
     },
     [27] = 
     {
@@ -2347,7 +2347,7 @@ RGESdata=
       ["szName"] = "Cầm-9",
       ["nAngle"] = 360,
       ["szMapName"] = "Anh Hùng Hoàng Cung Nam Chiếu",
-      ["bNotMapMatchNeed"] = true,
+      ["bNotMapMatchNeed"] = false,
     },
     [28] = 
     {
