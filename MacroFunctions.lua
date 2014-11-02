@@ -485,12 +485,16 @@ function MacroFunctions.OnEvent(szEvent)
     end
   elseif szEvent=="DO_SKILL_CHANNEL_PROGRESS" then
     MacroFunctions.dwChannelingSkillID=arg1
+    if arg1==5268 then MacroFunctions.bSpendMana=true end
     MacroFunctions.dwChannelingEndFrame=GetLogicFrameCount()+arg0
   elseif szEvent=="DO_SKILL_PREPARE_PROGRESS" then
     MacroFunctions.dwPreparingSkillID=arg1
   elseif szEvent=="OT_ACTION_PROGRESS_BREAK" then
     if arg0==UI_GetClientPlayerID() and MacroOptions.autoSelfQC then
       MacroFunctions.RestoreTarget()
+    end
+    if arg0==UI_GetClientPlayerID() and MacroFunctions.dwChannelingSkillID==5268 then
+      MacroFunctions.bSpendMana=false
     end
     if arg0==UI_GetClientPlayerID() and (MacroFunctions.dwPreparingSkillID==3095 or MacroFunctions.dwPreparingSkillID==3096) then
       MacroFunctions.tmtReady=false
@@ -846,10 +850,10 @@ function MacroFunctions.use(SkillIDs,arg,nTime)
         OnAddOnUseSkill(x,p.GetSkillLevel(x))
         MacroFunctions.sixthTimeLine=GetTime()
         --Tích 3 tầng 6381
-        if (MacroOptions.attackMode==1 or MacroOptions.attackMode==3) and (x==6337 or x==5258 or x==5354 or x==5262 or x==5266) then
-          MacroFunctions.bFrameEnd=false
-          if MacroFunctions.bFrameEnd==false then OnAddOnUseSkill(5638,p.GetSkillLevel(5638)) end
-        end
+        -- if (MacroOptions.attackMode==1 or MacroOptions.attackMode==3) and (x==6337 or x==5258 or x==5354 or x==5262 or x==5266) then
+        --   MacroFunctions.bFrameEnd=false
+        --   if MacroFunctions.bFrameEnd==false then OnAddOnUseSkill(5638,p.GetSkillLevel(5638)) end
+        -- end
         return true
       end
     end

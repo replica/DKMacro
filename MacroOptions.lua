@@ -4655,20 +4655,6 @@ function MacroOptions.CreateMenu()
         fnAutoClose = function() return true end
       }
     )
-    table.insert(menuCaiBang,
-      {
-        szOption = "Chế độ đánh ULTIMATE™",
-        bMCheck = true,
-        bChecked = MacroOptions.attackMode==3,
-        fnAction = function()
-          if MacroOptions.attackMode~=3 then
-            MacroOptions.attackMode=3
-            OutputMessage("MSG_SYS","[Chế độ đánh ULTIMATE™] > ON\n")
-          end
-        end,
-        fnAutoClose = function() return true end
-      }
-    )
     table.insert(menu,{bDevide=true})
     table.insert(menu,
       {
@@ -6284,15 +6270,12 @@ Hotkey.AddBinding("autoThiemChuanKich","Tự dùng Thiêm Chuẩn Kích","",
 nil)
 Hotkey.AddBinding("attackMode","Chuyển chế độ đánh Cái Bang","",
   function()
-    if MacroOptions.attackMode==3 then
+    if MacroOptions.attackMode==2 then
       MacroOptions.attackMode=1
       OutputMessage("MSG_SYS","Đã lựa chọn [Chế độ tích nhanh 8 tầng DOT Kháng Long Hữu Hối]\n")
     elseif MacroOptions.attackMode==1 then
       MacroOptions.attackMode=2
       OutputMessage("MSG_SYS","Đã lựa chọn [Chế độ đánh combo đầy đủ (luôn đánh Giao Long Phiên Giang)]\n")
-    elseif MacroOptions.attackMode==2 then
-      MacroOptions.attackMode=3
-      OutputMessage("MSG_SYS","Đã lựa chọn [Chế độ đánh ULTIMATE™]\n")
     end
   end,
 nil)
