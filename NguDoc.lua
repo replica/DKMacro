@@ -57,10 +57,17 @@ function MacroFunctions.NguDocDK()
     if MacroFunctions.StopAction()==1 then MacroFunctions.use({9002},2) end
     local pet=p.GetPet()
     local petFrame=Station.Lookup("Normal/PetActionBar")
-    --Cắt skill bằng Đoạt Mệnh Cổ, hoặc Khô Tàn Cổ, Mê Tâm Cổ
-    if MacroOptions.autoSkillInterrupt then MacroFunctions.SkillInterrupt(T,MacroFunctions.bossSkills,2214) end
-    if MacroOptions.autoSkillInterrupt then MacroFunctions.SkillInterrupt(T,MacroFunctions.bossSkills,2215) end
-    if MacroOptions.autoSkillInterrupt then MacroFunctions.SkillInterrupt(T,MacroFunctions.bossSkills,2216) end
+    --Check Khô Tàn/Đoạt Mệnh
+    for i = 1,T.GetBuffCount() do
+      local dwID, nLevel, bCanCancel, nEndFrame, nIndex, nStackNum, dwSkillSrcID, bValid = T.GetBuff(i-1)
+      if dwID==2307 and dwSkillSrcID~=p.dwID then isMine=false end
+    end
+    --Cắt skill bằng Đoạt Mệnh Cổ, hoặc Khô Tàn Cổ
+    if not MacroFunctions.CheckBuff(T,2307,1,3,0) and isMine then
+      MacroFunctions.SkillInterrupt(T,MacroFunctions.bossSkills,2214)
+    elseif MacroFunctions.CheckBuff(T,2307,1,3,0) and not isMine then
+      MacroFunctions.SkillInterrupt(T,MacroFunctions.bossSkills,2216)
+    end
     --Buff Phượng Hoàng Cổ
     if MacroOptions.autoPhuongHoangCo and not MacroFunctions.CheckBuff(p,2313,1,0,0) then MacroFunctions.use({2220},2) end
     --Buff Huyền Thủy Cổ
@@ -87,19 +94,15 @@ function MacroFunctions.NguDocDK()
     if MacroOptions.autoUsePendant and MacroFunctions.CheckBuff(p,2543,1,10,0) then MacroFunctions.UseEquippedItem(EQUIPMENT_INVENTORY.PENDANT) end
     --Buff Đoạt Mệnh Cổ (hoặc Khô Tàn Cổ nếu đã có Đoạt Mệnh Cổ >=15s của người khác)
     if MacroOptions.autoDoatMenhCo==true then
-      if not MacroFunctions.CheckBuff(T,2307,1,60,0) then MacroFunctions.use({2214},3,500) end
+      if not MacroFunctions.CheckBuff(T,2307,1,3,0) then MacroFunctions.use({2214},3,500) end
     elseif MacroOptions.autoMeTamCo==true then
       if not MacroFunctions.CheckBuff(T,2308,1,3,0) then MacroFunctions.use({2215},3,500) end
     elseif MacroOptions.autoKhoTanCo==true then
       if not MacroFunctions.CheckBuff(T,2309,1,3,0) then MacroFunctions.use({2216},3,500) end
     else
-      for i = 1,T.GetBuffCount() do
-        local dwID, nLevel, bCanCancel, nEndFrame, nIndex, nStackNum, dwSkillSrcID, bValid = T.GetBuff(i-1)
-        if dwID==2307 and dwSkillSrcID~=p.dwID then isMine=false end
-      end
-      if not MacroFunctions.CheckBuff(T,2307,1,60,0) and isMine then
+      if not MacroFunctions.CheckBuff(T,2307,1,3,0) and isMine then
         MacroFunctions.use({2214},3,500)
-      elseif MacroFunctions.CheckBuff(T,2307,1,60,0) and not isMine and not MacroFunctions.CheckBuff(T,2309,1,3,0) then MacroFunctions.use({2216},3,500) end
+      elseif MacroFunctions.CheckBuff(T,2307,1,3,0) and not isMine and not MacroFunctions.CheckBuff(T,2309,1,3,0) then MacroFunctions.use({2216},3,500) end
     end
     --Tự buff Đoạt Mệnh Cổ
     if p.GetSkillLevel(6694)==1 and MacroOptions.autoSelfBuff and MacroFunctions.CheckBuff(T,2307,1,60,0) and not MacroFunctions.CheckBuff(p,6246,1,0,0) and MacroFunctions.IsSkillCD(2214) then
