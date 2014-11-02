@@ -67,6 +67,8 @@ function MacroFunctions.NguDocDK()
       MacroFunctions.SkillInterrupt(T,MacroFunctions.bossSkills,2214)
     elseif MacroFunctions.CheckBuff(T,2307,1,3,0) and not isMine then
       MacroFunctions.SkillInterrupt(T,MacroFunctions.bossSkills,2216)
+    else
+      MacroFunctions.SkillInterrupt(T,MacroFunctions.bossSkills,2214)
     end
     --Buff Phượng Hoàng Cổ
     if MacroOptions.autoPhuongHoangCo and not MacroFunctions.CheckBuff(p,2313,1,0,0) then MacroFunctions.use({2220},2) end
