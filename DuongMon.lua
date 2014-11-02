@@ -193,8 +193,6 @@ function MacroFunctions.DuongMonTLND()
     end
     --Buff Phù Dao Trực Thượng
     if MacroFunctions.StopAction()==1 then MacroFunctions.use({9002},2) end
-    --Set bChannelingLatencyCompensation
-    if p.GetSkillLevel(6455)==1 then MacroOptions.bChannelingLatencyCompensation=false end
     --Set buff Huyền Diệu
     if MacroFunctions.CheckBuff(p,3278,1,0,0) and MacroFunctions.IsNotSP() then bHuyenDieu=true end
     --Set bDoubleDamage
@@ -294,7 +292,7 @@ function MacroFunctions.DuongMonTLND()
         end
       end
       --Nổ Đồ Cùng Chủy Kiến khi đủ 3 Ám Tàng Sát Cơ
-      if MacroOptions.autoDoCungChuyKien and ((IsEnemy(p.dwID,T.dwID) and (MacroFunctions.GetATSCNum()==3 or (energy<(x*3) and MacroFunctions.ATSC==true)) and not ((RawTargetHP>=HPLimit and MacroFunctions.GetTCBDistance()<=4 and MacroFunctions.GetSkillCD(3110)<=8) or (MacroFunctions.GetSkillCD(3094)<=8 and (MacroOptions.autoTCB~=1 or MacroOptions.autoTapTrungQPTC==1)))) or (MacroFunctions.ATSCTimeLeft<3 and MacroFunctions.ATSCTimeLeft>0)) and ((MacroFunctions.bDoubleDamage and MacroFunctions.CheckBuff(p,3401,1,0,0) and MacroFunctions.CheckBuff(p,6105,1,0,0)) or not MacroFunctions.bDoubleDamage or MacroOptions.toggleATSCMode>=85) then MacroFunctions.use({3357},2) end
+      if MacroOptions.autoDoCungChuyKien and ((IsEnemy(p.dwID,T.dwID) and (MacroFunctions.GetATSCNum()==3 or (energy<(x*3) and MacroFunctions.ATSC==true)) and not ((RawTargetHP>=HPLimit and MacroFunctions.GetTCBDistance()<=4 and MacroFunctions.GetSkillCD(3110)<=8) or (MacroFunctions.GetSkillCD(3094)<=8 and (MacroOptions.autoTCB~=1 or (MacroOptions.autoTapTrungQPTC==1 and MacroFunctions.GetSkillCD(3110)>15))))) or (MacroFunctions.ATSCTimeLeft<3 and MacroFunctions.ATSCTimeLeft>0)) and ((MacroFunctions.bDoubleDamage and MacroFunctions.CheckBuff(p,3401,1,0,0) and MacroFunctions.CheckBuff(p,6105,1,0,0)) or (not MacroFunctions.bDoubleDamage and MacroFunctions.CheckBuff(p,6105,1,0,0)) or MacroOptions.toggleATSCMode>=85) then MacroFunctions.use({3357},2) end
       --Bạo Vũ Lê Hoa Châm, Thiên Nữ Tản Hoa cho mode AOE
       if p.GetSkillLevel(6891)==0 then
         if MacroOptions.toggleAttackMode==3 and energy>=(x*3) then MacroFunctions.use({6444},2) end
