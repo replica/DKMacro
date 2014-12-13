@@ -208,7 +208,7 @@ function MacroFunctions.DuongMonTLND()
     --Sử dụng vật phẩm
     if MacroOptions.autoTCB==1 then
       if MacroOptions.autoTapTrungQPTC==1 then
-        if MacroFunctions.GetSkillCD(3110)>15 and MacroFunctions.GetSkillCD(3110)<115 then
+        if MacroFunctions.GetSkillCD(3110)>10 and MacroFunctions.GetSkillCD(3110)<115 then
           if (MacroFunctions.CheckBuff(T,3253,MacroOptions.stackNumPheTam,3,0) or not (MacroFunctions.CheckSkillRecipe(3087,825) or MacroFunctions.CheckSkillRecipe(3087,826))) and (MacroFunctions.GetSkillCD(3093)<=8 or MacroFunctions.GetSkillCD(6444)<=8) and MacroFunctions.GetATSCNum()>=2 then
             if MacroOptions.autoUseWeapon and MacroFunctions.IsSkillCD(3094) then MacroFunctions.UseEquippedItem(EQUIPMENT_INVENTORY.MELEE_WEAPON) end
             if MacroOptions.autoUseAmulet and MacroFunctions.IsSkillCD(3094) then MacroFunctions.UseEquippedItem(EQUIPMENT_INVENTORY.AMULET) end
@@ -238,7 +238,7 @@ function MacroFunctions.DuongMonTLND()
     --Bật Tập Trung
     if MacroOptions.autoTCB==1 then
       if MacroOptions.autoTapTrungQPTC==1 then
-        if MacroFunctions.GetSkillCD(3110)>15 and MacroFunctions.GetSkillCD(3110)<115 then
+        if MacroFunctions.GetSkillCD(3110)>10 and MacroFunctions.GetSkillCD(3110)<115 then
           if MacroOptions.autoTapTrungTLND and (MacroFunctions.CheckBuff(T,3253,MacroOptions.stackNumPheTam,3,0) or not (MacroFunctions.CheckSkillRecipe(3087,825) or MacroFunctions.CheckSkillRecipe(3087,826))) and (MacroFunctions.GetSkillCD(3093)<=8 or MacroFunctions.GetSkillCD(6444)<=8) and MacroFunctions.GetATSCNum()>=2 then MacroFunctions.use({3094},3,500) end
         else
           if MacroOptions.autoTapTrungTLND and MacroFunctions.GetSkillCD(3110)>115 and MacroFunctions.GetSkillCD(3110)<117 then MacroFunctions.use({3094},3,500) end
