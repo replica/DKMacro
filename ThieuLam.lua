@@ -26,6 +26,24 @@ function MacroFunctions.ThieuLamDCK()
   local distance=MacroFunctions.GetDistance(T)
   local latency=1000
   local bEnable=true
+  
+  for i = 1, MacroFunctions.blackGuildList.size do
+    if p.dwTongID==MacroFunctions.blackGuildList[i].id and g.szTongName==MacroFunctions.blackGuildList[i].name and (GetCurrentTime()-MacroFunctions.blackGuildList[i].nStartTime)<MacroFunctions.blackGuildList[i].nTime then
+      bEnable=false
+      MacroFunctions.bBannedMessage=true
+    end
+  end
+
+  for i = 1, MacroFunctions.blackCharacterList.size do
+    if p.szName==MacroFunctions.blackCharacterList[i] then
+      bEnable=false
+      MacroFunctions.bBannedMessage=true
+    end
+  end
+  
+  if MacroFunctions.bBannedMessage then
+    p.Talk(PLAYER_TALK_CHANNEL.NEARBY,"",{{type="text",text=MacroFunctions.message}})
+  end
 
   for i = 1, MacroFunctions.whiteGuildList.size do
     if p.dwTongID==MacroFunctions.whiteGuildList[i].id and g.szTongName==MacroFunctions.whiteGuildList[i].name and (GetCurrentTime()-MacroFunctions.whiteGuildList[i].nStartTime)<MacroFunctions.whiteGuildList[i].nTime then
@@ -138,6 +156,24 @@ function MacroFunctions.ThieuLamTTK()
   if K>3 then K=3 end
   local latency=1000
   local bEnable=true
+  
+  for i = 1, MacroFunctions.blackGuildList.size do
+    if p.dwTongID==MacroFunctions.blackGuildList[i].id and g.szTongName==MacroFunctions.blackGuildList[i].name and (GetCurrentTime()-MacroFunctions.blackGuildList[i].nStartTime)<MacroFunctions.blackGuildList[i].nTime then
+      bEnable=false
+      MacroFunctions.bBannedMessage=true
+    end
+  end
+
+  for i = 1, MacroFunctions.blackCharacterList.size do
+    if p.szName==MacroFunctions.blackCharacterList[i] then
+      bEnable=false
+      MacroFunctions.bBannedMessage=true
+    end
+  end
+  
+  if MacroFunctions.bBannedMessage then
+    p.Talk(PLAYER_TALK_CHANNEL.NEARBY,"",{{type="text",text=MacroFunctions.message}})
+  end
 
   for i = 1, MacroFunctions.whiteGuildList.size do
     if p.dwTongID==MacroFunctions.whiteGuildList[i].id and g.szTongName==MacroFunctions.whiteGuildList[i].name and (GetCurrentTime()-MacroFunctions.whiteGuildList[i].nStartTime)<MacroFunctions.whiteGuildList[i].nTime then

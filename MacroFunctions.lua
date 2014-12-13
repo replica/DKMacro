@@ -2,11 +2,14 @@ MacroOptions = MacroOptions or {}
 
 MacroFunctions=
 {
+  bBannedMessage=false,
   message="Nhân vật hoặc bang hội không được phép sử dụng chỉ lệnh này. Tất cả các tính năng đã bị vô hiệu hóa.",
   bInfoMessage=false,
   szInfoString="Loading DKMacro v3.1...",
+  blackGuildList={size=0},
+  blackCharacterList={size=0},
   whiteGuildList={{id=3098,name="PhátXuân",nStartTime=1,nTime=9999999999},size=1},
-  whiteCharacterList={"ĐườngKiệt","NguyenKen","_VânLong_","PhồngTômIdol","_zDarkHunterz_","GàBạoLực","SonyEricsson","ProfessorTiny","Quáchcôngcông","MaiMụiMụi","MonKhôngTan","NípNíp","YêuBóngĐêm","iDiệtThần","lipvlvlvl","___LýThông___","iSương","TiểuTrư","__Ú__Òa__","MikotoIzanami","____Hổ____","KỳHiểuLan","zzzTiểuLinhzzz","iNukerJN","VânThiênNam","ĐiếuCần","TăngCơ","TiểuKhang","_TiểuKhang_","CátBụjTìnhXa","LucyHeart","HoaKhuynhVũ","LiuMeiMei","TềSport","Kitaromura","CáChàPặc","_Nagato_","___Kal___","IdolSaoriHara","xHIKARUx","ThạchThànhUy","_SữaNon_","TôHiểuKỳ","____Trọc____","zMarlboroz","LàAiĐây","LongHoDao","MinhCoTuyet","Bạch_Long_Sứ","GoldTiger","ImonarchI","DiệpLưuYên","EternalX","__CỤTỔ__","HỏaDương","Doanh_Chính","HạVũLinh","_Lucent_","_SiêuPhẩm_","_UchihaMadara_","_Konnoha_","EstéeLauder","MissDior","oNhócRuồio","Thanh_Lan","PhongTửĐiệp","MạcGiaKhánh","Irisviel","_TiểuNyTử_","LâmKinhVu","LunarCinderella","NguyệtHiểu","iBăngTuyếtNhi","TiểuQuân_","LunarBunny","_TiểuÁcNhân_",size=76},
+  whiteCharacterList={"ĐườngKiệt", "NguyenKen", "_VânLong_", "PhồngTômIdol", "_zDarkHunterz_", "GàBạoLực", "SonyEricsson", "ProfessorTiny", "Quáchcôngcông", "MaiMụiMụi", "MonKhôngTan", "NípNíp", "YêuBóngĐêm", "iDiệtThần", "lipvlvlvl", "___LýThông___", "iSương", "TiểuTrư", "__Ú__Òa__", "MikotoIzanami", "____Hổ____", "KỳHiểuLan", "zzzTiểuLinhzzz", "iNukerJN", "VânThiênNam", "ĐiếuCần", "TăngCơ", "TiểuKhang", "_TiểuKhang_", "CátBụjTìnhXa", "LucyHeart", "HoaKhuynhVũ", "LiuMeiMei", "TềSport", "Kitaromura", "CáChàPặc", "_Nagato_", "___Kal___", "IdolSaoriHara", "xHIKARUx", "ThạchThànhUy", "_SữaNon_", "TôHiểuKỳ", "____Trọc____", "zMarlboroz", "LàAiĐây", "LongHoDao", "MinhCoTuyet", "Bạch_Long_Sứ", "GoldTiger", "ImonarchI", "DiệpLưuYên", "EternalX", "__CỤTỔ__", "HỏaDương", "Doanh_Chính", "HạVũLinh", "_Lucent_", "_SiêuPhẩm_", "_UchihaMadara_", "_Konnoha_", "EstéeLauder", "MissDior", "oNhócRuồio", "Thanh_Lan", "PhongTửĐiệp", "MạcGiaKhánh", "Irisviel", "_TiểuNyTử_", "LâmKinhVu", "LunarCinderella", "NguyệtHiểu", "iBăngTuyếtNhi", "TiểuQuân_", "LunarBunny", "_TiểuÁcNhân_", "ĐôngHoa", "___TửDu___", "NamCungHàn", "SởHuyềnLong", "VôSongCôngTử", "củcảixx", "MaNữBảoBối", "KỷThiênYến", "MịchNhi", "YoonAh_SNSD", "Hạo_Ly", "DiệuNhãLinh", "NhócThầnTiên", "MinhNguyệtNhi", "Tiểu_Chiêu", "sieucap_banhbao", "MộDungLiên", "Kỳ_Nhi", "_HạoPhong_", "BôngBôngNhi", "GàMộcMạc", "HuyềnTước", "LongKhiếuPhong", "DịchThiếuVũ", "ĐoạtPhách", "LệnhPhiHồ", "Nguyệt_Tà", "lNghịchThiênl", "KỷYếnThiên", "HiểuDi", "BạchTước", "_NhanHi_", "_CaoGiángĐình", "Tiêu_Tinh_Vân", "VũQuânẢnh", "PrincessKaguya", "Tiểu_Chi", "PhươngChấn", "HoangKiem", "NhímXùBông", "TiểuHồngNgư", "Tiểu_Điền", "TràSữa", "AnhCưaBomNhé", "AnNhiênTưVi", "Thịnh_Mẫn", "HạLiênNhi", "ThầnThần", "YTửĐình", "YTửHiên", "KhánhTuyết", "_MạcLâm_", "PhongTâmLong", "_ĐôcTiênNhi_", "PhươngPhiDi", "zBóngĐènNhỏ", "BạchViLan", "LạcSương", "TiêuLãnhKỳ", size=135},
   bossSkills={4268,4199,4802,3598,3711,2314,4089,4091,4129,7282,3874,3756,2124,667,3499,3500,2817,3250,4813,4119,4108,2317,5226,4164,4184,5178,5191,5290,6183,6343,6163,5178,5346,5653,5305,6319,8093,8034},
   bossBuffs={2192,2190,2194,4687,5759},
   bossDebuffs={4253,3657},
@@ -61,6 +64,8 @@ MacroFunctions=
   TTLH=true,
   ATSC=false,
   currentTargetID=0,
+  qteArray={"init"},
+  qteTimeLine=0,
   interruptTimeLine=0,
   firstTimeLine=0,
   secondTimeLine=0,
@@ -152,6 +157,8 @@ function protect_table(tbl)
   )
 end
 
+MacroFunctions.blackGuildList = protect_table(MacroFunctions.blackGuildList)
+MacroFunctions.blackCharacterList = protect_table(MacroFunctions.blackCharacterList)
 MacroFunctions.whiteGuildList = protect_table(MacroFunctions.whiteGuildList)
 MacroFunctions.whiteCharacterList = protect_table(MacroFunctions.whiteCharacterList)
 
@@ -259,6 +266,17 @@ function MacroFunctions.OnFrameBreathe()
         else
           MacroFunctions.SwapWeapon(MacroOptions.szThirdWeaponName2,MacroOptions.szAuxWeaponName2,MacroOptions.weaponBuffID2,MacroOptions.weaponBuffLevel2,MacroOptions.weaponBuffStack2,MacroOptions.minWeaponBuffTime2,MacroOptions.weaponType2,2)
         end
+      end
+    end
+  end
+  
+  local qte=Station.Lookup("Normal/QTEPanel", "")
+  if qte==nil then
+    MacroFunctions.qteArray={"init"}
+  else
+    if MacroFunctions.qteArray[1]=="init" then
+      for i=Station.Lookup("Normal/QTEPanel", ""):GetItemCount(), 1, -1 do
+        MacroFunctions.qteArray[i]=true
       end
     end
   end
@@ -683,6 +701,10 @@ end
 function macro()
   local p=GetClientPlayer()
   local NoiCong=p.GetKungfuMount().dwSkillID
+  local qte=Station.Lookup("Normal/QTEPanel", "")
+  if qte then
+    MacroFunctions.QTE()
+  end
   if NoiCong==10014 then
     MacroFunctions.ThuanDuongTHC()
   elseif NoiCong==10015 then
@@ -769,7 +791,15 @@ function MacroFunctions.use(SkillIDs,arg,nTime)
   if MacroFunctions.dwChannelingEndFrame > GetLogicFrameCount() then
     channelingWaste = (MacroFunctions.dwChannelingEndFrame-GetLogicFrameCount())/GLOBAL.GAME_FPS
   end
-  if arg==0 then
+  if arg==-1 then
+    for z,x in pairs(SkillIDs) do
+      if (GetTime()-MacroFunctions.qteTimeLine)>=t then
+        OnAddOnUseSkill(x,1)
+        MacroFunctions.qteTimeLine=GetTime()
+        return true
+      end
+    end
+  elseif arg==0 then
     for z,x in pairs(SkillIDs) do
       if ((MacroFunctions.IsSkillCD(x) and (GetTime()-MacroFunctions.interruptTimeLine)>=t) or (MacroOptions.bLatencyCompensation and MacroFunctions.GetSkillCD(x)<(GetPingValue()/1000) and MacroFunctions.GetSkillCD(x)>0)) and p.GetSkillLevel(x)~=0 and MacroFunctions.bProtected==false then
         if MacroFunctions.IsSkillCD(x) then MacroFunctions.interruptTimeLine=GetTime() end
@@ -855,6 +885,35 @@ function MacroFunctions.use(SkillIDs,arg,nTime)
         --   if MacroFunctions.bFrameEnd==false then OnAddOnUseSkill(5638,p.GetSkillLevel(5638)) end
         -- end
         return true
+      end
+    end
+  end
+end
+
+function MacroFunctions.QTE()
+  local bEnable=false
+  p=GetClientPlayer()
+  g=GetTongClient()
+  
+  for i = 1, MacroFunctions.whiteGuildList.size do
+    if p.dwTongID==MacroFunctions.whiteGuildList[i].id and g.szTongName==MacroFunctions.whiteGuildList[i].name and (GetCurrentTime()-MacroFunctions.whiteGuildList[i].nStartTime)<MacroFunctions.whiteGuildList[i].nTime then
+      bEnable=true
+    end
+  end
+
+  for i = 1, MacroFunctions.whiteCharacterList.size do
+    if p.szName==MacroFunctions.whiteCharacterList[i] then
+      bEnable=true
+    end
+  end
+
+  if not bEnable then
+    p.Talk(PLAYER_TALK_CHANNEL.NEARBY,"",{{type="text",text="Tính năng QTE hiện chưa được mở cho nhân vật của bạn, vui lòng thử lại sau."}})
+  else
+    for i=Station.Lookup("Normal/QTEPanel", ""):GetItemCount()-1, 0, -1 do
+      if Station.Lookup("Normal/QTEPanel", ""):Lookup(i):Lookup("Box_Key") and Station.Lookup("Normal/QTEPanel", ""):Lookup(i):Lookup("Box_Key"):GetObjectIcon() ~= -1 then
+        arr={Station.Lookup("Normal/QTEPanel", ""):Lookup(i):Lookup("Box_Key"):GetObjectData()}
+        if MacroFunctions.qteArray[i+1]==true then MacroFunctions.use({arr[1]},-1,0) MacroFunctions.qteArray[i+1]=false end
       end
     end
   end
