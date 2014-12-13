@@ -103,7 +103,7 @@ function MacroFunctions.ThatTuBTQ()
     if MacroOptions.autoUseAmulet and ((p.GetSkillLevel(5868)==0 and p.GetSkillLevel(5852)==1) or (MacroFunctions.DHCK==2 and (p.GetSkillLevel(5868)==0 or MacroFunctions.GetSkillCD(2716)<3)) or MacroFunctions.DHCK==3) and MacroFunctions.IsSkillCD(568) then MacroFunctions.UseEquippedItem(EQUIPMENT_INVENTORY.AMULET) end
     if MacroOptions.autoUsePendant and ((p.GetSkillLevel(5868)==0 and p.GetSkillLevel(5852)==1) or (MacroFunctions.DHCK==2 and (p.GetSkillLevel(5868)==0 or MacroFunctions.GetSkillCD(2716)<3)) or MacroFunctions.DHCK==3) and MacroFunctions.IsSkillCD(568) then MacroFunctions.UseEquippedItem(EQUIPMENT_INVENTORY.PENDANT) end
     --Sử dụng Phồn Âm Cấp Tiết
-    if MacroOptions.autoPhonAmCapTiet and ((p.GetSkillLevel(5868)==0 and p.GetSkillLevel(5852)==1) or (MacroFunctions.DHCK==2 and (p.GetSkillLevel(5868)==0 or MacroFunctions.GetSkillCD(2716)<3)) or MacroFunctions.DHCK==3) then MacroFunctions.use({568},3,500) end
+    if MacroOptions.autoPhonAmCapTiet and ((p.GetSkillLevel(5868)==0 and p.GetSkillLevel(5852)==1) or (p.GetSkillLevel(5868)==0 or MacroFunctions.GetSkillCD(2716)<3) or MacroFunctions.DHCK==3) then MacroFunctions.use({568},3,500) end
     --Sử dụng và duy trì Kiếm Thần Vô Ngã khi khoảng cách <10m
     if MacroOptions.autoKiemThanVoNga and K>0 and distance<10 and MP>15 and not MacroFunctions.CheckBuff(p,693,1,0,0) and MacroFunctions.CheckMoveState(p,"stand|float|entrap") then MacroFunctions.use({559},2) end
     --Đánh Kiếm Phá Hư Không khi có ít nhất 7 tầng kiếm vũ
