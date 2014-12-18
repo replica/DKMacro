@@ -913,7 +913,7 @@ function MacroFunctions.QTE()
     for i=Station.Lookup("Normal/QTEPanel", ""):GetItemCount()-1, 0, -1 do
       if Station.Lookup("Normal/QTEPanel", ""):Lookup(i):Lookup("Box_Key") and Station.Lookup("Normal/QTEPanel", ""):Lookup(i):Lookup("Box_Key"):GetObjectIcon() ~= -1 then
         arr={Station.Lookup("Normal/QTEPanel", ""):Lookup(i):Lookup("Box_Key"):GetObjectData()}
-        if MacroFunctions.qteArray[i+1]==true then MacroFunctions.use({arr[1]},-1,0) MacroFunctions.qteArray[i+1]=false end
+        if (MacroFunctions.qteArray[i+1]==true or MacroOptions.autoQTE==false) then MacroFunctions.use({arr[1]},-1,0) MacroFunctions.qteArray[i+1]=false end
       end
     end
   end

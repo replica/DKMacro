@@ -11,6 +11,7 @@ MacroOptions =
   bLatencyCompensation=true,
   bChannelingLatencyCompensation=true,
   autoStopAction=false,
+  autoQTE=false,
 
   autoUseWeapon=false,
   autoUseAmulet=false,
@@ -231,6 +232,7 @@ RegisterCustomData("MacroOptions.autoClearBuff")
 RegisterCustomData("MacroOptions.bLatencyCompensation")
 RegisterCustomData("MacroOptions.bChannelingLatencyCompensation")
 RegisterCustomData("MacroOptions.autoStopAction")
+RegisterCustomData("MacroOptions.autoQTE")
 
 RegisterCustomData("MacroOptions.autoUseWeapon")
 RegisterCustomData("MacroOptions.autoUseAmulet")
@@ -1094,6 +1096,23 @@ function MacroOptions.CreateMenu()
         else
           MacroOptions.autoStopAction=false
           OutputMessage("MSG_SYS","[Tự dừng đánh/sử dụng một vài skill hỗ trợ đánh BOSS] > OFF\n")
+        end
+      end,
+      fnAutoClose = function() return true end
+    }
+  )
+  table.insert(menu,
+    {
+      szOption = "Chỉ nhấn skill QTE 1 lần",
+      bCheck = true,
+      bChecked = MacroOptions.autoQTE,
+      fnAction = function()
+        if not MacroOptions.autoQTE then
+          MacroOptions.autoQTE=true
+          OutputMessage("MSG_SYS","[Chỉ nhấn skill QTE 1 lần] > ON\n")
+        else
+          MacroOptions.autoQTE=false
+          OutputMessage("MSG_SYS","[Chỉ nhấn skill QTE 1 lần] > OFF\n")
         end
       end,
       fnAutoClose = function() return true end
