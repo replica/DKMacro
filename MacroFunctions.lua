@@ -701,6 +701,9 @@ end
 function macro()
   local p=GetClientPlayer()
   local NoiCong=p.GetKungfuMount().dwSkillID
+  if p.bSprintFlag then
+    MacroFunctions.use({6418},-1,1500)
+  end
   local qte=Station.Lookup("Normal/QTEPanel", "")
   if qte then
     MacroFunctions.QTE()
