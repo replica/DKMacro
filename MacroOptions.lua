@@ -127,6 +127,7 @@ MacroOptions =
   autoTCBAttack=true,
   toggleAttackMode=1,
   toggleATSCMode=100,
+  allowTargetMove=false,
 
   autoTatNHCY=true,
   autoDotNHCY=true,
@@ -312,6 +313,7 @@ RegisterCustomData("MacroOptions.autoTCB")
 RegisterCustomData("MacroOptions.autoTCBAttack")
 RegisterCustomData("MacroOptions.toggleAttackMode")
 RegisterCustomData("MacroOptions.toggleATSCMode")
+RegisterCustomData("MacroOptions.allowTargetMove")
 
 RegisterCustomData("MacroOptions.autoTatNHCY")
 RegisterCustomData("MacroOptions.autoDotNHCY")
@@ -2120,6 +2122,23 @@ function MacroOptions.CreateMenu()
           else
             MacroOptions.autoTCBAttack=false
             OutputMessage("MSG_SYS","[Tự tấn công bằng Liên Nỏ hoặc Trọng Nỏ khi đổi mục tiêu] > OFF\n")
+          end
+        end,
+        fnAutoClose = function() return true end
+      }
+    )
+    table.insert(menuDuongMonTLND,
+      {
+        szOption = "Đặt Thiên Tuyệt & Ám Tàng ngay cả khi mục tiêu di chuyển",
+        bCheck = true,
+        bChecked = MacroOptions.allowTargetMove,
+        fnAction = function()
+          if not MacroOptions.allowTargetMove then
+            MacroOptions.allowTargetMove=true
+            OutputMessage("MSG_SYS","[Đặt Thiên Tuyệt & Ám Tàng ngay cả khi mục tiêu di chuyển] > ON\n")
+          else
+            MacroOptions.allowTargetMove=false
+            OutputMessage("MSG_SYS","[Đặt Thiên Tuyệt & Ám Tàng ngay cả khi mục tiêu di chuyển] > OFF\n")
           end
         end,
         fnAutoClose = function() return true end
@@ -5215,6 +5234,17 @@ Hotkey.AddBinding("autoTCBAttack","Tự tấn công bằng Liên Nỏ hoặc Tr�
     else
       MacroOptions.autoTCBAttack=false
       OutputMessage("MSG_SYS","[Tự tấn công bằng Liên Nỏ hoặc Trọng Nỏ khi đổi mục tiêu] > OFF\n")
+    end
+  end,
+nil)
+Hotkey.AddBinding("allowTargetMove","Đặt Thiên Tuyệt & Ám Tàng ngay cả khi mục tiêu di chuyển","",
+  function()
+    if not MacroOptions.allowTargetMove then
+      MacroOptions.allowTargetMove=true
+      OutputMessage("MSG_SYS","[Đặt Thiên Tuyệt & Ám Tàng ngay cả khi mục tiêu di chuyển] > ON\n")
+    else
+      MacroOptions.allowTargetMove=false
+      OutputMessage("MSG_SYS","[Đặt Thiên Tuyệt & Ám Tàng ngay cả khi mục tiêu di chuyển] > OFF\n")
     end
   end,
 nil)
