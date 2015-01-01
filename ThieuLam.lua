@@ -97,9 +97,9 @@ function MacroFunctions.ThieuLamDCK()
     if MacroOptions.autoKimCuongNoMuc and K==3 then MacroFunctions.use({247},3,500) end
     --Sử dụng Cầm Long Quyết khi có thể
     if MacroOptions.autoKimCuongNoMuc then
-      if MacroOptions.autoCamLongQuyetDCK and K<1 and MacroFunctions.GetSkillCD(233)<1 and MacroFunctions.CheckBuff(p,3880,2,0,0) and MacroFunctions.GetSkillCD(2572)<1.5 and MacroFunctions.CheckBuff(p,3889,1,0,0) then MacroFunctions.use({260},4,500) end
+      if MacroOptions.autoCamLongQuyetDCK and K<=1 and MacroFunctions.GetSkillCD(233)<1 and MacroFunctions.CheckBuff(p,3880,2,0,0) and MacroFunctions.GetSkillCD(2572)<1.5 and MacroFunctions.CheckBuff(p,3889,1,0,0) and (MacroFunctions.CheckBuff(p,6394,1,10,0) or not MacroOptions.CLQWaitTime) then MacroFunctions.use({260},4,500) end
     else
-      if MacroOptions.autoCamLongQuyetDCK and K<1 and MacroFunctions.GetSkillCD(233)<1 and MacroFunctions.CheckBuff(p,3880,2,0,0) and MacroFunctions.GetSkillCD(2572)<1.5 then MacroFunctions.use({260},4,500) end
+      if MacroOptions.autoCamLongQuyetDCK and K<=1 and MacroFunctions.GetSkillCD(233)<1 and MacroFunctions.CheckBuff(p,3880,2,0,0) and MacroFunctions.GetSkillCD(2572)<1.5 and (MacroFunctions.CheckBuff(p,6394,1,10,0) or not MacroOptions.CLQWaitTime) then MacroFunctions.use({260},4,500) end
     end
     --Sử dụng vật phẩm
     if MacroOptions.autoUseWeapon and MacroFunctions.CheckBuff(p,3889,1,0,0) and MacroFunctions.CheckBuff(p,2686,1,15,0) then MacroFunctions.UseEquippedItem(EQUIPMENT_INVENTORY.MELEE_WEAPON) end
@@ -117,8 +117,8 @@ function MacroFunctions.ThieuLamDCK()
       if K==3 then MacroFunctions.use({243},2) end
     end
     --Combo gồm Thủ Khuyết Thức, Hoành Tảo Lục Hợp, Phổ Độ Tứ Phương
-    if distance<=8 then MacroFunctions.use({2572},2) end
     if distance<=5 then MacroFunctions.use({235},2) end
+    if distance<=8 then MacroFunctions.use({2572},2) end
     if distance<=4 then MacroFunctions.use({232},2) end
   elseif bEnable==false then
     p.Talk(PLAYER_TALK_CHANNEL.NEARBY,"",{{type="text",text=MacroFunctions.message}})

@@ -1036,7 +1036,7 @@ function MacroFunctions.SwapWeapon(szMainWeaponName,szAuxWeaponName,buffID,buffL
       end
     elseif arg1==2 then
       if currentWeapon.szName~=szAuxWeaponName then
-        if not MacroFunctions.CheckBuff(p,buffID,maxBuffStack,minBuffTime,0,buffLevel) and (GetTime()-MacroFunctions.exchangeTimeLine>=500) then
+        if not MacroFunctions.CheckBuff(p,buffID,maxBuffStack,minBuffTime,0,buffLevel) and (GetTime()-MacroFunctions.exchangeTimeLine>=200) then
           if currentWeapon.szName==szMainWeaponName then
             OnExchangeItem(MacroFunctions.AWi,MacroFunctions.AWj,INVENTORY_INDEX.EQUIP,equipType)
             MacroFunctions.MWi=MacroFunctions.AWi
@@ -1053,7 +1053,7 @@ function MacroFunctions.SwapWeapon(szMainWeaponName,szAuxWeaponName,buffID,buffL
         end
       end
       if currentWeapon.szName==szAuxWeaponName then
-        if MacroFunctions.CheckBuff(p,buffID,maxBuffStack,minBuffTime,0,buffLevel) and (GetTime()-MacroFunctions.exchangeTimeLine>=500) then
+        if MacroFunctions.CheckBuff(p,buffID,maxBuffStack,minBuffTime,0,buffLevel) and (GetTime()-MacroFunctions.exchangeTimeLine>=200) then
           if currentWeapon.szName==szAuxWeaponName then
             OnExchangeItem(MacroFunctions.MWi,MacroFunctions.MWj,INVENTORY_INDEX.EQUIP,equipType)
             MacroFunctions.AWi=MacroFunctions.MWi

@@ -218,6 +218,7 @@ MacroOptions =
   autoCamLongQuyetTTK=true,
   autoQuyKhuLaiCon=true,
   autoDaiSuTuHong=true,
+  CLQWaitingTime=false,
 
   autoTieuTuyCuong=true,
   autoTuuTrungTien=true,
@@ -405,6 +406,7 @@ RegisterCustomData("MacroOptions.autoBatNhaQuyetTTK")
 RegisterCustomData("MacroOptions.autoCamLongQuyetTTK")
 RegisterCustomData("MacroOptions.autoQuyKhuLaiCon")
 RegisterCustomData("MacroOptions.autoDaiSuTuHong")
+RegisterCustomData("MacroOptions.CLQWaitingTime")
 
 RegisterCustomData("MacroOptions.autoTieuTuyCuong")
 RegisterCustomData("MacroOptions.autoTuuTrungTien")
@@ -4395,6 +4397,23 @@ function MacroOptions.CreateMenu()
         fnAutoClose = function() return true end
       }
     )
+    table.insert(menuThieuLamDCK,
+      {
+        szOption = "Đợi buff vũ khí dòng cam (405, 445) khi dùng Cầm Long Quyết",
+        bCheck = true,
+        bChecked = MacroOptions.CLQWaitingTime,
+        fnAction = function()
+          if not MacroOptions.CLQWaitingTime then
+            MacroOptions.CLQWaitingTime=true
+            OutputMessage("MSG_SYS","[Đợi buff vũ khí dòng cam (405, 445) khi dùng Cầm Long Quyết] > ON\n")
+          else
+            MacroOptions.CLQWaitingTime=false
+            OutputMessage("MSG_SYS","[Đợi buff vũ khí dòng cam (405, 445) khi dùng Cầm Long Quyết] > OFF\n")
+          end
+        end,
+        fnAutoClose = function() return true end
+      }
+    )
     local menuThieuLamTTK = {
       szOption = "Thiếu Lâm - Tẩy Tủy Kinh",
       bCheck = false,
@@ -6197,6 +6216,17 @@ Hotkey.AddBinding("autoPhatTamQuyet","Tự buff Phật Tâm Quyết","",
         MacroOptions.autoPhatTamQuyetTTK=false
         OutputMessage("MSG_SYS","[Tự buff Phật Tâm Quyết] > OFF\n")
       end
+    end
+  end,
+nil)
+Hotkey.AddBinding("CLQWaitingTime","Đợi buff vũ khí dòng cam khi dùng Cầm Long Quyết","",
+  function()
+    if not MacroOptions.CLQWaitingTime then
+      MacroOptions.CLQWaitingTime=true
+      OutputMessage("MSG_SYS","[Đợi buff vũ khí dòng cam khi dùng Cầm Long Quyết] > ON\n")
+    else
+      MacroOptions.CLQWaitingTime=false
+      OutputMessage("MSG_SYS","[Đợi buff vũ khí dòng cam khi dùng Cầm Long Quyết] > OFF\n")
     end
   end,
 nil)
