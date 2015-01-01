@@ -5,7 +5,7 @@ MacroFunctions=
   bBannedMessage=false,
   message="Nhân vật hoặc bang hội không được phép sử dụng chỉ lệnh này. Tất cả các tính năng đã bị vô hiệu hóa.",
   bInfoMessage=false,
-  szInfoString="Loading DKMacro v3.2...",
+  szInfoString="Loading DKMacro v3.3...",
   blackGuildList={size=0},
   blackCharacterList={size=0},
   whiteGuildList={{id=3098,name="PhátXuân",nStartTime=1,nTime=9999999999},{id=5489,name="SpecialForce",nStartTime=1,nTime=9999999999},size=2},
