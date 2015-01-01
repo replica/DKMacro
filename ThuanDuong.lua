@@ -97,18 +97,14 @@ function MacroFunctions.ThuanDuongTHC()
     --Sử dụng Bằng Hư Ngự Phong khi có thể
     if MacroOptions.autoBangHuNguPhongTHC and p.IsInParty() then MacroFunctions.use({355},4,500) end
     --Sử dụng vật phẩm
-    if MacroOptions.autoUseWeapon and K>=8 and (MacroFunctions.CheckBuff(p,375,1,0,0) or p.GetSkillLevel(359)==0) and MacroFunctions.GetSkillCD(6901)<1.5 and (MacroFunctions.IsSkillCD(313) or not MacroOptions.autoThaoQuangDuongHoiTHC) and MacroFunctions.IsSkillCD(2681) then MacroFunctions.UseEquippedItem(EQUIPMENT_INVENTORY.MELEE_WEAPON) end
-    if MacroOptions.autoUseAmulet and K>=8 and (MacroFunctions.CheckBuff(p,375,1,0,0) or p.GetSkillLevel(359)==0) and MacroFunctions.GetSkillCD(6901)<1.5 and (MacroFunctions.IsSkillCD(313) or not MacroOptions.autoThaoQuangDuongHoiTHC) and MacroFunctions.IsSkillCD(2681) then MacroFunctions.UseEquippedItem(EQUIPMENT_INVENTORY.AMULET) end
-    if MacroOptions.autoUsePendant and K>=8 and (MacroFunctions.CheckBuff(p,375,1,0,0) or p.GetSkillLevel(359)==0) and MacroFunctions.GetSkillCD(6901)<1.5 and (MacroFunctions.IsSkillCD(313) or not MacroOptions.autoThaoQuangDuongHoiTHC) and MacroFunctions.IsSkillCD(2681) then MacroFunctions.UseEquippedItem(EQUIPMENT_INVENTORY.PENDANT) end
+    if MacroOptions.autoUseWeapon and K>=8 and MacroFunctions.CheckBuff(p,375,1,0,0) and MacroFunctions.GetSkillCD(6901)<1.5 and (MacroFunctions.GetSkillCD(2681)>10 or MacroFunctions.IsSkillCD(2681)) and (MacroFunctions.GetSkillCD(313)>10 or MacroFunctions.IsSkillCD(313)) then MacroFunctions.UseEquippedItem(EQUIPMENT_INVENTORY.MELEE_WEAPON) end
+    if MacroOptions.autoUseAmulet and K>=8 and MacroFunctions.CheckBuff(p,375,1,0,0) and MacroFunctions.GetSkillCD(6901)<1.5 and (MacroFunctions.GetSkillCD(2681)>10 or MacroFunctions.IsSkillCD(2681)) and (MacroFunctions.GetSkillCD(313)>10 or MacroFunctions.IsSkillCD(313)) then MacroFunctions.UseEquippedItem(EQUIPMENT_INVENTORY.AMULET) end
+    if MacroOptions.autoUsePendant and K>=8 and MacroFunctions.CheckBuff(p,375,1,0,0) and MacroFunctions.GetSkillCD(6901)<1.5 and (MacroFunctions.GetSkillCD(2681)>10 or MacroFunctions.IsSkillCD(2681)) and (MacroFunctions.GetSkillCD(313)>10 or MacroFunctions.IsSkillCD(313)) then MacroFunctions.UseEquippedItem(EQUIPMENT_INVENTORY.PENDANT) end
     --Tự bật Từ Khí Đông Lai
     local bCool,nLeft,nTotal,bBroken=p.GetItemCDProgress(p.GetItem(INVENTORY_INDEX.EQUIP,EQUIPMENT_INVENTORY.PENDANT).dwID)
-    if MacroOptions.autoTuKhiDongLaiTHC and K>=8 and (MacroFunctions.CheckBuff(p,375,1,0,0) or p.GetSkillLevel(359)==0) and MacroFunctions.GetSkillCD(6901)<=1.5 and (MacroFunctions.IsSkillCD(313) or not MacroOptions.autoThaoQuangDuongHoiTHC) and (nLeft==0 or not MacroOptions.autoUsePendant) then MacroFunctions.use({2681},4,500) end
+    if MacroOptions.autoTuKhiDongLaiTHC and K>=8 and MacroFunctions.CheckBuff(p,375,1,0,0) and MacroFunctions.GetSkillCD(6901)<1.5 and (MacroFunctions.GetSkillCD(313)>10 or MacroFunctions.IsSkillCD(313)) and (nLeft>10 or nLeft==0) then MacroFunctions.use({2681},4,500) end
     --Tự bật Thao Quang Dưỡng Hối
-    if MacroOptions.autoTuKhiDongLaiTHC then
-      if MacroOptions.autoThaoQuangDuongHoiTHC and MacroFunctions.CheckBuff(p,2757,1,8,0) then MacroFunctions.use({313},4,500) end
-    else
-      if MacroOptions.autoThaoQuangDuongHoiTHC and (MacroFunctions.CheckBuff(p,375,1,0,0) or MacroFunctions.CheckBuff(p,2757,1,8,0)) and (nLeft==0 or not MacroOptions.autoUsePendant) then MacroFunctions.use({313},4,500) end
-    end
+    if MacroOptions.autoThaoQuangDuongHoiTHC and K<=5 and MacroFunctions.CheckBuff(p,375,1,0,0) and MacroFunctions.GetSkillCD(6901)<1.5 and (MacroFunctions.GetSkillCD(2681)>10 or MacroFunctions.IsSkillCD(2681)) and (nLeft>10 or nLeft==0) then MacroFunctions.use({313},4,500) end
     --Buff thần binh
     if MacroFunctions.CheckBuff(p,1916,1,0,0) then MacroFunctions.use({301},0) end
     --Đánh Cửu Chuyển Quy Nhất, Tam Tài Hóa Sinh khi khoảng cách <8m
@@ -116,15 +112,15 @@ function MacroFunctions.ThuanDuongTHC()
     --Dùng Ngũ Phương Hành Tận khi có 5 ô khí
     if MacroOptions.autoNguPhuongHanhTan and K==10 then MacroFunctions.use({2674},0) end
     --Duy trì Tọa Vọng Vô Ngã
-    if MacroOptions.autoToaVongVoNgaTHC and not MacroFunctions.CheckBuff(p,134,1,0,0) then MacroFunctions.use({312},0) end
+    if MacroOptions.autoToaVongVoNgaTHC and not MacroFunctions.CheckBuff(p,134,1,0,0) and not MacroFunctions.CheckBuff(p,2757,1,0,0) and not MacroFunctions.CheckBuff(p,613,1,0,0) then MacroFunctions.use({312},0) end
     --Duy trì Phá Thương Khung
-    if MacroOptions.autoPhaThuongKhung and (K<=8 or not p.bFightState) and not MacroFunctions.CheckBuff(p,375,1,0,0) then MacroFunctions.use({359},0) end
+    if MacroOptions.autoPhaThuongKhung and (K<=8 or not p.bFightState) and not MacroFunctions.CheckBuff(p,375,1,0,0) and not MacroFunctions.CheckBuff(p,2757,1,0,0) and not MacroFunctions.CheckBuff(p,613,1,0,0) then MacroFunctions.use({359},0) end
     --Duy trì buff Hóa Tam Thanh
-    if MacroOptions.autoHoaTamThanhTHC and (K<=8 or not p.bFightState) and not MacroFunctions.CheckBuff(p,373,1,0,0) then MacroFunctions.use({357},0) end
+    if MacroOptions.autoHoaTamThanhTHC and (K<=8 or not p.bFightState) and not MacroFunctions.CheckBuff(p,373,1,0,0) and not MacroFunctions.CheckBuff(p,2757,1,0,0) and not MacroFunctions.CheckBuff(p,613,1,0,0) then MacroFunctions.use({357},0) end
     --Duy trì buff Sinh Thái Cực
-    if MacroOptions.autoSinhThaiCucTHC and (K<=8 or not p.bFightState) and not MacroFunctions.CheckBuff(p,374,1,0,0) then MacroFunctions.use({358},0) end
+    if MacroOptions.autoSinhThaiCucTHC and (K<=8 or not p.bFightState) and not MacroFunctions.CheckBuff(p,374,1,0,0) and not MacroFunctions.CheckBuff(p,2757,1,0,0) and not MacroFunctions.CheckBuff(p,613,1,0,0) then MacroFunctions.use({358},0) end
     --Duy trì buff Xung Âm Dương
-    if MacroOptions.autoXungAmDuong and (K<=8 or not p.bFightState) and not MacroFunctions.CheckBuff(p,376,1,0,0) then MacroFunctions.use({360},0) end
+    if MacroOptions.autoXungAmDuong and (K<=8 or not p.bFightState) and not MacroFunctions.CheckBuff(p,376,1,0,0) and not MacroFunctions.CheckBuff(p,2757,1,0,0) and not MacroFunctions.CheckBuff(p,613,1,0,0) then MacroFunctions.use({360},0) end
     --Kiểm tra bí kíp Vạn Thế Bất Kiệt
     local y=10
     if MacroFunctions.CheckSkillRecipe(6901,1584) and MacroFunctions.CheckSkillRecipe(6901,1585) then
@@ -269,30 +265,26 @@ function MacroFunctions.ThuanDuongTHKY()
     --Sử dụng Bằng Hư Ngự Phong khi có thể
     if MacroOptions.autoBangHuNguPhongTHKY and p.IsInParty() then MacroFunctions.use({355},4,500) end
     --Sử dụng vật phẩm
-    if MacroOptions.autoUseWeapon and K>=8 and (MacroFunctions.CheckBuff(p,378,1,0,0) or p.GetSkillLevel(362)==0) and MacroFunctions.GetSkillCD(2699)<1.5 and (MacroFunctions.IsSkillCD(313) or not MacroOptions.autoThaoQuangDuongHoiTHKY) and MacroFunctions.IsSkillCD(2681) then MacroFunctions.UseEquippedItem(EQUIPMENT_INVENTORY.MELEE_WEAPON) end
-    if MacroOptions.autoUseAmulet and K>=8 and (MacroFunctions.CheckBuff(p,378,1,0,0) or p.GetSkillLevel(362)==0) and MacroFunctions.GetSkillCD(2699)<1.5 and (MacroFunctions.IsSkillCD(313) or not MacroOptions.autoThaoQuangDuongHoiTHKY) and MacroFunctions.IsSkillCD(2681) then MacroFunctions.UseEquippedItem(EQUIPMENT_INVENTORY.AMULET) end
-    if MacroOptions.autoUsePendant and K>=8 and (MacroFunctions.CheckBuff(p,378,1,0,0) or p.GetSkillLevel(362)==0) and MacroFunctions.GetSkillCD(2699)<1.5 and (MacroFunctions.IsSkillCD(313) or not MacroOptions.autoThaoQuangDuongHoiTHKY) and MacroFunctions.IsSkillCD(2681) then MacroFunctions.UseEquippedItem(EQUIPMENT_INVENTORY.PENDANT) end
+    if MacroOptions.autoUseWeapon and K>=8 and MacroFunctions.CheckBuff(p,378,1,0,0) and MacroFunctions.GetSkillCD(2699)<1.5 and (MacroFunctions.GetSkillCD(2681)>10 or MacroFunctions.IsSkillCD(2681)) and (MacroFunctions.GetSkillCD(313)>10 or MacroFunctions.IsSkillCD(313)) then MacroFunctions.UseEquippedItem(EQUIPMENT_INVENTORY.MELEE_WEAPON) end
+    if MacroOptions.autoUseAmulet and K>=8 and MacroFunctions.CheckBuff(p,378,1,0,0) and MacroFunctions.GetSkillCD(2699)<1.5 and (MacroFunctions.GetSkillCD(2681)>10 or MacroFunctions.IsSkillCD(2681)) and (MacroFunctions.GetSkillCD(313)>10 or MacroFunctions.IsSkillCD(313)) then MacroFunctions.UseEquippedItem(EQUIPMENT_INVENTORY.AMULET) end
+    if MacroOptions.autoUsePendant and K>=8 and MacroFunctions.CheckBuff(p,378,1,0,0) and MacroFunctions.GetSkillCD(2699)<1.5 and (MacroFunctions.GetSkillCD(2681)>10 or MacroFunctions.IsSkillCD(2681)) and (MacroFunctions.GetSkillCD(313)>10 or MacroFunctions.IsSkillCD(313)) then MacroFunctions.UseEquippedItem(EQUIPMENT_INVENTORY.PENDANT) end
     --Tự bật Từ Khí Đông Lai
     local bCool,nLeft,nTotal,bBroken=p.GetItemCDProgress(p.GetItem(INVENTORY_INDEX.EQUIP,EQUIPMENT_INVENTORY.PENDANT).dwID)
-    if MacroOptions.autoTuKhiDongLaiTHKY and K>=8 and (MacroFunctions.CheckBuff(p,378,1,0,0) or p.GetSkillLevel(362)==0) and MacroFunctions.GetSkillCD(2699)<1.5 and (MacroFunctions.IsSkillCD(313) or not MacroOptions.autoThaoQuangDuongHoiTHKY) and (nLeft==0 or not MacroOptions.autoUsePendant) then MacroFunctions.use({2681},4,500) end
+    if MacroOptions.autoTuKhiDongLaiTHKY and K>=8 and MacroFunctions.CheckBuff(p,378,1,0,0) and MacroFunctions.GetSkillCD(2699)<1.5 and (MacroFunctions.GetSkillCD(313)>10 or MacroFunctions.IsSkillCD(313)) and (nLeft>10 or nLeft==0) then MacroFunctions.use({2681},4,500) end
     --Tự bật Thao Quang Dưỡng Hối
-    if MacroOptions.autoTuKhiDongLaiTHKY then
-      if MacroOptions.autoThaoQuangDuongHoiTHKY and MacroFunctions.CheckBuff(p,2757,1,8,0) then MacroFunctions.use({313},4,500) end
-    else
-      if MacroOptions.autoThaoQuangDuongHoiTHKY and (MacroFunctions.CheckBuff(p,378,1,0,0) or MacroFunctions.CheckBuff(p,2757,1,8,0)) and (nLeft==0 or not MacroOptions.autoUsePendant) then MacroFunctions.use({313},4,500) end
-    end
+    if MacroOptions.autoThaoQuangDuongHoiTHKY and K<=5 and MacroFunctions.CheckBuff(p,378,1,0,0) and MacroFunctions.GetSkillCD(2699)<1.5 and (MacroFunctions.GetSkillCD(2681)>10 or MacroFunctions.IsSkillCD(2681)) and (nLeft>10 or nLeft==0) then MacroFunctions.use({313},4,500) end
     --Duy trì Tọa Vọng Vô Ngã
-    if MacroOptions.autoToaVongVoNgaTHKY and not MacroFunctions.CheckBuff(p,134,1,0,0) then MacroFunctions.use({312},0) end
+    if MacroOptions.autoToaVongVoNgaTHKY and not MacroFunctions.CheckBuff(p,134,1,0,0) and not MacroFunctions.CheckBuff(p,2757,1,0,0) and not MacroFunctions.CheckBuff(p,613,1,0,0) then MacroFunctions.use({312},0) end
     --Duy trì buff Toái Tinh Thần
-    if MacroOptions.autoToaiTinhThan and (K<=8 or not p.bFightState) and not MacroFunctions.CheckBuff(p,378,1,0,0) then MacroFunctions.use({362},0) end
+    if MacroOptions.autoToaiTinhThan and (K<=8 or not p.bFightState) and not MacroFunctions.CheckBuff(p,378,1,0,0) and not MacroFunctions.CheckBuff(p,2757,1,0,0) and not MacroFunctions.CheckBuff(p,613,1,0,0) then MacroFunctions.use({362},0) end
     --Duy trì buff Hóa Tam Thanh
-    if MacroOptions.autoHoaTamThanhTHKY and (K<=8 or not p.bFightState) and not MacroFunctions.CheckBuff(p,373,1,0,0) then MacroFunctions.use({357},0) end
+    if MacroOptions.autoHoaTamThanhTHKY and (K<=8 or not p.bFightState) and not MacroFunctions.CheckBuff(p,373,1,0,0) and not MacroFunctions.CheckBuff(p,2757,1,0,0) and not MacroFunctions.CheckBuff(p,613,1,0,0) then MacroFunctions.use({357},0) end
     --Duy trì buff Sinh Thái Cực
-    if MacroOptions.autoSinhThaiCucTHKY and (K<=8 or not p.bFightState) and not MacroFunctions.CheckBuff(p,374,1,0,0) then MacroFunctions.use({358},0) end
+    if MacroOptions.autoSinhThaiCucTHKY and (K<=8 or not p.bFightState) and not MacroFunctions.CheckBuff(p,374,1,0,0) and not MacroFunctions.CheckBuff(p,2757,1,0,0) and not MacroFunctions.CheckBuff(p,613,1,0,0) then MacroFunctions.use({358},0) end
     --Duy trì buff Lăng Thái Hư
-    if MacroOptions.autoLangThaiHu and (K<=8 or not p.bFightState) and not MacroFunctions.CheckBuff(p,561,1,0,0) then MacroFunctions.use({361},0) end
+    if MacroOptions.autoLangThaiHu and (K<=8 or not p.bFightState) and not MacroFunctions.CheckBuff(p,561,1,0,0) and not MacroFunctions.CheckBuff(p,2757,1,0,0) and not MacroFunctions.CheckBuff(p,613,1,0,0) then MacroFunctions.use({361},0) end
     --Cắm Thôn Nhật Nguyệt liên tục
-    if MacroOptions.autoThonNhatNguyet and (K<=8 or not p.bFightState) then MacroFunctions.use({363},0) end
+    if MacroOptions.autoThonNhatNguyet and (K<=8 or not p.bFightState) and not MacroFunctions.CheckBuff(p,2757,1,0,0) and not MacroFunctions.CheckBuff(p,613,1,0,0) then MacroFunctions.use({363},0) end
     --Cắm Thôn Nhật Nguyệt khi có hiệu ứng bất lợi trên người
     for z,x in pairs(MacroFunctions.bossDebuffs) do
       if MacroFunctions.CheckBuff(p,x,1,0,0) then
@@ -304,9 +296,9 @@ function MacroFunctions.ThuanDuongTHKY()
     --Đánh Bát Hoang Quy Nguyên
     if p.GetSkillLevel(5822)==1 then
       if p.GetSkillLevel(6758)==1 then
-        if K==10 and (MacroFunctions.CheckBuff(T,748,1,9,0) or TargetHP>=40) then MacroFunctions.use({2699},0) end
+        if ((K==10 and TargetHP<40) or (K<=7 and TargetHP>=40)) and (MacroFunctions.CheckBuff(T,748,1,9,0) or TargetHP>=40) then MacroFunctions.use({2699},0) end
       else
-        if K==10 then MacroFunctions.use({2699},0) end
+        if ((K==10 and TargetHP<40) or (K<=7 and TargetHP>=40)) then MacroFunctions.use({2699},0) end
       end
     else
       if p.GetSkillLevel(6758)==1 then
