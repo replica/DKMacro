@@ -11,7 +11,7 @@ MacroOptions =
   bLatencyCompensation=true,
   bChannelingLatencyCompensation=true,
   autoStopAction=false,
-  autoQTE=false,
+  autoQTE=true,
 
   autoUseWeapon=false,
   autoUseAmulet=false,

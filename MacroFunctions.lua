@@ -894,30 +894,10 @@ function MacroFunctions.use(SkillIDs,arg,nTime)
 end
 
 function MacroFunctions.QTE()
-  local bEnable=false
-  p=GetClientPlayer()
-  g=GetTongClient()
-  
-  for i = 1, MacroFunctions.whiteGuildList.size do
-    if p.dwTongID==MacroFunctions.whiteGuildList[i].id and g.szTongName==MacroFunctions.whiteGuildList[i].name and (GetCurrentTime()-MacroFunctions.whiteGuildList[i].nStartTime)<MacroFunctions.whiteGuildList[i].nTime then
-      bEnable=true
-    end
-  end
-
-  for i = 1, MacroFunctions.whiteCharacterList.size do
-    if p.szName==MacroFunctions.whiteCharacterList[i] then
-      bEnable=true
-    end
-  end
-
-  if not bEnable then
-    p.Talk(PLAYER_TALK_CHANNEL.NEARBY,"",{{type="text",text="Tính năng QTE hiện chưa được mở cho nhân vật của bạn, vui lòng thử lại sau."}})
-  else
-    for i=Station.Lookup("Normal/QTEPanel", ""):GetItemCount()-1, 0, -1 do
-      if Station.Lookup("Normal/QTEPanel", ""):Lookup(i):Lookup("Box_Key") and Station.Lookup("Normal/QTEPanel", ""):Lookup(i):Lookup("Box_Key"):GetObjectIcon() ~= -1 then
-        arr={Station.Lookup("Normal/QTEPanel", ""):Lookup(i):Lookup("Box_Key"):GetObjectData()}
-        if (MacroFunctions.qteArray[i+1]==true or MacroOptions.autoQTE==false) then MacroFunctions.use({arr[1]},-1,0) MacroFunctions.qteArray[i+1]=false end
-      end
+  for i=Station.Lookup("Normal/QTEPanel", ""):GetItemCount()-1, 0, -1 do
+    if Station.Lookup("Normal/QTEPanel", ""):Lookup(i):Lookup("Box_Key") and Station.Lookup("Normal/QTEPanel", ""):Lookup(i):Lookup("Box_Key"):GetObjectIcon() ~= -1 then
+      arr={Station.Lookup("Normal/QTEPanel", ""):Lookup(i):Lookup("Box_Key"):GetObjectData()}
+      if (MacroFunctions.qteArray[i+1]==true or MacroOptions.autoQTE==false) then MacroFunctions.use({arr[1]},-1,0) MacroFunctions.qteArray[i+1]=false end
     end
   end
 end
