@@ -108,7 +108,7 @@ function MacroFunctions.DuongMonKVQ()
     --Thay đổi ngưỡng thần cơ khi xuất hiện buff Huyền Diệu
     if bHuyenDieu then x=4 else x=10 end
     --Bắn Truy Mệnh Tiễn không vận công khi xuất hiện buff Truy Mệnh Vô Thanh
-    if energy>=(x*2) and (MacroFunctions.CheckBuff(p,3276,1,0,0) or MacroFunctions.tmtReady) and (MacroFunctions.CheckBuff(p,3468,1,0,0) or not MacroFunctions.IsSkillCD(3094)) and not bHuyenDieu then MacroFunctions.use({3096},y) end
+    if energy>=(x*2) and (MacroFunctions.CheckBuff(p,3276,1,0,0) or MacroFunctions.tmtReady) and (MacroFunctions.CheckBuff(p,3468,1,0,0) or not MacroFunctions.IsSkillCD(3094)) and (not bHuyenDieu or MacroFunctions.CheckBuff(p,3468,1,0,0)) then MacroFunctions.use({3096},y) end
     --Bắn Đoạt Phách Tiễn khi còn buff thần binh
     if MacroFunctions.CheckBuff(p,3487,1,4.5,0) and not MacroFunctions.CheckBuff(p,3399,1,0,0) and energy>=(x*3) and MacroFunctions.CheckMoveState(p,"stand|float|entrap") then MacroFunctions.use({3095},y) end
     if MacroFunctions.CheckBuff(p,3487,1,3,0) and MacroFunctions.CheckBuff(p,3399,1,0,0) and energy>=(x*3) and MacroFunctions.CheckMoveState(p,"stand|float|entrap") then MacroFunctions.use({3095},y) end
@@ -118,14 +118,14 @@ function MacroFunctions.DuongMonKVQ()
     --Duy trì Hóa Huyết Tiêu và Xuyên Tâm Nỏ khi gần hết
     if p.GetSkillLevel(5703)==1 and energy>=(x*3) and (not MacroFunctions.CheckBuff(T,2237,1,6,1) or not MacroFunctions.CheckBuff(T,3712,1,6,1)) and MacroFunctions.CheckMoveState(p,"stand|float|entrap") then MacroFunctions.use({3095},y) end
     --Bắn Xuyên Tâm Nỏ nếu chưa tồn tại
-    if RawTargetHP>=HPLimit and energy>=(x*3) and not MacroFunctions.CheckBuff(T,3712,1,0,0) and p.GetSkillLevel(5703)==1 and (p.GetSkillLevel(6891)==0 or not bHuyenDieu) then MacroFunctions.use({3098},y) end
+    if RawTargetHP>=HPLimit and energy>=(x*3) and not MacroFunctions.CheckBuff(T,3712,1,0,0) and p.GetSkillLevel(5703)==1 and (p.GetSkillLevel(6891)==0 or not bHuyenDieu or MacroFunctions.CheckBuff(p,3468,1,0,0)) then MacroFunctions.use({3098},y) end
     --Đánh Hóa Huyết Tiêu lên target nếu chưa tồn tại
-    if RawTargetHP>=HPLimit and energy>=(x*2) and not MacroFunctions.CheckBuff(T,2237,1,0,0) and not bHuyenDieu and MacroFunctions.dwLastSkillIDCasted~=3087 then MacroFunctions.use({3087},y) end
+    if RawTargetHP>=HPLimit and energy>=(x*2) and not MacroFunctions.CheckBuff(T,2237,1,0,0) and (not bHuyenDieu or MacroFunctions.CheckBuff(p,3468,1,0,0)) and MacroFunctions.dwLastSkillIDCasted~=3087 then MacroFunctions.use({3087},y) end
     --Khi đủ thần cơ dùng Trục Tinh Tiễn, Liên Hoàn Nỏ, Ngự Nguyên Tiễn, Khổng Tước Linh, Đoạt Phách Tiễn, Liệt Thạch Nỏ
     if p.GetSkillLevel(6891)==1 then
-      if not bHuyenDieu and (energy<60 or MacroFunctions.CheckBuff(p,3468,1,0,0)) then MacroFunctions.use({3101},y) end
+      if (not bHuyenDieu or MacroFunctions.CheckBuff(p,3468,1,0,0)) and (energy<60 or MacroFunctions.CheckBuff(p,3468,1,0,0)) then MacroFunctions.use({3101},y) end
     else
-      if not bHuyenDieu and ((MacroFunctions.CheckBuff(T,2237,1,0,0) and (MacroFunctions.CheckBuff(T,3712,1,0,0) or MacroFunctions.GetSkillCD(3098)>1.5) and p.GetSkillLevel(6776)==1) or energy<=60) then MacroFunctions.use({3101},y) end
+      if (not bHuyenDieu or MacroFunctions.CheckBuff(p,3468,1,0,0)) and ((MacroFunctions.CheckBuff(T,2237,1,0,0) and (MacroFunctions.CheckBuff(T,3712,1,0,0) or MacroFunctions.GetSkillCD(3098)>1.5) and p.GetSkillLevel(6776)==1) or energy<=60) then MacroFunctions.use({3101},y) end
     end
     if energy<x*3 and MacroFunctions.CheckMoveState(p,"stand|float|entrap") then MacroFunctions.use({3100},2) end
     if MacroOptions.autoNguNguyenTien then
@@ -133,9 +133,9 @@ function MacroFunctions.DuongMonKVQ()
     else
       if energy>=x and not bHuyenDieu and MacroFunctions.CheckBuff(T,5634,25,0,0) then MacroFunctions.use({3099},y) end
     end
-    if energy>=(x*1.5) and (energy<=55 or MacroFunctions.CheckMoveState(p,"walk|run|jump")) and not bHuyenDieu then MacroFunctions.use({3088},y) end
+    if energy>=(x*1.5) and (energy<=55 or MacroFunctions.CheckMoveState(p,"walk|run|jump")) and (not bHuyenDieu or MacroFunctions.CheckBuff(p,3468,1,0,0)) then MacroFunctions.use({3088},y) end
     if energy>=(x*6) and MacroFunctions.CheckMoveState(p,"stand|float|entrap") and p.GetSkillLevel(6891)==1 then MacroFunctions.use({3093,6444},2) end
-    if energy>=(x*3) and MacroFunctions.CheckMoveState(p,"stand|float|entrap") and (p.GetSkillLevel(6891)==0 or not bHuyenDieu) then MacroFunctions.use({3095},y) end
+    if energy>=(x*3) and MacroFunctions.CheckMoveState(p,"stand|float|entrap") and (p.GetSkillLevel(6891)==0 or not bHuyenDieu or MacroFunctions.CheckBuff(p,3468,1,0,0)) then MacroFunctions.use({3095},y) end
     if energy>=50 and MacroFunctions.CheckMoveState(p,"walk|run|jump") then MacroFunctions.use({6450},y) end
     if energy>=80 and MacroFunctions.CheckMoveState(p,"walk|run|jump") then MacroFunctions.use({3097},y) end
   elseif bEnable==false then
