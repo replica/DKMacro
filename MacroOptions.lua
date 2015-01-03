@@ -1023,7 +1023,7 @@ function MacroOptions.CreateMenu()
 -------------------------------------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------------------------------------
   if p.szName=="PhongTửĐiệp" then MacroOptions.szPlace="tặng bé Điệp"
-  elseif p.szName=="Kỳ_Nhi" or p.szName=="MộDungLiên" or p.szName=="NguyệtHiểu" then MacroOptions.szPlace="to my sweetie, with love!"
+  elseif p.szName=="Kỳ_Nhi" or p.szName=="MộDungLiên" or p.szName=="NguyệtHiểu" or p.szName=="TrữHinh" then MacroOptions.szPlace="to my sweetie, with love!"
   else  MacroOptions.szPlace="Trường An"
   end
   table.insert(menu,
