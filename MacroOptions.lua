@@ -2,7 +2,7 @@ MacroFunctions = MacroFunctions or {}
 
 MacroOptions =
 {
-  szTitle="DKMacro v3.3",
+  szTitle="DKMacro v3.3.2",
   szPlace="",
 
   autoShout=false,
