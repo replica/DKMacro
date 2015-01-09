@@ -292,7 +292,7 @@ function MacroFunctions.ThuanDuongTHKY()
       end
     end
     --Duy trì buff Vạn Kiếm Quy Tông
-    if K<=7 and not MacroFunctions.CheckBuff(T,2291,1,2,0) then MacroFunctions.use({311},0) end
+    if K<=7 and not MacroFunctions.CheckBuff(T,2291,1,2,0) and MacroOptions.autoVanKiemQuyTong then MacroFunctions.use({311},0) end
     --Đánh Bát Hoang Quy Nguyên
     if p.GetSkillLevel(5822)==1 then
       if p.GetSkillLevel(6758)==1 then
@@ -310,7 +310,7 @@ function MacroFunctions.ThuanDuongTHKY()
     --Nếu đủ 5 ô khí đánh Vô Ngã Vô Kiếm
     if (p.GetSkillLevel(6460)==0 and K>=8) or K>=9 then MacroFunctions.use({365},0) end
     --Nếu ít hơn 3.5 ô khí đánh Thiên Địa Vô Cực và Tam Hoàn Sáo Nguyệt
-    if K<=7 and MacroOptions.autoThienDiaVoCuc then MacroFunctions.use({309},0) end
+    if K<=7 and p.GetSkillLevel(5817)==1 then MacroFunctions.use({309},0) end
     if K<=7 then MacroFunctions.use({364},0) end
   elseif bEnable==false then
     p.Talk(PLAYER_TALK_CHANNEL.NEARBY,"",{{type="text",text=MacroFunctions.message}})

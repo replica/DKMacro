@@ -105,7 +105,7 @@ MacroOptions =
   autoToaiTinhThan=true,
   autoLangThaiHu=false,
   autoChuyenCanKhon=true,
-  autoThienDiaVoCuc=true,
+  autoVanKiemQuyTong=false,
   autoNguPhuongHanhTan=false,
   autoStopTTLH=false,
   autoVTBKMode=2,
@@ -295,7 +295,7 @@ RegisterCustomData("MacroOptions.autoThonNhatNguyet")
 RegisterCustomData("MacroOptions.autoToaiTinhThan")
 RegisterCustomData("MacroOptions.autoLangThaiHu")
 RegisterCustomData("MacroOptions.autoChuyenCanKhon")
-RegisterCustomData("MacroOptions.autoThienDiaVoCuc")
+RegisterCustomData("MacroOptions.autoVanKiemQuyTong")
 RegisterCustomData("MacroOptions.autoNguPhuongHanhTan")
 RegisterCustomData("MacroOptions.autoStopTTLH")
 RegisterCustomData("MacroOptions.autoVTBKMode")
@@ -1839,16 +1839,16 @@ function MacroOptions.CreateMenu()
     )
     table.insert(menuThuanDuongTHKY,
       {
-        szOption = "Đánh Thiên Địa Vô Cực trong combo",
+        szOption = "Đánh Vạn Kiếm Quy Tông trong combo",
         bCheck = true,
-        bChecked = MacroOptions.autoThienDiaVoCuc,
+        bChecked = MacroOptions.autoVanKiemQuyTong,
         fnAction = function()
-          if not MacroOptions.autoThienDiaVoCuc then
-            MacroOptions.autoThienDiaVoCuc=true
-            OutputMessage("MSG_SYS","[Đánh Thiên Địa Vô Cực trong combo] > ON\n")
+          if not MacroOptions.autoVanKiemQuyTong then
+            MacroOptions.autoVanKiemQuyTong=true
+            OutputMessage("MSG_SYS","[Đánh Vạn Kiếm Quy Tông trong combo] > ON\n")
           else
-            MacroOptions.autoThienDiaVoCuc=false
-            OutputMessage("MSG_SYS","[Đánh Thiên Địa Vô Cực trong combo] > OFF\n")
+            MacroOptions.autoVanKiemQuyTong=false
+            OutputMessage("MSG_SYS","[Đánh Vạn Kiếm Quy Tông trong combo] > OFF\n")
           end
         end,
         fnAutoClose = function() return true end
@@ -5149,14 +5149,14 @@ Hotkey.AddBinding("autoChuyenCanKhon","Tự bật Chuyển Càn Khôn khi HP<30%
     end
   end,
 nil)
-Hotkey.AddBinding("autoThienDiaVoCuc","Đánh Thiên Địa Vô Cực trong combo","",
+Hotkey.AddBinding("autoVanKiemQuyTong","Đánh Vạn Kiếm Quy Tông trong combo","",
   function()
-    if not MacroOptions.autoThienDiaVoCuc then
-      MacroOptions.autoThienDiaVoCuc=true
-      OutputMessage("MSG_SYS","[Đánh Thiên Địa Vô Cực trong combo] > ON\n")
+    if not MacroOptions.autoVanKiemQuyTong then
+      MacroOptions.autoVanKiemQuyTong=true
+      OutputMessage("MSG_SYS","[Đánh Vạn Kiếm Quy Tông trong combo] > ON\n")
     else
-      MacroOptions.autoThienDiaVoCuc=false
-      OutputMessage("MSG_SYS","[Đánh Thiên Địa Vô Cực trong combo] > OFF\n")
+      MacroOptions.autoVanKiemQuyTong=false
+      OutputMessage("MSG_SYS","[Đánh Vạn Kiếm Quy Tông trong combo] > OFF\n")
     end
   end,
 nil)
