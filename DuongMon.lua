@@ -229,7 +229,7 @@ function MacroFunctions.DuongMonTLND()
     end
     --Set TCBTimeLeft
     local TCBTimeLeft=6
-    if p.GetSkillLevel(6888)==0 then TCBTimeLeft=3 end
+    if p.GetSkillLevel(6888)==0 then TCBTimeLeft=4 end
     --Buff Phù Dao Trực Thượng
     if MacroFunctions.StopAction()==1 then MacroFunctions.use({9002},2) end
     --Set buff Huyền Diệu
