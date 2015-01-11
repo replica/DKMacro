@@ -1257,7 +1257,7 @@ function MacroFunctions.StopAction()
       end
     elseif GetNpc(T.dwID).szName=="Vô Danh" and MacroFunctions.CheckBuff(T,5709,1,0,0) then
       return 2
-    elseif GetNpc(T.dwID).szName=="An Lộc Sơn" and TargetHP>60 and (szMapName=="Đại Minh Cung" or szMapName=="Đại Minh Cung Anh Hùng") then
+    elseif GetNpc(T.dwID).szName=="An Lộc Sơn" and (TargetHP>60 or TargetHP<15) and (szMapName=="Đại Minh Cung" or szMapName=="Đại Minh Cung Anh Hùng") then
       return 1
     elseif GetNpc(T.dwID).szName=="Đạm Đài Khô Hỏa" and distance<8 and (szMapName=="Kho Quân Giới Chiến Bảo" or szMapName=="Kho Quân Giới Chiến Bảo Anh Hùng") then
       return 1
