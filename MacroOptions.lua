@@ -773,6 +773,40 @@ function MacroOptions.CreateMenu()
       end
     }
   )
+  if p.szName=="ĐườngKiệt" then
+    table.insert(menuSwapWeapon1,
+      {
+        szOption="Xóa thiết lập vũ khí stack tầng",
+        bCheck = false,
+        bChecked = false,
+        fnAction=function()
+          MacroOptions.szAuxWeaponName1=""
+          MacroOptions.weaponBuffID1=0
+          MacroOptions.weaponBuffLevel1=0
+          MacroOptions.weaponBuffStack1=0
+          MacroOptions.minWeaponBuffTime1=0
+          MacroOptions.weaponType1=0
+          OutputMessage("MSG_SYS","Đã xóa thiết lập vũ khí stack tầng\n")
+        end
+      }
+    )
+    table.insert(menuSwapWeapon1,
+      {
+        szOption="Thiết lập vũ khí stack tầng",
+        bCheck = false,
+        bChecked = false,
+        fnAction=function()
+          MacroOptions.szAuxWeaponName1="Phất Khởi Long Y"
+          MacroOptions.weaponBuffID1=4761
+          MacroOptions.weaponBuffLevel1=3
+          MacroOptions.weaponBuffStack1=10
+          MacroOptions.minWeaponBuffTime1=1
+          MacroOptions.weaponType1=1
+          OutputMessage("MSG_SYS","Đã thiết lập vũ khí stack tầng\n")
+        end
+      }
+    )
+  end
   local menuSwapWeapon2 = {
     szOption = "Tự thay đổi vũ khí opt cam (lấy buff đặc biệt)",
     bCheck = true,
@@ -1022,6 +1056,40 @@ function MacroOptions.CreateMenu()
       end
     }
   )
+  if p.szName=="ĐườngKiệt" then
+    table.insert(menuSwapWeapon2,
+      {
+        szOption="Xóa thiết lập vũ khí stack tầng",
+        bCheck = false,
+        bChecked = false,
+        fnAction=function()
+          MacroOptions.szAuxWeaponName2=""
+          MacroOptions.weaponBuffID2=0
+          MacroOptions.weaponBuffLevel2=0
+          MacroOptions.weaponBuffStack2=0
+          MacroOptions.minWeaponBuffTime2=0
+          MacroOptions.weaponType2=0
+          OutputMessage("MSG_SYS","Đã xóa thiết lập vũ khí stack tầng\n")
+        end
+      }
+    )
+    table.insert(menuSwapWeapon2,
+      {
+        szOption="Thiết lập vũ khí stack tầng",
+        bCheck = false,
+        bChecked = false,
+        fnAction=function()
+          MacroOptions.szAuxWeaponName2="Phất Khởi Long Y"
+          MacroOptions.weaponBuffID2=4761
+          MacroOptions.weaponBuffLevel2=3
+          MacroOptions.weaponBuffStack2=10
+          MacroOptions.minWeaponBuffTime2=1
+          MacroOptions.weaponType2=1
+          OutputMessage("MSG_SYS","Đã thiết lập vũ khí stack tầng\n")
+        end
+      }
+    )
+  end
 -------------------------------------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------------------------------------
   if p.szName=="PhongTửĐiệp" then MacroOptions.szPlace="tặng bé Điệp"
@@ -5162,7 +5230,72 @@ Hotkey.AddBinding("autoVanKiemQuyTong","Đánh Vạn Kiếm Quy Tông trong comb
 nil)
 -------------------------------------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------------------------------------
-Hotkey.AddBinding("autoPhuQuangLuocAnh","Phù Quang Lược Ảnh khi cừu hận > 70%","Macro Đường Môn",
+Hotkey.AddBinding("autoSwapWeapon","Bật/Tắt thay đổi vũ khí","Macro Đường Môn",
+  function()
+    p=GetClientPlayer()
+    local NoiCong=p.GetKungfuMount().dwSkillID
+    if NoiCong==10224 then
+      if not MacroOptions.autoSwapWeapon1 then
+        MacroOptions.autoSwapWeapon1=true
+        OutputMessage("MSG_SYS","[Bật/Tắt thay đổi vũ khí] > ON\n")
+      else
+        MacroOptions.autoSwapWeapon1=false
+        OutputMessage("MSG_SYS","[Bật/Tắt thay đổi vũ khí] > OFF\n")
+      end
+    elseif NoiCong==10225 then
+      if not MacroOptions.autoSwapWeapon2 then
+        MacroOptions.autoSwapWeapon2=true
+        OutputMessage("MSG_SYS","[Bật/Tắt thay đổi vũ khí] > ON\n")
+      else
+        MacroOptions.autoSwapWeapon2=false
+        OutputMessage("MSG_SYS","[Bật/Tắt thay đổi vũ khí] > OFF\n")
+      end
+    end
+  end,
+nil)
+Hotkey.AddBinding("autoClearWeapon","Xóa vũ khí stack tầng","",
+  function()
+    p=GetClientPlayer()
+    local NoiCong=p.GetKungfuMount().dwSkillID
+    if NoiCong==10224 then
+      MacroOptions.szAuxWeaponName1=""
+      MacroOptions.weaponBuffID1=0
+      MacroOptions.weaponBuffLevel1=0
+      MacroOptions.weaponBuffStack1=0
+      MacroOptions.minWeaponBuffTime1=0
+      MacroOptions.weaponType1=0
+    elseif NoiCong==10225 then
+      MacroOptions.szAuxWeaponName2=""
+      MacroOptions.weaponBuffID2=0
+      MacroOptions.weaponBuffLevel2=0
+      MacroOptions.weaponBuffStack2=0
+      MacroOptions.minWeaponBuffTime2=0
+      MacroOptions.weaponType2=0
+    end
+  end,
+nil)
+Hotkey.AddBinding("autoAddWeapon","Thiết lập vũ khí stack tầng","",
+  function()
+    p=GetClientPlayer()
+    local NoiCong=p.GetKungfuMount().dwSkillID
+    if NoiCong==10224 then
+      MacroOptions.szAuxWeaponName1="Phất Khởi Long Y"
+      MacroOptions.weaponBuffID1=4761
+      MacroOptions.weaponBuffLevel1=3
+      MacroOptions.weaponBuffStack1=10
+      MacroOptions.minWeaponBuffTime1=1
+      MacroOptions.weaponType1=1
+    elseif NoiCong==10225 then
+      MacroOptions.szAuxWeaponName2="Phất Khởi Long Y"
+      MacroOptions.weaponBuffID2=4761
+      MacroOptions.weaponBuffLevel2=3
+      MacroOptions.weaponBuffStack2=10
+      MacroOptions.minWeaponBuffTime2=1
+      MacroOptions.weaponType2=1
+    end
+  end,
+nil)
+Hotkey.AddBinding("autoPhuQuangLuocAnh","Phù Quang Lược Ảnh khi cừu hận > 70%","",
   function()
     p=GetClientPlayer()
     local NoiCong=p.GetKungfuMount().dwSkillID
