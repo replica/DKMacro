@@ -5264,6 +5264,7 @@ Hotkey.AddBinding("autoClearWeapon","Xóa vũ khí stack tầng","",
       MacroOptions.weaponBuffStack1=0
       MacroOptions.minWeaponBuffTime1=0
       MacroOptions.weaponType1=0
+      OutputMessage("MSG_SYS","[Thiết lập vũ khí stack tầng] > OFF\n")
     elseif NoiCong==10225 then
       MacroOptions.szAuxWeaponName2=""
       MacroOptions.weaponBuffID2=0
@@ -5271,6 +5272,7 @@ Hotkey.AddBinding("autoClearWeapon","Xóa vũ khí stack tầng","",
       MacroOptions.weaponBuffStack2=0
       MacroOptions.minWeaponBuffTime2=0
       MacroOptions.weaponType2=0
+      OutputMessage("MSG_SYS","[Thiết lập vũ khí stack tầng] > OFF\n")
     end
   end,
 nil)
@@ -5285,6 +5287,7 @@ Hotkey.AddBinding("autoAddWeapon","Thiết lập vũ khí stack tầng","",
       MacroOptions.weaponBuffStack1=10
       MacroOptions.minWeaponBuffTime1=1
       MacroOptions.weaponType1=1
+      OutputMessage("MSG_SYS","[Thiết lập vũ khí stack tầng] > ON\n")
     elseif NoiCong==10225 then
       MacroOptions.szAuxWeaponName2="Phất Khởi Long Y"
       MacroOptions.weaponBuffID2=4761
@@ -5292,6 +5295,7 @@ Hotkey.AddBinding("autoAddWeapon","Thiết lập vũ khí stack tầng","",
       MacroOptions.weaponBuffStack2=10
       MacroOptions.minWeaponBuffTime2=1
       MacroOptions.weaponType2=1
+      OutputMessage("MSG_SYS","[Thiết lập vũ khí stack tầng] > ON\n")
     end
   end,
 nil)
