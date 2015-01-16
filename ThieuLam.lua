@@ -79,8 +79,8 @@ function MacroFunctions.ThieuLamDCK()
     if MacroOptions.autoSkillInterrupt and p.GetSkillLevel(5911)==1 then MacroFunctions.SkillInterrupt(T,MacroFunctions.bossSkills,238) end
     --Dùng Vô Tướng Quyết (giảm 50% sát thương phải chịu) khi HP<30%
     if MacroOptions.autoVoTuongQuyetDCK and HP<30 then MacroFunctions.use({261},2) end
-    --Dùng Diệc Khô Diệc Vinh khi MP<15%
-    if MacroOptions.autoDiecKhoDiecVinh and MP<15 and K==1 then MacroFunctions.use({251},3,500) end
+    --Dùng Diệc Khô Diệc Vinh khi MP<40%
+    if MacroOptions.autoDiecKhoDiecVinh and MP<40 and K==1 then MacroFunctions.use({251},3,500) end
     --Duy trì buff Bát Nhã Quyết
     if MacroOptions.autoBatNhaQuyetDCK and not MacroFunctions.CheckBuff(p,382,1,0,0) then MacroFunctions.use({200},2) end
     --Dùng Phật Tâm Quyết khi có thể
