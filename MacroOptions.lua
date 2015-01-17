@@ -123,7 +123,6 @@ MacroOptions =
   stackNumPheTam=5,
   autoQuiPhuThanCong=true,
   autoDoCungChuyKien=true,
-  autoThucCoDan=true,
   autoTCB=1,
   autoTCBAttack=true,
   toggleAttackMode=1,
@@ -311,7 +310,6 @@ RegisterCustomData("MacroOptions.autoTapTrungQPTC")
 RegisterCustomData("MacroOptions.stackNumPheTam")
 RegisterCustomData("MacroOptions.autoQuiPhuThanCong")
 RegisterCustomData("MacroOptions.autoDoCungChuyKien")
-RegisterCustomData("MacroOptions.autoThucCoDan")
 RegisterCustomData("MacroOptions.autoTCB")
 RegisterCustomData("MacroOptions.autoTCBAttack")
 RegisterCustomData("MacroOptions.toggleAttackMode")
@@ -2211,23 +2209,6 @@ function MacroOptions.CreateMenu()
           else
             MacroOptions.allowTargetMove=false
             OutputMessage("MSG_SYS","[Đặt Thiên Tuyệt & Ám Tàng ngay cả khi mục tiêu di chuyển] > OFF\n")
-          end
-        end,
-        fnAutoClose = function() return true end
-      }
-    )
-    table.insert(menuDuongMonTLND,
-      {
-        szOption = "Dùng kết hợp BVLHC và Thực Cơ Đạn (BVLHC để hồi thần cơ)",
-        bCheck = true,
-        bChecked = MacroOptions.autoThucCoDan,
-        fnAction = function()
-          if not MacroOptions.autoThucCoDan then
-            MacroOptions.autoThucCoDan=true
-            OutputMessage("MSG_SYS","[Dùng kết hợp BVLHC và Thực Cơ Đạn (BVLHC để hồi thần cơ)] > ON\n")
-          else
-            MacroOptions.autoThucCoDan=false
-            OutputMessage("MSG_SYS","[Dùng kết hợp BVLHC và Thực Cơ Đạn (BVLHC để hồi thần cơ)] > OFF\n")
           end
         end,
         fnAutoClose = function() return true end
