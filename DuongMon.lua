@@ -230,8 +230,6 @@ function MacroFunctions.DuongMonTLND()
     --Set TCBTimeLeft
     local TCBTimeLeft=6
     if p.GetSkillLevel(6888)==0 then TCBTimeLeft=4 end
-    local toggleATSCMode = MacroOptions.toggleATSCMode
-    if p.GetSkillLevel(6891)==1 then toggleATSCMode = toggleATSCMode + 21 end
     --Buff Phù Dao Trực Thượng
     if MacroFunctions.StopAction()==1 then MacroFunctions.use({9002},2) end
     --Set buff Huyền Diệu
@@ -313,7 +311,7 @@ function MacroFunctions.DuongMonTLND()
       --Kiểm tra bí kíp Phệ Tâm, nếu có thì duy trì buff Phệ Tâm
       if RawTargetHP>=HPLimit and (MacroFunctions.CheckSkillRecipe(3087,825) or MacroFunctions.CheckSkillRecipe(3087,826)) and energy>=(x*2) and (not bHuyenDieu or not MacroFunctions.CheckBuff(T,3253,MacroOptions.stackNumPheTam,1.5,0)) and not MacroFunctions.CheckBuff(T,3253,MacroOptions.stackNumPheTam,4,0) then MacroFunctions.use({3087},2) end
       --Đặt Ám Tàng Sát Cơ
-      if (MacroFunctions.CheckMoveState(T,"stand|float") or MacroOptions.allowTargetMove) and MacroOptions.toggleAttackMode~=2 and MacroFunctions.GetATSCNum()<=2 and ((energy>=toggleATSCMode or (MacroFunctions.GetSkillCD(3110)<=8 and energy>=25 and MacroOptions.autoTCB>0 and MacroOptions.autoQuiPhuThanCong) or (MacroFunctions.GetSkillCD(3094)<=8 and energy>=25 and MacroOptions.autoTapTrungQPTC==1 and MacroOptions.autoTapTrungTLND) or MacroFunctions.CheckBuff(p,3468,1,0,0)) and (not bHuyenDieu or MacroFunctions.CheckBuff(p,3468,1,0,0))) then MacroFunctions.use({3111},1,500) end
+      if (MacroFunctions.CheckMoveState(T,"stand|float") or MacroOptions.allowTargetMove) and MacroOptions.toggleAttackMode~=2 and MacroFunctions.GetATSCNum()<=2 and ((energy>=MacroOptions.toggleATSCMode or (MacroFunctions.GetSkillCD(3110)<=8 and energy>=25 and MacroOptions.autoTCB>0 and MacroOptions.autoQuiPhuThanCong) or (MacroFunctions.GetSkillCD(3094)<=8 and energy>=25 and MacroOptions.autoTapTrungQPTC==1 and MacroOptions.autoTapTrungTLND) or MacroFunctions.CheckBuff(p,3468,1,0,0)) and (not bHuyenDieu or MacroFunctions.CheckBuff(p,3468,1,0,0))) then MacroFunctions.use({3111},1,500) end
       --Nổ Ám Tàng Sát Cơ khi có Tập Trung hoặc QPTC
       if IsEnemy(p.dwID,T.dwID) and (MacroFunctions.GetATSCNum()==3 or (MacroFunctions.GetATSCNum()==2 and (not MacroFunctions.CheckBuff(p,3468,1,1.1,1) or not MacroFunctions.CheckBuff(p,3316,1,1.1,1)))) and (MacroFunctions.CheckBuff(p,3468,1,0,0) or MacroFunctions.CheckBuff(p,3316,1,0,0)) then MacroFunctions.use({3357},2) end
       --Nếu đối tượng di chuyển thì cho nổ ám tàng
@@ -358,7 +356,7 @@ function MacroFunctions.DuongMonTLND()
       if MacroOptions.toggleAttackMode<3 and energy>=(x*1.5) and (energy<60 or MacroFunctions.CheckMoveState(p,"walk|run|jump")) and not bHuyenDieu then MacroFunctions.use({3088},2) end
       --Ngắt Thực Cơ Đạn dành Huyền Diệu cho BVLHC
       if p.GetSkillLevel(6891)==1 and MacroFunctions.GetSkillCD(3093)<1.5 and (MacroFunctions.CheckBuff(p,3278,1,0,0) or energy>=60) and not MacroFunctions.CheckBuff(p,3468,1,0,0) and not MacroFunctions.IsNotSP() and MacroFunctions.dwPreparingSkillID==3105 then p.StopCurrentAction() end
-      if MacroOptions.toggleAttackMode<3 and energy>=(x*3) and (MacroFunctions.CheckMoveState(p,"stand|float|entrap") or MacroFunctions.CheckBuff(p,3281,1,0,0)) and not (MacroFunctions.GetSkillCD(3110)>115 and MacroFunctions.GetSkillCD(3110)<117 and MacroFunctions.GetATSCNum()==3) then MacroFunctions.use({3105},2) end
+      if MacroOptions.toggleAttackMode<3 and energy>=(x*3) and (energy<50 or p.GetSkillLevel(6891)==0) and (MacroFunctions.CheckMoveState(p,"stand|float|entrap") or MacroFunctions.CheckBuff(p,3281,1,0,0)) and not (MacroFunctions.GetSkillCD(3110)>115 and MacroFunctions.GetSkillCD(3110)<117 and MacroFunctions.GetATSCNum()==3) and (not MacroFunctions.CheckBuff(p,3278,1,0,0) or p.GetSkillLevel(6891)==0) then MacroFunctions.use({3105},2) end
       if MacroOptions.toggleAttackMode<3 and energy>=70 and MacroFunctions.CheckMoveState(p,"walk|run|jump") then MacroFunctions.use({3106},2) end
     end
   elseif bEnable==false then

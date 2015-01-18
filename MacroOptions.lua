@@ -2343,6 +2343,20 @@ function MacroOptions.CreateMenu()
         fnAutoClose = function() return true end
       }
     )
+    table.insert(menuDuongMonTLND,
+      {
+        szOption = "Không đặt Ám Tàng Sát Cơ",
+        bMCheck = true,
+        bChecked = MacroOptions.toggleATSCMode==130,
+        fnAction = function()
+          if MacroOptions.toggleATSCMode~=130 then
+            MacroOptions.toggleATSCMode=130
+            OutputMessage("MSG_SYS","Đã chọn [Không đặt Ám Tàng Sát Cơ]\n")
+          end
+        end,
+        fnAutoClose = function() return true end
+      }
+    )
     table.insert(menuDuongMonTLND,{bDevide=true})
     table.insert(menuDuongMonTLND,
       {
@@ -5452,6 +5466,9 @@ Hotkey.AddBinding("toggleATSCMode","Chuyển chế độ đặt Ám Tàng Sát C
     elseif MacroOptions.toggleATSCMode==85 then
       MacroOptions.toggleATSCMode=100
       OutputMessage("MSG_SYS","Đã lựa chọn [Đặt Ám Tàng Sát Cơ khi thần cơ >= 100]\n")
+    elseif MacroOptions.toggleATSCMode==100 then
+      MacroOptions.toggleATSCMode=130
+      OutputMessage("MSG_SYS","Đã lựa chọn [Không đặt Ám Tàng Sát Cơ]\n")
     end
   end,
 nil)
