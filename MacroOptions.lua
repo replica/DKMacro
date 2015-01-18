@@ -5454,7 +5454,7 @@ Hotkey.AddBinding("autoTCB","Chuyển chế độ tự đặt Thiên Cơ Biến"
 nil)
 Hotkey.AddBinding("toggleATSCMode","Chuyển chế độ đặt Ám Tàng Sát Cơ","",
   function()
-    if MacroOptions.toggleATSCMode==100 then
+    if MacroOptions.toggleATSCMode==130 then
       MacroOptions.toggleATSCMode=25
       OutputMessage("MSG_SYS","Đã lựa chọn [Đặt Ám Tàng Sát Cơ khi thần cơ >= 25]\n")
     elseif MacroOptions.toggleATSCMode==25 then
