@@ -356,7 +356,7 @@ function MacroFunctions.DuongMonTLND()
       if MacroOptions.toggleAttackMode<3 and energy>=(x*1.5) and (energy<60 or MacroFunctions.CheckMoveState(p,"walk|run|jump")) and not bHuyenDieu then MacroFunctions.use({3088},2) end
       --Ngắt Thực Cơ Đạn dành Huyền Diệu cho BVLHC
       if p.GetSkillLevel(6891)==1 and MacroFunctions.GetSkillCD(3093)<1.5 and (MacroFunctions.CheckBuff(p,3278,1,0,0) or energy>=60) and not MacroFunctions.CheckBuff(p,3468,1,0,0) and not MacroFunctions.IsNotSP() and MacroFunctions.dwPreparingSkillID==3105 then p.StopCurrentAction() end
-      if MacroOptions.toggleAttackMode<3 and energy>=(x*3) and (energy<50 or p.GetSkillLevel(6891)==0) and (MacroFunctions.CheckMoveState(p,"stand|float|entrap") or MacroFunctions.CheckBuff(p,3281,1,0,0)) and not (MacroFunctions.GetSkillCD(3110)>115 and MacroFunctions.GetSkillCD(3110)<117 and MacroFunctions.GetATSCNum()==3) and (not MacroFunctions.CheckBuff(p,3278,1,0,0) or p.GetSkillLevel(6891)==0) then MacroFunctions.use({3105},2) end
+      if MacroOptions.toggleAttackMode<3 and energy>=(x*3) and (energy<50 or p.GetSkillLevel(6891)==0 or MacroFunctions.CheckBuff(p,3468,1,0,0)) and (MacroFunctions.CheckMoveState(p,"stand|float|entrap") or MacroFunctions.CheckBuff(p,3281,1,0,0)) and not (MacroFunctions.GetSkillCD(3110)>115 and MacroFunctions.GetSkillCD(3110)<117 and MacroFunctions.GetATSCNum()==3) and (not MacroFunctions.CheckBuff(p,3278,1,0,0) or p.GetSkillLevel(6891)==0) then MacroFunctions.use({3105},2) end
       if MacroOptions.toggleAttackMode<3 and energy>=70 and MacroFunctions.CheckMoveState(p,"walk|run|jump") then MacroFunctions.use({3106},2) end
     end
   elseif bEnable==false then
