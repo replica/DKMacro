@@ -798,7 +798,7 @@ function MacroOptions.CreateMenu()
           MacroOptions.weaponBuffID1=4761
           MacroOptions.weaponBuffLevel1=3
           MacroOptions.weaponBuffStack1=10
-          MacroOptions.minWeaponBuffTime1=1
+          MacroOptions.minWeaponBuffTime1=1.5
           MacroOptions.weaponType1=1
           OutputMessage("MSG_SYS","Đã thiết lập vũ khí stack tầng\n")
         end
@@ -1081,7 +1081,7 @@ function MacroOptions.CreateMenu()
           MacroOptions.weaponBuffID2=4761
           MacroOptions.weaponBuffLevel2=3
           MacroOptions.weaponBuffStack2=10
-          MacroOptions.minWeaponBuffTime2=1
+          MacroOptions.minWeaponBuffTime2=1.5
           MacroOptions.weaponType2=1
           OutputMessage("MSG_SYS","Đã thiết lập vũ khí stack tầng\n")
         end
@@ -5280,7 +5280,7 @@ Hotkey.AddBinding("autoAddWeapon","Thiết lập vũ khí stack tầng","",
       MacroOptions.weaponBuffID1=4761
       MacroOptions.weaponBuffLevel1=3
       MacroOptions.weaponBuffStack1=10
-      MacroOptions.minWeaponBuffTime1=1
+      MacroOptions.minWeaponBuffTime1=1.5
       MacroOptions.weaponType1=1
       OutputMessage("MSG_SYS","[Thiết lập vũ khí stack tầng] > ON\n")
     elseif NoiCong==10225 then
@@ -5288,7 +5288,7 @@ Hotkey.AddBinding("autoAddWeapon","Thiết lập vũ khí stack tầng","",
       MacroOptions.weaponBuffID2=4761
       MacroOptions.weaponBuffLevel2=3
       MacroOptions.weaponBuffStack2=10
-      MacroOptions.minWeaponBuffTime2=1
+      MacroOptions.minWeaponBuffTime2=1.5
       MacroOptions.weaponType2=1
       OutputMessage("MSG_SYS","[Thiết lập vũ khí stack tầng] > ON\n")
     end
