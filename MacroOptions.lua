@@ -109,6 +109,9 @@ MacroOptions =
   autoNguPhuongHanhTan=false,
   autoStopTTLH=false,
   autoVTBKMode=2,
+  cooperateBuffTHC=false,
+  cooperateBuffTHKY=false,
+  
   totalGasFieldTHC=0,
   totalGasFieldTHKY=0,
 
@@ -298,6 +301,8 @@ RegisterCustomData("MacroOptions.autoVanKiemQuyTong")
 RegisterCustomData("MacroOptions.autoNguPhuongHanhTan")
 RegisterCustomData("MacroOptions.autoStopTTLH")
 RegisterCustomData("MacroOptions.autoVTBKMode")
+RegisterCustomData("MacroOptions.cooperateBuffTHC")
+RegisterCustomData("MacroOptions.cooperateBuffTHKY")
 
 RegisterCustomData("MacroOptions.autoPhuQuangLuocAnhKVQ")
 RegisterCustomData("MacroOptions.autoKinhHongDuLongKVQ")
@@ -1636,6 +1641,24 @@ function MacroOptions.CreateMenu()
     table.insert(menuThuanDuongTHC,{bDevide=true})
     table.insert(menuThuanDuongTHC,
       {
+        szOption = "Dùng chung Từ Khí Đông Lai, Thao Quang Dưỡng Hối và yêu trụy",
+        bCheck = true,
+        bChecked = MacroOptions.cooperateBuffTHC,
+        fnAction = function()
+          if not MacroOptions.cooperateBuffTHC then
+            MacroOptions.cooperateBuffTHC=true
+            OutputMessage("MSG_SYS","[Dùng chung Từ Khí Đông Lai, Thao Quang Dưỡng Hối và yêu trụy] > ON\n")
+          else
+            MacroOptions.cooperateBuffTHC=false
+            OutputMessage("MSG_SYS","[Dùng chung Từ Khí Đông Lai, Thao Quang Dưỡng Hối và yêu trụy] > OFF\n")
+          end
+        end,
+        fnAutoClose = function() return true end
+      }
+    )
+    table.insert(menuThuanDuongTHC,{bDevide=true})
+    table.insert(menuThuanDuongTHC,
+      {
         szOption = "Không đánh Vạn Thế Bất Kiệt",
         bMCheck = true,
         bChecked = MacroOptions.autoVTBKMode==0,
@@ -1915,6 +1938,24 @@ function MacroOptions.CreateMenu()
           else
             MacroOptions.autoVanKiemQuyTong=false
             OutputMessage("MSG_SYS","[Đánh Vạn Kiếm Quy Tông trong combo] > OFF\n")
+          end
+        end,
+        fnAutoClose = function() return true end
+      }
+    )
+    table.insert(menuThuanDuongTHKY,{bDevide=true})
+    table.insert(menuThuanDuongTHKY,
+      {
+        szOption = "Dùng chung Từ Khí Đông Lai, Thao Quang Dưỡng Hối và yêu trụy",
+        bCheck = true,
+        bChecked = MacroOptions.cooperateBuffTHKY,
+        fnAction = function()
+          if not MacroOptions.cooperateBuffTHKY then
+            MacroOptions.cooperateBuffTHKY=true
+            OutputMessage("MSG_SYS","[Dùng chung Từ Khí Đông Lai, Thao Quang Dưỡng Hối và yêu trụy] > ON\n")
+          else
+            MacroOptions.cooperateBuffTHKY=false
+            OutputMessage("MSG_SYS","[Dùng chung Từ Khí Đông Lai, Thao Quang Dưỡng Hối và yêu trụy] > OFF\n")
           end
         end,
         fnAutoClose = function() return true end
