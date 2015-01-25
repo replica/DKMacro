@@ -513,6 +513,7 @@ function MacroFunctions.OnEvent(szEvent)
     end
     if arg0==UI_GetClientPlayerID() and MacroFunctions.dwChannelingSkillID==5268 then
       MacroFunctions.bSpendMana=false
+      MacroFunctions.dwLastSkillIDCasted=0
     end
     if arg0==UI_GetClientPlayerID() and (MacroFunctions.dwPreparingSkillID==3095 or MacroFunctions.dwPreparingSkillID==3096) then
       MacroFunctions.tmtReady=false

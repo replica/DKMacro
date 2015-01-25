@@ -89,6 +89,11 @@ function MacroFunctions.CaiBangTTQ()
         end
       end
     end
+    --Bù trừ độ trễ Tửu Trung Tiên
+    if MacroFunctions.dwLastSkillIDCasted==8564 and p.GetSkillLevel(6840)==1 then
+      MP = MP + 50
+      if MP > 100 then MP = 100 end
+    end
     --Cắt skill bằng Bổng Đả Cẩu Đầu
     if MacroOptions.autoSkillInterrupt then MacroFunctions.SkillInterrupt(T,MacroFunctions.bossSkills,5259) end
     --Xóa buff bằng Thục Khuyển Phệ Nhật
@@ -133,7 +138,7 @@ function MacroFunctions.CaiBangTTQ()
     if MacroOptions.autoUseAmulet and MacroFunctions.CheckBuff(p,5994,1,20,0) then MacroFunctions.UseEquippedItem(EQUIPMENT_INVENTORY.AMULET) end
     if MacroOptions.autoUsePendant and MacroFunctions.CheckBuff(p,5994,1,20,0) then MacroFunctions.UseEquippedItem(EQUIPMENT_INVENTORY.PENDANT) end
     --Đánh Thục Khuyển Phệ Nhật hồi mana
-    if MacroFunctions.bSpendMana==false and p.GetSkillLevel(6815)==1 and distance<=8 and MP<60 and not MacroFunctions.CheckBuff(p,5994,1,20,0) and MacroFunctions.GetSkillCD(5268)>=6 then MacroFunctions.use({5257},6,100) end
+    if MacroFunctions.bSpendMana==false and p.GetSkillLevel(6815)==1 and distance<=8 and MP<60 and not MacroFunctions.CheckBuff(p,5994,1,20,0) and MacroFunctions.dwLastSkillIDCasted~=8564 then MacroFunctions.use({5257},6,100) end
     --Đánh Ác Cẩu Lan Lộ, Tà Đả Cẩu Bối, Bổng Đả Cẩu Đầu, Bát Cẩu Triều Thiên
     if MacroFunctions.bSpendMana==false and p.GetSkillLevel(5362)==1 and distance<=6 then MacroFunctions.use(ACLL,6,100) end
     if MacroFunctions.bSpendMana==false and MacroOptions.autoBongDaCauDau1 and not IsKeyDown("Space") then MacroFunctions.use({5259},6,100) end
