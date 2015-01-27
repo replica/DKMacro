@@ -106,8 +106,8 @@ function MacroFunctions.ThieuLamDCK()
     if MacroOptions.autoUseAmulet and MacroFunctions.CheckBuff(p,3889,1,0,0) and MacroFunctions.CheckBuff(p,2686,1,15,0) then MacroFunctions.UseEquippedItem(EQUIPMENT_INVENTORY.AMULET) end
     if MacroOptions.autoUsePendant and MacroFunctions.CheckBuff(p,3889,1,0,0) and MacroFunctions.CheckBuff(p,2686,1,15,0) then MacroFunctions.UseEquippedItem(EQUIPMENT_INVENTORY.PENDANT) end
     --Khoảng cách >8m dùng Tróc Ảnh Thức, Bộ Phong Thức
-    if distance>8 and distance<20 then MacroFunctions.use({242},2) end
-    if distance>8 then MacroFunctions.use({238},2) end
+    if distance>10 and distance<20 then MacroFunctions.use({242},2) end
+    if distance>10 then MacroFunctions.use({238},2) end
     --Thay đổi combo khi HP target <30%
     if TargetHP>=30 then
       --Đánh Vi Đà Hiến Chử khi đủ 3 điểm thiền định
