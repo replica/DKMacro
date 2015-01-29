@@ -128,28 +128,19 @@ function MacroFunctions.ThuanDuongTHC()
     elseif MacroFunctions.CheckSkillRecipe(6901,1584) or MacroFunctions.CheckSkillRecipe(6901,1585) then
       y=9
     end
+    --Đánh LNHH sau khi bật từ khí
+    if MacroFunctions.dwLastSkillIDCasted==2681 then MacroFunctions.use({301},0) end
     --Đánh Vạn Thế Bất Kiệt
-    if MacroOptions.autoStopTTLH and K==10 and not MacroFunctions.IsNotSP() and MacroFunctions.dwPreparingSkillID==367 and currentPrepareRatio<0.3 then p.StopCurrentAction() end
-    if MacroOptions.autoVTBKMode==1 then
-      if K>=y and ((not MacroFunctions.CheckBuff(T,6424,1,2,0) and p.GetSkillLevel(6908)==1) or MacroFunctions.CheckBuff(p,6425,1,0,0)) and MacroFunctions.CheckMoveState(p,"stand|float|entrap") then MacroFunctions.use({6901},0) end
-    elseif MacroOptions.autoVTBKMode==2 then
-      if K>=y and (p.GetSkillLevel(6908)==1 or MacroFunctions.CheckBuff(p,6425,1,0,0)) and MacroFunctions.CheckMoveState(p,"stand|float|entrap") then MacroFunctions.use({6901},0) end
-    end
+    if K>=y and (MacroFunctions.CheckMoveState(p,"stand|float|entrap") or MacroFunctions.CheckBuff(p,6425,1,0,0)) then MacroFunctions.use({6901},0) end
     --Lưỡng Nghi Hóa Hình
-    if MacroOptions.autoVTBKMode==1 then
-      if K>=8 and not (((not MacroFunctions.CheckBuff(T,6424,1,2,0) and p.GetSkillLevel(6908)==1) or MacroFunctions.CheckBuff(p,6425,1,0,0)) and MacroFunctions.CheckMoveState(p,"stand|float|entrap") and MacroFunctions.GetSkillCD(6901)==MacroFunctions.GetSkillCD(301)) then MacroFunctions.use({301},0) end
-    elseif MacroOptions.autoVTBKMode==2 then
-      if K>=8 and not ((p.GetSkillLevel(6908)==1 or MacroFunctions.CheckBuff(p,6425,1,0,0)) and MacroFunctions.CheckMoveState(p,"stand|float|entrap") and MacroFunctions.GetSkillCD(6901)==MacroFunctions.GetSkillCD(301)) then MacroFunctions.use({301},0) end
-    else
-      if K>=8 then MacroFunctions.use({301},0) end
-    end
+    if K>=9 and MacroFunctions.GetSkillCD(6901)~=MacroFunctions.GetSkillCD(301) then MacroFunctions.use({301},0) end
     --Thái Cực Vô Cực tăng dmg
     if K<=6 and p.GetSkillLevel(5837)==1 and p.GetSkillLevel(5843)==1 and p.GetSkillLevel(6908)==1 and MacroFunctions.CheckBuff(T,6424,1,0,0) then MacroFunctions.use({306},0) end
     --Nếu ít hơn 3.5 ô khí thì đánh Tứ Tượng, Thái Cực Vô Cực
     if MacroFunctions.CheckBuff(p,613,1,0,0) then
-      if K<=6 and (MacroFunctions.CheckMoveState(p,"stand|float|entrap") or MacroFunctions.CheckBuff(p,999,1,0,0)) then MacroFunctions.use({367},0) end
+      if K<=8 and (MacroFunctions.CheckMoveState(p,"stand|float|entrap") or MacroFunctions.CheckBuff(p,999,1,0,0)) then MacroFunctions.use({367},0) end
     else
-      if MacroFunctions.TTLH and (MacroFunctions.CheckMoveState(p,"stand|float|entrap") or MacroFunctions.CheckBuff(p,999,1,0,0)) then MacroFunctions.use({367},0) end
+      if MacroFunctions.TTLH and K<=8 and (MacroFunctions.CheckMoveState(p,"stand|float|entrap") or MacroFunctions.CheckBuff(p,999,1,0,0)) then MacroFunctions.use({367},0) end
     end
     if K<=6 and MacroFunctions.CheckMoveState(p,"walk|run|jump") then MacroFunctions.use({306},0) end
   elseif bEnable==false then

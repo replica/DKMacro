@@ -87,7 +87,7 @@ MacroOptions =
   autoThaoQuangDuongHoiTHKY=true,
   autoTuKhiDongLaiTHC=true,
   autoTuKhiDongLaiTHKY=true,
-  autoCuuChuyenQuyNhat=true,
+  autoCuuChuyenQuyNhat=false,
   autoHoaTamThanhTHC=false,
   autoHoaTamThanhTHKY=false,
   autoPhaThuongKhung=true,
@@ -107,8 +107,6 @@ MacroOptions =
   autoChuyenCanKhon=true,
   autoVanKiemQuyTong=false,
   autoNguPhuongHanhTan=false,
-  autoStopTTLH=false,
-  autoVTBKMode=2,
   cooperateBuffTHC=false,
   cooperateBuffTHKY=false,
   
@@ -299,8 +297,6 @@ RegisterCustomData("MacroOptions.autoLangThaiHu")
 RegisterCustomData("MacroOptions.autoChuyenCanKhon")
 RegisterCustomData("MacroOptions.autoVanKiemQuyTong")
 RegisterCustomData("MacroOptions.autoNguPhuongHanhTan")
-RegisterCustomData("MacroOptions.autoStopTTLH")
-RegisterCustomData("MacroOptions.autoVTBKMode")
 RegisterCustomData("MacroOptions.cooperateBuffTHC")
 RegisterCustomData("MacroOptions.cooperateBuffTHKY")
 
@@ -1621,23 +1617,6 @@ function MacroOptions.CreateMenu()
         fnAutoClose = function() return true end
       }
     )
-    table.insert(menuThuanDuongTHC,
-      {
-        szOption = "Tự dừng vận công Tứ Tượng Luân Hồi khi đủ 5 ô khí",
-        bCheck = true,
-        bChecked = MacroOptions.autoStopTTLH,
-        fnAction = function()
-          if not MacroOptions.autoStopTTLH then
-            MacroOptions.autoStopTTLH=true
-            OutputMessage("MSG_SYS","[Tự dừng vận công Tứ Tượng Luân Hồi khi đủ 5 ô khí] > ON\n")
-          else
-            MacroOptions.autoStopTTLH=false
-            OutputMessage("MSG_SYS","[Tự dừng vận công Tứ Tượng Luân Hồi khi đủ 5 ô khí] > OFF\n")
-          end
-        end,
-        fnAutoClose = function() return true end
-      }
-    )
     table.insert(menuThuanDuongTHC,{bDevide=true})
     table.insert(menuThuanDuongTHC,
       {
@@ -1651,49 +1630,6 @@ function MacroOptions.CreateMenu()
           else
             MacroOptions.cooperateBuffTHC=false
             OutputMessage("MSG_SYS","[Dùng chung Từ Khí Đông Lai, Thao Quang Dưỡng Hối và yêu trụy] > OFF\n")
-          end
-        end,
-        fnAutoClose = function() return true end
-      }
-    )
-    table.insert(menuThuanDuongTHC,{bDevide=true})
-    table.insert(menuThuanDuongTHC,
-      {
-        szOption = "Không đánh Vạn Thế Bất Kiệt",
-        bMCheck = true,
-        bChecked = MacroOptions.autoVTBKMode==0,
-        fnAction = function()
-          if MacroOptions.autoVTBKMode~=0 then
-            MacroOptions.autoVTBKMode=0
-            OutputMessage("MSG_SYS","[Không đánh Vạn Thế Bất Kiệt] > ON\n")
-          end
-        end,
-        fnAutoClose = function() return true end
-      }
-    )
-    table.insert(menuThuanDuongTHC,
-      {
-        szOption = "Chỉ đánh Vạn Thế Bất Kiệt khi hết Khí Kiệt",
-        bMCheck = true,
-        bChecked = MacroOptions.autoVTBKMode==1,
-        fnAction = function()
-          if MacroOptions.autoVTBKMode~=1 then
-            MacroOptions.autoVTBKMode=1
-            OutputMessage("MSG_SYS","[Chỉ đánh Vạn Thế Bất Kiệt khi hết Khí Kiệt] > ON\n")
-          end
-        end,
-        fnAutoClose = function() return true end
-      }
-    )
-    table.insert(menuThuanDuongTHC,
-      {
-        szOption = "Luôn đánh Vạn Thế Bất Kiệt",
-        bMCheck = true,
-        bChecked = MacroOptions.autoVTBKMode==2,
-        fnAction = function()
-          if MacroOptions.autoVTBKMode~=2 then
-            MacroOptions.autoVTBKMode=2
-            OutputMessage("MSG_SYS","[Luôn đánh Vạn Thế Bất Kiệt] > ON\n")
           end
         end,
         fnAutoClose = function() return true end

@@ -550,21 +550,13 @@ function MacroFunctions.OnEvent(szEvent)
       elseif MacroFunctions.CheckSkillRecipe(6901,1584) or MacroFunctions.CheckSkillRecipe(6901,1585) then
         y=9
       end
-      if MacroFunctions.GetSkillCD(6901)>MacroFunctions.GetSkillCD(301) or MacroOptions.autoVTBKMode==0 then
-        if arg2==367 and K<=3 then MacroFunctions.TTLH=true
-        elseif arg2==367 and K>=4 then MacroFunctions.TTLH=false
+      if MacroFunctions.GetSkillCD(6901)>MacroFunctions.GetSkillCD(301) then
+        if arg2==367 and ((K<=2 and p.GetSkillLevel(5823)==1) or K<=3) then MacroFunctions.TTLH=true
+        elseif arg2==367 and ((K>=4 and p.GetSkillLevel(5823)==1) or K>=5) then MacroFunctions.TTLH=false
         end
-      elseif MacroFunctions.GetSkillCD(6901)==MacroFunctions.GetSkillCD(301) and MacroOptions.autoVTBKMode==1 and not MacroFunctions.CheckBuff(p,6425,1,2,0) then
-        if arg2==367 and K<=y-5 then MacroFunctions.TTLH=true
-        elseif arg2==367 and K>=y-4 then MacroFunctions.TTLH=false
-        end
-      elseif MacroFunctions.GetSkillCD(6901)==MacroFunctions.GetSkillCD(301) and MacroOptions.autoVTBKMode==1 and MacroFunctions.CheckBuff(p,6425,1,2,0) then
-        if arg2==367 and K<=3 then MacroFunctions.TTLH=true
-        elseif arg2==367 and K>=4 then MacroFunctions.TTLH=false
-        end
-      elseif MacroFunctions.GetSkillCD(6901)==MacroFunctions.GetSkillCD(301) and MacroOptions.autoVTBKMode==2 then
-        if arg2==367 and K<=y-5 then MacroFunctions.TTLH=true
-        elseif arg2==367 and K>=y-4 then MacroFunctions.TTLH=false
+      elseif MacroFunctions.GetSkillCD(6901)==MacroFunctions.GetSkillCD(301) then
+        if arg2==367 and ((K<=y-6 and p.GetSkillLevel(5823)==1) or K<=y-5) then MacroFunctions.TTLH=true
+        elseif arg2==367 and ((K>=y-5 and p.GetSkillLevel(5823)==1) or K>=y-4) then MacroFunctions.TTLH=false
         end
       end
 
