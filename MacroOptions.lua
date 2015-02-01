@@ -223,6 +223,7 @@ MacroOptions =
 
   autoTieuTuyCuong=true,
   autoTuuTrungTien=true,
+  incTuuTrungTien=false,
   autoBongDaCauDau1=false,
   autoBongDaCauDau2=false,
   autoYenVuHanh=true,
@@ -411,6 +412,7 @@ RegisterCustomData("MacroOptions.CLQWaitingTime")
 
 RegisterCustomData("MacroOptions.autoTieuTuyCuong")
 RegisterCustomData("MacroOptions.autoTuuTrungTien")
+RegisterCustomData("MacroOptions.incTuuTrungTien")
 RegisterCustomData("MacroOptions.autoBongDaCauDau1")
 RegisterCustomData("MacroOptions.autoBongDaCauDau2")
 RegisterCustomData("MacroOptions.autoYenVuHanh")
@@ -4660,6 +4662,23 @@ function MacroOptions.CreateMenu()
     )
     table.insert(menuCaiBang,
       {
+        szOption = "Dùng Tửu Trung Tiên ngay khi có thể",
+        bCheck = true,
+        bChecked = MacroOptions.incTuuTrungTien,
+        fnAction = function()
+          if not MacroOptions.incTuuTrungTien then
+            MacroOptions.incTuuTrungTien=true
+            OutputMessage("MSG_SYS","[Dùng Tửu Trung Tiên ngay khi có thể] > ON\n")
+          else
+            MacroOptions.incTuuTrungTien=false
+            OutputMessage("MSG_SYS","[Dùng Tửu Trung Tiên ngay khi có thể] > OFF\n")
+          end
+        end,
+        fnAutoClose = function() return true end
+      }
+    )
+    table.insert(menuCaiBang,
+      {
         szOption = "Dùng Bổng Đả Cẩu Đầu để tích nội lực",
         bCheck = true,
         bChecked = MacroOptions.autoBongDaCauDau1,
@@ -6415,6 +6434,17 @@ Hotkey.AddBinding("autoTuuTrungTien","Tự bật Tửu Trung Tiên","",
     else
       MacroOptions.autoTuuTrungTien=false
       OutputMessage("MSG_SYS","[Tự bật Tửu Trung Tiên (tăng 20% bạo kích ngoại)] > OFF\n")
+    end
+  end,
+nil)
+Hotkey.AddBinding("incTuuTrungTien","Dùng Tửu Trung Tiên ngay khi có thể","",
+  function()
+    if not MacroOptions.incTuuTrungTien then
+      MacroOptions.incTuuTrungTien=true
+      OutputMessage("MSG_SYS","[Dùng Tửu Trung Tiên ngay khi có thể] > ON\n")
+    else
+      MacroOptions.incTuuTrungTien=false
+      OutputMessage("MSG_SYS","[Dùng Tửu Trung Tiên ngay khi có thể] > OFF\n")
     end
   end,
 nil)
