@@ -133,7 +133,7 @@ function MacroFunctions.ThuanDuongTHC()
     --Đánh Vạn Thế Bất Kiệt
     if K>=y and (MacroFunctions.CheckMoveState(p,"stand|float|entrap") or MacroFunctions.CheckBuff(p,6425,1,0,0)) then MacroFunctions.use({6901},0) end
     --Lưỡng Nghi Hóa Hình
-    if K>=9 and MacroFunctions.GetSkillCD(6901)~=MacroFunctions.GetSkillCD(301) then MacroFunctions.use({301},0) end
+    if K>=9 and (MacroFunctions.GetSkillCD(6901)~=MacroFunctions.GetSkillCD(301) or p.GetSkillLevel(6901)==0) then MacroFunctions.use({301},0) end
     --Thái Cực Vô Cực tăng dmg
     if K<=6 and p.GetSkillLevel(5837)==1 and p.GetSkillLevel(5843)==1 and p.GetSkillLevel(6908)==1 and MacroFunctions.CheckBuff(T,6424,1,0,0) then MacroFunctions.use({306},0) end
     --Nếu ít hơn 3.5 ô khí thì đánh Tứ Tượng, Thái Cực Vô Cực
@@ -301,7 +301,7 @@ function MacroFunctions.ThuanDuongTHKY()
     --Nếu đủ 5 ô khí đánh Vô Ngã Vô Kiếm
     if (p.GetSkillLevel(6460)==0 and K>=8) or K>=9 then MacroFunctions.use({365},0) end
     --Nếu ít hơn 3.5 ô khí đánh Thiên Địa Vô Cực và Tam Hoàn Sáo Nguyệt
-    if K<=7 and p.GetSkillLevel(5817)==1 then MacroFunctions.use({309},0) end
+    if K<=7 and p.GetSkillLevel(5817)==1 and MacroFunctions.CheckBuff(T,574,1,0,0) then MacroFunctions.use({309},0) end
     if K<=7 then MacroFunctions.use({364},0) end
   elseif bEnable==false then
     p.Talk(PLAYER_TALK_CHANNEL.NEARBY,"",{{type="text",text=MacroFunctions.message}})

@@ -107,19 +107,19 @@ function MacroFunctions.CaiBangTTQ()
     --Đánh KLHH khi còn 11 tầng 6381
     if MacroFunctions.CheckBuff(p,6381,11,0,0) and MP>30 then MacroFunctions.use({5638,8490},6,100) end
     --Duy trì Kháng Long Hữu Hối
-    if MacroFunctions.CheckBuff(p,5984,1,0,0) and MP>30 and not MacroFunctions.CheckBuff(T,6401,1,5,1) then
+    if MacroFunctions.CheckBuff(p,5984,1,0,0) and MP>30 and not MacroFunctions.CheckBuff(T,6401,1,3,1) then
       MacroFunctions.use({5638},6,100)
-    elseif MacroFunctions.CheckBuff(p,5984,1,3,0) and MP<30 and not MacroFunctions.CheckBuff(T,6401,1,5,1) then
+    elseif MacroFunctions.CheckBuff(p,5984,1,3,0) and MP<30 and not MacroFunctions.CheckBuff(T,6401,1,3,1) then
       MacroFunctions.use(BCTT,6,100)
-    elseif not MacroFunctions.CheckBuff(p,5984,1,0,0) and MP>57 and not MacroFunctions.CheckBuff(T,6401,1,5,1) then
+    elseif not MacroFunctions.CheckBuff(p,5984,1,0,0) and MP>57 and not MacroFunctions.CheckBuff(T,6401,1,3,1) then
       MacroFunctions.use({5262},6,100)
-    elseif not MacroFunctions.CheckBuff(p,5984,1,0,0) and MP<57 and not MacroFunctions.CheckBuff(T,6401,1,5,1) then
+    elseif not MacroFunctions.CheckBuff(p,5984,1,0,0) and MP<57 and not MacroFunctions.CheckBuff(T,6401,1,3,1) then
       MacroFunctions.use(BCTT,6,100)
     end
     --Duy trì buff Phục Hổ
     if p.IsInParty() and MacroFunctions.IsFormationLeader() and not MacroFunctions.CheckBuff(p,6345,1,3,1) then MacroFunctions.use({5266},6,100) end
     --Dùng Thiêm Chuẩn Kích
-    if MacroOptions.autoThiemChuanKich and RawTargetHP>=HPLimit and not MacroFunctions.bThiemChuanKich and p.bFightState then MacroFunctions.use({6942,6945,6946,6947,6948},6) end
+    if MacroOptions.autoThiemChuanKich and RawTargetHP>=HPLimit and not MacroFunctions.bThiemChuanKich and p.bFightState and MP<10 and MacroFunctions.bSpendMana==false then MacroFunctions.use({6942,6945,6946,6947,6948},6) end
     --Dùng Tửu Trung Tiên
     if p.GetSkillLevel(6840)==0 then
       if MacroOptions.autoTuuTrungTien and MacroFunctions.bSpendMana==true then MacroFunctions.use({5268},2,100) end
@@ -159,9 +159,9 @@ function MacroFunctions.CaiBangTTQ()
     end
     --Giao Long, Song Long đợi LCVD
     if MacroFunctions.bSpendMana==true and distance<=4 and MP>51 and not MacroFunctions.CheckBuff(T,6401,8,0,0) and RawTargetHP>=HPLimit and MacroOptions.attackMode==1 and p.GetSkillLevel(6818)==1 then MacroFunctions.use({5368},6,100) end
-    if MacroFunctions.bSpendMana==true and distance<=5 and MP>58 and MacroFunctions.dwLastSkillIDCasted==5363 and not MacroFunctions.CheckBuff(T,6401,8,0,0) and RawTargetHP>=HPLimit and MacroOptions.attackMode==1 and p.GetSkillLevel(6818)==1 then MacroFunctions.use({5367},6,100) end
+    if MacroFunctions.bSpendMana==true and distance<=5 and MP>58 and (MacroFunctions.dwLastSkillIDCasted==5363 or (MacroFunctions.dwLastSkillIDCasted>6930 and MacroFunctions.dwLastSkillIDCasted<6950)) and not MacroFunctions.CheckBuff(T,6401,8,0,0) and RawTargetHP>=HPLimit and MacroOptions.attackMode==1 and p.GetSkillLevel(6818)==1 then MacroFunctions.use({5367},6,100) end
     --Đánh Long Chiến Vu Dã
-    if MacroFunctions.bSpendMana==true and MP>44 and not MacroFunctions.IsSkillCD(5262) and MacroFunctions.CheckBuff(p,5984,1,2.5,0) and (MacroFunctions.dwLastSkillIDCasted==5368 or MacroFunctions.CheckBuff(T,6401,8,0,0) or RawTargetHP<HPLimit or MacroOptions.attackMode==2 or p.GetSkillLevel(6824)==1) then MacroFunctions.use({5266},6,100) end
+    if MacroFunctions.bSpendMana==true and MP>44 and not MacroFunctions.IsSkillCD(5262) and MacroFunctions.CheckBuff(p,5984,1,2.5,0) then MacroFunctions.use({5266},6,100) end
     --Đánh Kháng Long Hữu Hối
     if MacroFunctions.IsFormationLeader() then
       if MacroFunctions.bSpendMana==true and MP>30 and not MacroFunctions.IsSkillCD(5262) and MacroFunctions.GetSkillCD(5266)>5 and MacroFunctions.CheckBuff(p,5984,1,0,0) then MacroFunctions.use({5638,8490},6,100) end

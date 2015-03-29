@@ -1257,6 +1257,8 @@ function MacroFunctions.StopAction()
       return 1
     elseif GetNpc(T.dwID).szName=="Trác Lực Các Đồ" and preparingSkillID==5459 and currentPrepareRatio>0.7 then
       return 3
+    elseif GetNpc(T.dwID).szName=="Nguyệt Lộng Ngấn" and MacroFunctions.CheckBuff(T,1480,1,0,0) then
+      return 2
     else
       return 0
     end

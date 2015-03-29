@@ -81,12 +81,18 @@ function MacroFunctions.NguDocDK()
       if dwID==2307 and dwSkillSrcID~=p.dwID then isMine=false end
     end
     --Cắt skill bằng Đoạt Mệnh Cổ, hoặc Khô Tàn Cổ
-    if not MacroFunctions.CheckBuff(T,2307,1,3,0) and isMine then
+    if not MacroFunctions.CheckBuff(T,2307,1,3,0) and isMine and MacroFunctions.IsSkillCD(2214) then
       MacroFunctions.SkillInterrupt(T,MacroFunctions.bossSkills,2214)
-    elseif MacroFunctions.CheckBuff(T,2307,1,3,0) and not isMine then
+    elseif MacroFunctions.CheckBuff(T,2307,1,3,0) and not isMine and MacroFunctions.IsSkillCD(2216) then
       MacroFunctions.SkillInterrupt(T,MacroFunctions.bossSkills,2216)
     else
-      MacroFunctions.SkillInterrupt(T,MacroFunctions.bossSkills,2214)
+      if MacroFunctions.IsSkillCD(2214) then
+        MacroFunctions.SkillInterrupt(T,MacroFunctions.bossSkills,2214)
+      elseif MacroFunctions.IsSkillCD(2216) then
+        MacroFunctions.SkillInterrupt(T,MacroFunctions.bossSkills,2216)
+      else
+        MacroFunctions.SkillInterrupt(T,MacroFunctions.bossSkills,2215)
+      end
     end
     --Buff Phượng Hoàng Cổ
     if MacroOptions.autoPhuongHoangCo and not MacroFunctions.CheckBuff(p,2313,1,0,0) then MacroFunctions.use({2220},2) end
